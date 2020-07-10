@@ -42,6 +42,9 @@ function App( ) {
 
                 <Stack.Screen
                     name="Show_Note"
+                    options={{
+                        headerShown:false
+                    }}
                     component={Show_Note} />
 
                 <Stack.Screen

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,TextInput } from 'react-native';
+import SImage from 'react-native-scalable-image';
+
+import styles from '../../styles/editNoteStyle';
 
 class Edit_Note extends Component{
     render(){
         return(
-            <View>
-                <Text>Edit note</Text>
+            <View style={styles.editNoteContainer}>
+                
             </View>
         )
     }
