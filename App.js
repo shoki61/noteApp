@@ -16,7 +16,7 @@ import Header from './src/views/header';
 
 const Stack = createStackNavigator();
 
-function App() {
+function App( ) {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
