@@ -34,6 +34,19 @@ const buttons = StyleSheet.create({
     buttonText:{
         fontSize:20,
         color:'#fff'
+    },
+    saveButton:{
+        width:w-200,
+        height:45,
+        backgroundColor:'#0EBEDA',
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:100,
+        marginBottom:25,
+    },
+    saveButtonText:{
+        fontSize:18,
+        color:'#fff'
     }
 })
 export default buttons;
