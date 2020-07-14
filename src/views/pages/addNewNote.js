@@ -21,7 +21,7 @@ class Add_New_Note extends Component{
                         placeholder={'içerik...'}
                     />
                 </View>
-                <TouchableOpacity style={buttons.saveButton}>
+                <TouchableOpacity activeOpacity={.8} style={buttons.saveButton}>
                     <Text style={buttons.saveButtonText}>Kaydet</Text>
                 </TouchableOpacity>
             </View>

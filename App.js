@@ -12,6 +12,7 @@ import Edit_Note from './src/views/pages/editNote';
 import Add_New_Note from './src/views/pages/addNewNote';
 import Show_Note from './src/views/pages/showNote';
 import Header from './src/views/header';
+import Add_New_Sticky_Note from './src/views/pages/addNewStickyNote';
 
 
 const Stack = createStackNavigator();
@@ -48,8 +49,14 @@ function App( ) {
                     component={Show_Note} />
 
                 <Stack.Screen
+                    name="Add_New_Sticky_Note"
+                    component={Add_New_Sticky_Note} />
+
+                <Stack.Screen
                     name="Header"
                     component={Header} />
+
+
 
             </Stack.Navigator>
         </NavigationContainer>
