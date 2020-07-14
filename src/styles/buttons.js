@@ -14,7 +14,7 @@ const buttons = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         margin:5,
-        elevation:7
+        elevation:3
     },
     notesButton:{
         width: w/1-150,
@@ -24,7 +24,7 @@ const buttons = StyleSheet.create({
         justifyContent: 'center',
         margin: 20,
         borderRadius: 100,
-        elevation: 7
+        elevation: 3
     },
     addButtonAbsolute:{
         position:'absolute',
@@ -43,6 +43,7 @@ const buttons = StyleSheet.create({
         justifyContent:'center',
         borderRadius:100,
         marginBottom:25,
+        elevation:3
     },
     saveButtonText:{
         fontSize:18,

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         marginBottom:15,
         borderRadius:5,
         backgroundColor:'#fff',
-        elevation:6,
+        elevation:3,
         flexDirection:'row'
     },
     Title_Desc_View:{

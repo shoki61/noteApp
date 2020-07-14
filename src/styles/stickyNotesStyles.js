@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     stickyNoteView:{
         width:'45%',
         height:225,
-        backgroundColor:'#FFF6B6',
-        elevation:10,
+        backgroundColor:'#fff299',
+        elevation:3,
     },
     desc:{
         fontSize:16,
