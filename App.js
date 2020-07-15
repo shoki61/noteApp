@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import {TouchableOpacity,Text} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import SImage from 'react-native-scalable-image';
 
+
+import buttons from './src/styles/buttons';
 
 //kendi oluşturduğum  sınıf componentleri;
 import Home from './src/views/pages/home';
@@ -20,25 +23,55 @@ const Stack = createStackNavigator();
 function App( ) {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
+            <Stack.Navigator screenOptions={({navigation})=>({
+                                 headerStyle:{
+                                     backgroundColor:'#0EBEDA',
+                                 },
+                                 headerLeft: () => (
+                                     <TouchableOpacity onPress={()=>navigation.goBack()} style={buttons.headerBackButton}>
+                                         <SImage height={25} source={require('./src/icons/back.png')}/>
+                                     </TouchableOpacity>
+                                 ),
+                                 headerTintColor:'#fff',
+                                 headerTitleAlign:'center'
+                             })}
+                             initialRouteName="Home">
                 <Stack.Screen
                     name="Home"
+                    options={{
+                        title:'Ana sayfa',
+                        headerLeft:false
+
+                    }}
                     component={Home} />
 
                 <Stack.Screen
                     name="Notes"
+                    options={{
+                        title:'Notlarım',
+
+                    }}
                     component={Notes} />
 
                 <Stack.Screen
                     name="Sticky_Notes"
+                    options={{
+                        title:'Yapışkan Notlarım'
+                    }}
                     component={Sticky_Notes} />
 
                 <Stack.Screen
                     name="Edit_Note"
+                    options={{
+                        title:'Not Düzenleme'
+                    }}
                     component={Edit_Note} />
 
                 <Stack.Screen
                     name="Add_New_Note"
+                    options={{
+                        title:'Yeni Not'
+                    }}
                     component={Add_New_Note} />
 
                 <Stack.Screen
@@ -50,6 +83,9 @@ function App( ) {
 
                 <Stack.Screen
                     name="Add_New_Sticky_Note"
+                    options={{
+                        title:'Yeni Yapışkan Not'
+                    }}
                     component={Add_New_Sticky_Note} />
 
                 <Stack.Screen

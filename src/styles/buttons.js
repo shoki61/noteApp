@@ -48,6 +48,12 @@ const buttons = StyleSheet.create({
     saveButtonText:{
         fontSize:18,
         color:'#fff'
+    },
+    headerBackButton:{
+        width:50,
+        alignItems:'center',
+        justifyContent:'center',
+        height:'100%'
     }
 })
 export default buttons;

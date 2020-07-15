@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     addStickyNote:{
-        width:275,
-        height:325,
+        width:250,
+        height:300,
         backgroundColor:'#fff299',
         elevation:3,
         padding:15,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     addStickyNoteInput:{
         flex:1,
         textAlignVertical:'top',
-        fontSize:20,
+        fontSize:19,
         color:'#7C7C7C'
     },
     maxLengthText:{
