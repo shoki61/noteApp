@@ -1,6 +1,7 @@
 import { observable, action, decorate } from 'mobx';
 import AsyncStorage from '@react-native-community/async-storage';
 import NativeJSCSamplingProfiler from 'react-native/Libraries/Performance/NativeJSCSamplingProfiler';
+import {not} from 'react-native-reanimated';
 
 
 
@@ -8,26 +9,23 @@ import NativeJSCSamplingProfiler from 'react-native/Libraries/Performance/Native
 class SaveData {
 
     notes = []
+    note=[]
     saveData(title,desc){
-        let notes={
+        this.notes.push({
             title:title,
             desc:desc
-        }
-        this.notes.push({
-            ...notes
         })
-        //alert(JSON.stringify(this.notes))
 
-        AsyncStorage.setItem('notes',JSON.stringify(this.notes))
+        AsyncStorage.setItem('notes', JSON.stringify(this.notes))
+
         setTimeout(()=>{
             AsyncStorage.getItem('notes')
-                .then(v=>{
-                    alert(JSON.stringify(v))
-                }).catch(er=>{
-                    alert(er);
-            })
-
+                .then((v)=>{
+                    this.note=v
+                    alert(JSON.stringify(v.replace(/[^a-z 0-9]/g,':')))
+                })
         },1000)
+
     }
 
 }
@@ -36,7 +34,9 @@ decorate(
     SaveData,
     {
         saveData:action,
-        notes:observable
+        notes:observable,
+
+        note:observable
 
     }
 );

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import { observer } from 'mobx-react';
 
 import styles from '../../styles/addNewNoteStyle';
 import buttons from '../../styles/buttons';
 import ControllData from '../../controllers/controllData';
+import saveData from '../../controllers/saveData';
 
 class Add_New_Note extends Component{
 
@@ -18,6 +20,7 @@ class Add_New_Note extends Component{
         return(
             <View style={styles.addNewNoteContainer}>
                 <View style={{width:'100%'}}>
+
                     <TextInput
                         value={this.state.title}
                         multiline={true}
@@ -47,4 +50,4 @@ class Add_New_Note extends Component{
     }
 }
 
-export default  Add_New_Note;
+export default observer(Add_New_Note);

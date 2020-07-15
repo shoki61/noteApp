@@ -13,14 +13,6 @@ import saveData from '../../controllers/saveData';
 class Home extends Component{
 
     componentWillMount() {
-        AsyncStorage.getItem('notes')
-            .then(v=>{
-                alert(v)
-                // saveData.notes.push({
-                //     title:v.title,
-                //     desc:v.desc
-                // })
-            })
 
     }
 
