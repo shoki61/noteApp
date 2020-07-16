@@ -1,31 +1,35 @@
 import { observable, action, decorate } from 'mobx';
 import AsyncStorage from '@react-native-community/async-storage';
-import NativeJSCSamplingProfiler from 'react-native/Libraries/Performance/NativeJSCSamplingProfiler';
-import {not} from 'react-native-reanimated';
-
+import {Text} from 'react-native';
+import React from 'react';
 
 
 
 class SaveData {
 
-    notes = []
-    note=[]
-    saveData(title,desc){
-        this.notes.push({
+    userNotes = []
+
+    userStickyNotes = []
+
+     saveData=async(title,desc)=>{
+
+           //let date  = new Date().getDate();
+           //let month = new Date().getMonth() + 1;
+           //let year  = new Date().getFullYear();
+           //let hours = new Date().getHours();
+           //let min   = new Date().getMinutes();
+           //let sec   = new Date().getSeconds();
+
+        this.userNotes.push({
             title:title,
-            desc:desc
+            desc:desc,
+            //date:date+'.'+month+'.'+year,
+            //time:hours+':'+min+':'+sec
         })
-
-        AsyncStorage.setItem('notes', JSON.stringify(this.notes))
-
+        alert(JSON.stringify(this.userNotes))
         setTimeout(()=>{
-            AsyncStorage.getItem('notes')
-                .then((v)=>{
-                    this.note=v
-                    alert(JSON.stringify(v.replace(/[^a-z 0-9]/g,':')))
-                })
-        },1000)
-
+            AsyncStorage.setItem('notes', JSON.stringify(this.userNotes))
+        },1500)
     }
 
 }
@@ -34,9 +38,9 @@ decorate(
     SaveData,
     {
         saveData:action,
-        notes:observable,
+        userNotes:observable,
+        userStickyNotes:observable
 
-        note:observable
 
     }
 );

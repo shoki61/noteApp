@@ -21,6 +21,7 @@ class Add_New_Note extends Component{
             <View style={styles.addNewNoteContainer}>
                 <View style={{width:'100%'}}>
 
+
                     <TextInput
                         value={this.state.title}
                         multiline={true}
@@ -42,7 +43,7 @@ class Add_New_Note extends Component{
                         placeholder={'içerik...'}
                     />
                 </View>
-                <TouchableOpacity onPress={()=>ControllData.controllData()} activeOpacity={.8} style={buttons.saveButton}>
+                <TouchableOpacity onPress={()=>ControllData.controlData()} activeOpacity={.8} style={buttons.saveButton}>
                     <Text style={buttons.saveButtonText}>Kaydet</Text>
                 </TouchableOpacity>
             </View>

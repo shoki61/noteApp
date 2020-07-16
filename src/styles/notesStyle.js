@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     noteContainer:{
         width:w-75,
         height:80,
-        marginBottom:15,
+        marginTop:7,
+        marginBottom:5,
         borderRadius:5,
         backgroundColor:'#fff',
         elevation:3,

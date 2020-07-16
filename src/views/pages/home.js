@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import SImage from 'react-native-scalable-image';
-import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../../styles/homeStyle';
@@ -13,7 +12,12 @@ import saveData from '../../controllers/saveData';
 class Home extends Component{
 
     componentWillMount() {
+        AsyncStorage.getItem('notes')
+            .then(v=>{
+                if(v!==null) saveData.userNotes = JSON.parse(v)
 
+                alert(JSON.stringify(saveData.userNotes))
+            })
     }
 
     renderCreateNote(){

@@ -11,9 +11,9 @@ class ControllData {
     title = '';
     desc = '' ;
 
-    controllData() {
+    controlData() {
         if (this.title === '' || this.desc === '') alert('Lütfen boş olan yerleri dolfurunuz!')
-        else saveMethod.saveData(this.title,this.desc)
+        else saveMethod.saveData(this.title, this.desc).then(r => alert('true')).catch(e=>alert(e))
     }
 
 
@@ -26,7 +26,7 @@ decorate(
         title:observable,
         desc:observable,
 
-        controllData:action
+        controlData:action
 
     }
 );
