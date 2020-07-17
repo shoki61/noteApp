@@ -1,37 +1,23 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
 import SImage from 'react-native-scalable-image';
 
 import styles from '../../styles/stickyNotesStyles';
 import buttons from '../../styles/buttons';
+import saveData from '../../controllers/saveData';
 
 
 class Sticky_Note extends Component{
 
-    renderStickyNote(){
+    renderStickyNote(value){
         return(
             <View style={styles.stickyNotesContainer}>
                     <View style={styles.stickyNoteView}>
                         <Text style={styles.desc}>
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
+                            {value.desc}
                         </Text>
-                        <Text style={styles.date}>10.07.2020-17:01</Text>
+                        <Text style={styles.date}>{value.date}-{value.time}</Text>
                     </View>
-
-                <View style={styles.stickyNoteView}>
-                    <Text style={styles.desc}>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua.
-                        sed do
-                        eiusmod tempor incididunt
-                    </Text>
-                    <Text style={styles.date}>10.07.2020-17:01</Text>
-                </View>
 
             </View>
         )
@@ -41,7 +27,10 @@ class Sticky_Note extends Component{
         return(
             <>
                 <View style={styles.stickyNoteContainer}>
-                    {this.renderStickyNote()}
+                    <FlatList
+                        data={saveData.userStickyNotes}
+                        renderItem={value=>this.renderStickyNote(value.item)}
+                    />
                 </View>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Add_New_Sticky_Note')} style={[buttons.addButton,buttons.addButtonAbsolute]}>
                     <SImage height={23} source={require('../../icons/plus.png')}/>

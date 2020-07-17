@@ -14,9 +14,17 @@ class Home extends Component{
     componentWillMount() {
         AsyncStorage.getItem('notes')
             .then(v=>{
-                if(v!==null) saveData.userNotes = JSON.parse(v)
-
-                alert(JSON.stringify(saveData.userNotes))
+                if(v!==null) {
+                    let tmp = JSON.parse(v);
+                    saveData.userNotes = tmp;
+                }
+            })
+        AsyncStorage.getItem('stickyNotes')
+            .then(v=>{
+                if(v!==null) {
+                    let tmp = JSON.parse(v);
+                    saveData.userStickyNotes = tmp;
+                }
             })
     }
 

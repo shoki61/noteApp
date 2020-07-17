@@ -4,8 +4,7 @@ import { observer } from 'mobx-react';
 
 import styles from '../../styles/addNewNoteStyle';
 import buttons from '../../styles/buttons';
-import ControllData from '../../controllers/controllData';
-import saveData from '../../controllers/saveData';
+import controlData from '../../controllers/controlData';
 
 class Add_New_Note extends Component{
 
@@ -27,7 +26,7 @@ class Add_New_Note extends Component{
                         multiline={true}
                         onChangeText={title=> {
                             this.setState({title:title})
-                            ControllData.title = title;
+                            controlData.title = title;
                         }}
                         style={styles.inputTitle}
                         placeholder={'başlık...'}
@@ -37,13 +36,13 @@ class Add_New_Note extends Component{
                         multiline={true}
                         onChangeText={desc=> {
                             this.setState({desc:desc})
-                            ControllData.desc = desc;
+                            controlData.desc = desc;
                         }}
                         style={styles.inputDesc}
                         placeholder={'içerik...'}
                     />
                 </View>
-                <TouchableOpacity onPress={()=>ControllData.controlData()} activeOpacity={.8} style={buttons.saveButton}>
+                <TouchableOpacity onPress={()=>controlData.controlData()} activeOpacity={.8} style={buttons.saveButton}>
                     <Text style={buttons.saveButtonText}>Kaydet</Text>
                 </TouchableOpacity>
             </View>

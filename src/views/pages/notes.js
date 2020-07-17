@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
 import SImage from 'react-native-scalable-image';
+import { observer } from 'mobx-react';
 
 import styles from '../../styles/notesStyle';
 import buttons from '../../styles/buttons';
@@ -28,8 +29,6 @@ class Notes extends Component{
             <>
                 <View style={styles.notesContainer}>
 
-                    <Text>{new Date().getDate()}.{ new Date().getMonth() + 1}.{new Date().getFullYear()}.{new Date().getHours()}.{new Date().getMinutes()}.{new Date().getSeconds()}
-                    </Text>
                     <FlatList
                         contentContainerStyle={{alignItems:'center'}}
                         style={{width:'100%',paddingBottom:45}}
@@ -45,4 +44,4 @@ class Notes extends Component{
     }
 }
 
-export default  Notes;
+export default  observer(Notes);
