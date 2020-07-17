@@ -4,17 +4,14 @@ const styles = StyleSheet.create({
     stickyNoteContainer:{
         flex:1,
         backgroundColor:'#fff',
-        paddingTop:30
+        paddingTop:10,
+        alignItems:'center'
 
     },
-    stickyNotesContainer:{
-        flex:1,
-        flexDirection:'row',
-        justifyContent:'space-evenly',
-        flexWrap:'wrap'
-    },
     stickyNoteView:{
-        width:'45%',
+        width: 180,
+        margin:5,
+        marginTop:15,
         height:225,
         backgroundColor:'#fff299',
         elevation:3,

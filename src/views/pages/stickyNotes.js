@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
 import SImage from 'react-native-scalable-image';
+import {observer} from 'mobx-react';
 
 import styles from '../../styles/stickyNotesStyles';
 import buttons from '../../styles/buttons';
@@ -11,14 +12,11 @@ class Sticky_Note extends Component{
 
     renderStickyNote(value){
         return(
-            <View style={styles.stickyNotesContainer}>
-                    <View style={styles.stickyNoteView}>
-                        <Text style={styles.desc}>
-                            {value.desc}
-                        </Text>
-                        <Text style={styles.date}>{value.date}-{value.time}</Text>
-                    </View>
-
+            <View style={styles.stickyNoteView}>
+                <Text style={styles.desc}>
+                    {value.desc}
+                </Text>
+                <Text style={styles.date}>{value.date}-{value.time}</Text>
             </View>
         )
     }
@@ -28,6 +26,8 @@ class Sticky_Note extends Component{
             <>
                 <View style={styles.stickyNoteContainer}>
                     <FlatList
+                        contentContainerStyle={{flexDirection:'row',flexWrap:'wrap',justifyContent:'flex-start'}}
+                        style={{width:'95%'}}
                         data={saveData.userStickyNotes}
                         renderItem={value=>this.renderStickyNote(value.item)}
                     />
@@ -40,4 +40,4 @@ class Sticky_Note extends Component{
     }
 }
 
-export default  Sticky_Note;
+export default  observer(Sticky_Note);
