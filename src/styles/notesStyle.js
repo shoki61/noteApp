@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import controlData from '../controllers/controlData';
 
 
 const w = Dimensions.get('window').width;
@@ -10,10 +11,37 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor: '#fff',
         alignItems:'center',
-        paddingTop:50
+        paddingTop:10
+    },
+
+    settingCont:{
+        width:w-75,
+        alignItems:'flex-end',
+        marginBottom:15,
+    },
+
+    searchView:{
+        width:w-75,
+        height:40,
+        borderRadius:7,
+        backgroundColor:'#f7f7f7',
+        marginBottom: 15,
+        alignItems:'center',
+        paddingRight:10,
+        paddingLeft:10,
+        flexDirection: 'row'
+    },
+    searchInput:{
+        flex:1,
+        marginLeft:5,
+        textAlignVertical:'center',
+        fontSize:18,
+        padding:0,
+        color:'#707070',
+
     },
     noteContainer:{
-        width:w-75,
+        width: w-75,
         height:80,
         marginTop:7,
         marginBottom:5,

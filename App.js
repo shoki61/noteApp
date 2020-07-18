@@ -3,6 +3,7 @@ import {TouchableOpacity,Text} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SImage from 'react-native-scalable-image';
+import Icon from 'react-native-vector-icons/Feather'
 
 
 import buttons from './src/styles/buttons';
@@ -29,7 +30,7 @@ function App( ) {
                                  },
                                  headerLeft: () => (
                                      <TouchableOpacity onPress={()=>navigation.goBack()} style={buttons.headerBackButton}>
-                                         <SImage height={25} source={require('./src/icons/back.png')}/>
+                                         <Icon name='chevron-left' size={35} color='#fff'/>
                                      </TouchableOpacity>
                                  ),
                                  headerTintColor:'#fff',

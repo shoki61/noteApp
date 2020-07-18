@@ -12,12 +12,12 @@ const styles = StyleSheet.create({
     closeButtonView:{
         alignItems:'flex-end',
         paddingRight:20,
-        marginTop:20
+        marginTop:10
     },
     noteContainer:{
         width:w,
         height:h-175,
-        marginTop: 20,
+        marginTop: 10,
         justifyContent:'space-between',
         marginBottom: 5
     },
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
         color:'#7f7f7f',
         textAlign: 'right',
         paddingRight:50,
-        marginTop:10,
         marginBottom:20,
     },
     footerButtonCont:{
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
         borderRadius:100,
         height: 70,
         backgroundColor: '#fff',
-        elevation:7
+        elevation:3
     },
     footerButtonText:{
         color:'#0BABC4'

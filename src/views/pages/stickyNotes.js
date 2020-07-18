@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
-import SImage from 'react-native-scalable-image';
 import {observer} from 'mobx-react';
 
 import styles from '../../styles/stickyNotesStyles';
 import buttons from '../../styles/buttons';
 import saveData from '../../controllers/saveData';
+import Icon from 'react-native-vector-icons/Feather';
 
 
 class Sticky_Note extends Component{
@@ -33,7 +33,7 @@ class Sticky_Note extends Component{
                     />
                 </View>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Add_New_Sticky_Note')} style={[buttons.addButton,buttons.addButtonAbsolute]}>
-                    <SImage height={23} source={require('../../icons/plus.png')}/>
+                    <Icon name='plus' size={30} color='#fff'/>
                 </TouchableOpacity>
             </>
         )

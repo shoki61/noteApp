@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import SImage from 'react-native-scalable-image';
 
 
 import styles from '../../styles/showNoteStyle';
+import Icon from 'react-native-vector-icons/Feather';
 
 
 class Show_Note extends Component{
@@ -12,7 +12,7 @@ class Show_Note extends Component{
             <View style={styles.showNoteCont}>
                 <View style={styles.closeButtonView}>
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('Notes')}>
-                        <SImage width={25} source={require('../../icons/close.png')}/>
+                        <Icon name='x' size={35} color='#0BABC4'/>
                     </TouchableOpacity>
                 </View>
 
@@ -28,11 +28,11 @@ class Show_Note extends Component{
 
                 <View style={styles.footerButtonCont}>
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('Edit_Note')} activeOpacity={.8} style={styles.footerButton}>
-                        <SImage height={25} source={require('../../icons/edit.png')}/>
+                        <Icon name='edit' size={23} color='#0BABC4'/>
                         <Text style={styles.footerButtonText}>Düzenle</Text>
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={.8} style={styles.footerButton}>
-                        <SImage height={25} source={require('../../icons/delete.png')}/>
+                        <Icon name='trash' size={23} color='#0BABC4'/>
                         <Text style={styles.footerButtonText}>Sil</Text>
                     </TouchableOpacity>
 

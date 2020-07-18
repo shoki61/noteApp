@@ -54,6 +54,16 @@ const buttons = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         height:'100%'
+    },
+    settingButton:{
+        width:30,
+        height:30,
+        borderWidth:1,
+        borderColor: '#ffd500',
+        borderRadius:100,
+        alignItems:'center',
+        justifyContent:'center',
+        padding:0
     }
 })
 export default buttons;

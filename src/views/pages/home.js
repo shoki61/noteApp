@@ -11,12 +11,20 @@ import saveData from '../../controllers/saveData';
 
 class Home extends Component{
 
+    constructor(props) {
+        super(props);
+        this.state={
+            showNoteNav:false
+        }
+    }
+
     componentWillMount() {
         AsyncStorage.getItem('notes')
             .then(v=>{
                 if(v!==null) {
                     let tmp = JSON.parse(v);
                     saveData.userNotes = tmp;
+                    this.setState({showNoteNav:true})
                 }
             })
         AsyncStorage.getItem('stickyNotes')
@@ -24,6 +32,7 @@ class Home extends Component{
                 if(v!==null) {
                     let tmp = JSON.parse(v);
                     saveData.userStickyNotes = tmp;
+                    this.setState({showNoteNav:true})
                 }
             })
     }
@@ -65,9 +74,15 @@ class Home extends Component{
         return (
             <View style={styles.Container}>
 
-                {this.renderCreateNote()}
+                {
+                    !this.state.showNoteNav &&
+                    this.renderCreateNote()
+                }
 
-                {this.renderHome()}
+                {
+                    this.state.showNoteNav &&
+                    this.renderHome()
+                }
 
             </View>
         )
