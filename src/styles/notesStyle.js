@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     searchView:{
         width:w-75,
         height:40,
-        borderRadius:7,
+        borderRadius:100,
         backgroundColor:'#f7f7f7',
         marginBottom: 15,
         alignItems:'center',
@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
 
     },
     noteContainer:{
-        width: w-75,
+        width: '100%',
         height:80,
         marginTop:7,
         marginBottom:5,
         borderRadius:5,
         backgroundColor:'#fff',
         elevation:3,
-        flexDirection:'row'
+        flexDirection:'row',
     },
     Title_Desc_View:{
         width: '70%',

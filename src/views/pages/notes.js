@@ -18,23 +18,45 @@ class Notes extends Component{
     constructor(props) {
         super(props);
         this.state={
-            selectNote:false
+            selectNote:false,
+            select:false
         }
     }
 
-    renderNotes(value){
+    pushNote(value){
+        //const tmp = []
+        controlData.a = controlData.selectNotes.map(v => v.desc)
+
+
+        if(!controlData.a.includes(value.desc))controlData.setSelectNote(value)
+        //else alert('false')
+
+        // tmp.push({
+        //     ...value
+        // })
+        //this.setState({select:controlData.selectNotes.map(el => el.title)})
+        //controlData.selectNotes=tmp
+        //alert(JSON.stringify(tmp))s
+    }
+
+    renderNotes(value,index){
         return(
 
-                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',width:w-75}}>
                     {
                         this.state.selectNote &&
-                        <TouchableOpacity>
-                            <Icon name='check' size={25}/>
-                        </TouchableOpacity>
+                        <View style={{width:'15%',alignItems:'center',justifyContent:'center'}}>
+                            <TouchableOpacity onPress={()=> {
+                                this.setState({select:!this.state.select})
+                                this.pushNote(value);
+                            }} style={[buttons.selectButton,controlData.a.includes(value.desc)===true&&{backgroundColor:'#8a8a8a'}]}>
+                                <Icon name='check' color='#fff' size={20}/>
+                            </TouchableOpacity>
+                        </View>
                     }
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Show_Note')} activeOpacity={.9} style={[styles.noteContainer,this.state.selectNote &&{width:w-150}]}>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Show_Note')} activeOpacity={.9} style={[styles.noteContainer,this.state.selectNote &&{width:'85%'}]}>
                         <View style={styles.Title_Desc_View}>
-                            <Text numberOfLines={1} style={styles.noteTitle}>{value.title}</Text>
+                            <Text numberOfLines={1} style={styles.noteTitle}>{controlData.selectNotes.length}{value.title}</Text>
                             <Text numberOfLines={1} style={styles.noteDesc}>{value.desc}</Text>
                         </View>
                         <View style={styles.Date_Time_View}>
@@ -56,6 +78,7 @@ class Notes extends Component{
                             <Icon color='#ffd500' size={20} name='more-horizontal'/>
                         </TouchableOpacity>
                     </View>
+                    <Text>{this.state.select}</Text>
                     <View style={styles.searchView}>
                         <Icon name='search' color='#adadad' size={18}/>
                         <TextInput style={styles.searchInput}  placeholder={'ara...'}/>
@@ -64,7 +87,7 @@ class Notes extends Component{
                         contentContainerStyle={{alignItems:'center'}}
                         style={{width:'100%',paddingBottom:45}}
                         data={saveData.userNotes}
-                        renderItem={value=>this.renderNotes(value.item)}
+                        renderItem={value=>this.renderNotes(value.item,value.index)}
                     />
                 </View>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Add_New_Note')} style={[buttons.addButton,buttons.addButtonAbsolute]}>

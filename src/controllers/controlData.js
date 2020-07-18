@@ -1,5 +1,4 @@
 import { observable, action, decorate } from 'mobx';
-import { AsyncStorage } from 'react-native';
 
 import saveMethod from './saveData';
 
@@ -14,6 +13,18 @@ class ControlData {
     stickyDesc = '';
 
     selectNote=false;
+
+    selectNotes=[]
+    a=''
+
+    setSelectNote=(value)=>{
+
+        this.selectNotes.push({
+            ...value
+        })
+
+        //alert(JSON.stringify(this.selectNotes))
+    }
 
     controlData() {
         if (this.title === '' || this.desc === '') alert('Lütfen boş olan yerleri dolfurunuz!')
@@ -37,9 +48,12 @@ decorate(
         desc:observable,
         stickyDesc:observable,
         selectNote:observable,
+        selectNotes:observable,
+        a:observable,
 
         controlData:action,
-        controlStickyData:action
+        controlStickyData:action,
+        setSelectNote:action
 
     }
 );
