@@ -16,6 +16,10 @@ const buttons = StyleSheet.create({
         margin:5,
         elevation:3
     },
+    deleteButtonText:{
+        fontSize:20,
+        color:'#ff5959'
+    },
     selectButton:{
         width:40,
         backgroundColor:'#eaeaea',
@@ -66,8 +70,8 @@ const buttons = StyleSheet.create({
     settingButton:{
         width:30,
         height:30,
-        borderWidth:1,
-        borderColor: '#ffd500',
+        borderWidth:2,
+        borderColor: '#0EBEDA',
         borderRadius:100,
         alignItems:'center',
         justifyContent:'center',

@@ -16,8 +16,10 @@ const styles = StyleSheet.create({
 
     settingCont:{
         width:w-75,
-        alignItems:'flex-end',
+        justifyContent:'space-between',
+        alignItems:'center',
         marginBottom:15,
+        flexDirection:'row'
     },
 
     searchView:{

@@ -23,20 +23,22 @@ class Notes extends Component{
         }
     }
 
-    pushNote(value){
-        //const tmp = []
+    controlSelectNote(){
+        if(!this.state.selectNote)this.setState({selectNote:true})
+        else {
+            controlData.selectNotes=[]
+            this.setState({selectNote: false});
+        }
+    }
+
+    pushNote(value,index){
         controlData.a = controlData.selectNotes.map(v => v.desc)
 
 
+        this.setState({select:!this.state.select})
         if(!controlData.a.includes(value.desc))controlData.setSelectNote(value)
-        //else alert('false')
+        else controlData.selectNotes.splice(index,1)
 
-        // tmp.push({
-        //     ...value
-        // })
-        //this.setState({select:controlData.selectNotes.map(el => el.title)})
-        //controlData.selectNotes=tmp
-        //alert(JSON.stringify(tmp))s
     }
 
     renderNotes(value,index){
@@ -46,10 +48,9 @@ class Notes extends Component{
                     {
                         this.state.selectNote &&
                         <View style={{width:'15%',alignItems:'center',justifyContent:'center'}}>
-                            <TouchableOpacity onPress={()=> {
-                                this.setState({select:!this.state.select})
-                                this.pushNote(value);
-                            }} style={[buttons.selectButton,controlData.a.includes(value.desc)===true&&{backgroundColor:'#8a8a8a'}]}>
+                            <TouchableOpacity
+                                onPress={()=> this.pushNote(value,index)}
+                                style={[buttons.selectButton,controlData.a.includes(value.desc)&&{backgroundColor:'#8a8a8a'}]}>
                                 <Icon name='check' color='#fff' size={20}/>
                             </TouchableOpacity>
                         </View>
@@ -73,9 +74,17 @@ class Notes extends Component{
             <>
 
                 <View style={styles.notesContainer}>
-                    <View style={styles.settingCont}>
-                        <TouchableOpacity onPress={()=> this.setState({selectNote:!this.state.selectNote})} style={buttons.settingButton}>
-                            <Icon color='#ffd500' size={20} name='more-horizontal'/>
+                    <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
+                        {
+                            controlData.selectNotes.length > 0 &&
+                            <TouchableOpacity>
+                                <Text style={buttons.deleteButtonText}>Sil</Text>
+                            </TouchableOpacity>
+                        }
+                        <TouchableOpacity onPress={()=> this.controlSelectNote()} style={buttons.settingButton}>
+                            {
+                                this.state.selectNote?<Icon color='#0EBEDA' size={20} name='x'/>:<Text style={{fontSize:13,color:'#0998af'}}>seç</Text>
+                            }
                         </TouchableOpacity>
                     </View>
                     <Text>{this.state.select}</Text>
