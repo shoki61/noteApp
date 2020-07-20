@@ -10,11 +10,18 @@ const buttons = StyleSheet.create({
         width:65,
         height:65,
         borderRadius:300,
-        backgroundColor:'#0EBEDA',
+        backgroundColor:'#c547ff',
         alignItems:'center',
         justifyContent:'center',
         margin:5,
         elevation:3
+    },
+    notesSubButton:{
+        width:'100%',
+        height:'100%',
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:100
     },
     deleteButtonText:{
         fontSize:20,
@@ -31,7 +38,6 @@ const buttons = StyleSheet.create({
     notesButton:{
         width: w/1-150,
         height: h/13,
-        backgroundColor: '#0EBEDA',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 20,
@@ -50,7 +56,7 @@ const buttons = StyleSheet.create({
     saveButton:{
         width:w-200,
         height:45,
-        backgroundColor:'#0EBEDA',
+        backgroundColor:'#c547ff',
         alignItems:'center',
         justifyContent:'center',
         borderRadius:100,
@@ -68,14 +74,13 @@ const buttons = StyleSheet.create({
         height:'100%'
     },
     settingButton:{
-        width:30,
-        height:30,
-        borderWidth:2,
-        borderColor: '#0EBEDA',
+        width:35,
+        height:35,
+        borderWidth:1.5,
+        borderColor: '#748bce',
         borderRadius:100,
         alignItems:'center',
         justifyContent:'center',
-        padding:0
     }
 })
 export default buttons;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { observer } from 'mobx-react';
 
 import styles from '../../styles/addNewNoteStyle';
@@ -31,6 +31,9 @@ class Add_New_Note extends Component{
                         style={styles.inputTitle}
                         placeholder={'başlık...'}
                     />
+
+                </View>
+                <ScrollView style={{width:'100%'}}>
                     <TextInput
                         value={this.state.desc}
                         multiline={true}
@@ -41,7 +44,7 @@ class Add_New_Note extends Component{
                         style={styles.inputDesc}
                         placeholder={'içerik...'}
                     />
-                </View>
+                </ScrollView>
                 <TouchableOpacity onPress={()=>controlData.controlData()} activeOpacity={.8} style={buttons.saveButton}>
                     <Text style={buttons.saveButtonText}>Kaydet</Text>
                 </TouchableOpacity>

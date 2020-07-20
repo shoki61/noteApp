@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text,TextInput } from 'react-native';
 import SImage from 'react-native-scalable-image';
+import {observer} from 'mobx-react';
 
 import styles from '../../styles/editNoteStyle';
+import controlData from '../../controllers/controlData';
 
 class Edit_Note extends Component{
     constructor(props) {
@@ -16,13 +18,13 @@ class Edit_Note extends Component{
         return(
             <View style={styles.editNoteContainer}>
                 <TextInput
-                    value={this.state.title}
+                    value={controlData.showNote.title}
                     multiline={true}
-                    onChangeText={(text)=>this.setState({title:text})}
+                    onChangeText={text=>controlData.showNote.title = text}
                     style={styles.inputTitle}/>
 
                 <TextInput
-                    value={this.state.desc}
+                    value={controlData.showNote.desc}
                     multiline={true}
                     onChangeText={(text)=>this.setState({desc:text})}
                     style={styles.inputDesc}
@@ -33,6 +35,6 @@ class Edit_Note extends Component{
     }
 }
 
-export default  Edit_Note;
+export default  observer(Edit_Note);
 
 

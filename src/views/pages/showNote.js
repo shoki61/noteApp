@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import {observer} from 'mobx-react';
 
 
 import styles from '../../styles/showNoteStyle';
 import Icon from 'react-native-vector-icons/Feather';
+import controlData from '../../controllers/controlData';
 
 
 class Show_Note extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state={
+            note:''
+        }
+    }
+
+    componentWillMount=async()=> {
+        await this.setState({note:controlData.showNote})
+    }
+
     render(){
         return(
             <View style={styles.showNoteCont}>
@@ -17,13 +31,11 @@ class Show_Note extends Component{
                 </View>
 
                 <View style={styles.noteContainer}>
-                    <Text style={styles.noteTitle}>Lorem ipsum dolar sit amet bla bla gla gla lululu</Text>
+                    <Text style={styles.noteTitle}>{this.state.note.title}</Text>
                     <Text style={styles.noteDesc}>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nişi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt, in culpa qui officia deserunt mollit anim id est laborum.
+                        {this.state.note.desc}
                     </Text>
-                    <Text style={styles.noteDate}>10.17.2020-12:08</Text>
+                    <Text style={styles.noteDate}>{this.state.note.date} - {this.state.note.time}</Text>
                 </View>
 
                 <View style={styles.footerButtonCont}>
@@ -43,4 +55,4 @@ class Show_Note extends Component{
     }
 }
 
-export default  Show_Note;
+export default  observer(Show_Note);

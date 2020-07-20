@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, FlatList, TextInput, Dimensions} from 'react-native';
-import SImage from 'react-native-scalable-image';
+import {View, Text, TouchableOpacity, FlatList, TextInput, Dimensions, ScrollView, Animated} from 'react-native';
 import { observer } from 'mobx-react';
+import LinearGradient from 'react-native-linear-gradient';
 
 import styles from '../../styles/notesStyle';
 import buttons from '../../styles/buttons';
@@ -11,7 +11,6 @@ import controlData from '../../controllers/controlData';
 import Icon from 'react-native-vector-icons/Feather';
 
 const w = Dimensions.get('window').width;
-
 
 class Notes extends Component{
 
@@ -31,9 +30,18 @@ class Notes extends Component{
         }
     }
 
-    pushNote(value,index){
-        controlData.a = controlData.selectNotes.map(v => v.desc)
+    removeSelectNote(){
 
+        let a = controlData.selectNotes.map(v=>v)
+
+
+
+
+    }
+
+    pushNote(value,index){
+
+        controlData.a = controlData.selectNotes.map(v => v.desc)
 
         this.setState({select:!this.state.select})
         if(!controlData.a.includes(value.desc))controlData.setSelectNote(value)
@@ -55,7 +63,11 @@ class Notes extends Component{
                             </TouchableOpacity>
                         </View>
                     }
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Show_Note')} activeOpacity={.9} style={[styles.noteContainer,this.state.selectNote &&{width:'85%'}]}>
+                    <TouchableOpacity
+                        onPress={()=> { controlData.setShowNote(value); this.props.navigation.navigate('Show_Note') }}
+                        activeOpacity={.9}
+                        style={[styles.noteContainer,this.state.selectNote &&{width:'85%'}]}
+                    >
                         <View style={styles.Title_Desc_View}>
                             <Text numberOfLines={1} style={styles.noteTitle}>{controlData.selectNotes.length}{value.title}</Text>
                             <Text numberOfLines={1} style={styles.noteDesc}>{value.desc}</Text>
@@ -73,35 +85,39 @@ class Notes extends Component{
         return(
             <>
 
-                <View style={styles.notesContainer}>
-                    <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
-                        {
-                            controlData.selectNotes.length > 0 &&
-                            <TouchableOpacity>
-                                <Text style={buttons.deleteButtonText}>Sil</Text>
-                            </TouchableOpacity>
-                        }
-                        <TouchableOpacity onPress={()=> this.controlSelectNote()} style={buttons.settingButton}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.notesContainer}>
+                        <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
                             {
-                                this.state.selectNote?<Icon color='#0EBEDA' size={20} name='x'/>:<Text style={{fontSize:13,color:'#0998af'}}>seç</Text>
+                                controlData.selectNotes.length > 0 &&
+                                <TouchableOpacity onPress={()=> this.removeSelectNote()}>
+                                    <Text style={buttons.deleteButtonText}>Sil</Text>
+                                </TouchableOpacity>
                             }
-                        </TouchableOpacity>
+                            <TouchableOpacity onPress={()=> this.controlSelectNote()} style={buttons.settingButton}>
+                                {
+                                    this.state.selectNote?<Icon color='#748bce' size={20} name='x'/>:<Text style={{color:'#748bce'}}>seç</Text>
+                                }
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.searchView}>
+                            <Icon name='search' color='#adadad' size={18}/>
+                            <TextInput style={styles.searchInput}  placeholder={'ara...'}/>
+                        </View>
+                        <FlatList
+                            contentContainerStyle={{alignItems:'center',paddingBottom:110}}
+                            style={{width:'100%'}}
+                            data={saveData.userNotes}
+                            renderItem={value=>this.renderNotes(value.item,value.index)}
+                        />
                     </View>
-                    <Text>{this.state.select}</Text>
-                    <View style={styles.searchView}>
-                        <Icon name='search' color='#adadad' size={18}/>
-                        <TextInput style={styles.searchInput}  placeholder={'ara...'}/>
-                    </View>
-                    <FlatList
-                        contentContainerStyle={{alignItems:'center'}}
-                        style={{width:'100%',paddingBottom:45}}
-                        data={saveData.userNotes}
-                        renderItem={value=>this.renderNotes(value.item,value.index)}
-                    />
-                </View>
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Add_New_Note')} style={[buttons.addButton,buttons.addButtonAbsolute]}>
-                    <Icon name='plus' size={30} color='#fff'/>
-                </TouchableOpacity>
+                </ScrollView>
+                <LinearGradient style={[buttons.addButton,buttons.addButtonAbsolute]} colors={['#a2b9ff', '#5373bd', '#2f4ca3']}>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Add_New_Note')} >
+                        <Icon name='plus' size={30} color='#fff'/>
+                    </TouchableOpacity>
+                </LinearGradient>
+
 
             </>
         )

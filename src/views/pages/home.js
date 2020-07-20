@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import SImage from 'react-native-scalable-image';
 import AsyncStorage from '@react-native-community/async-storage';
+import LinearGradient from 'react-native-linear-gradient';
 
 import styles from '../../styles/homeStyle';
 import buttons from '../../styles/buttons';
@@ -17,6 +18,7 @@ class Home extends Component{
             showNoteNav:false
         }
     }
+
 
     componentWillMount() {
         AsyncStorage.getItem('notes')
@@ -52,17 +54,25 @@ class Home extends Component{
     renderHome(){
      return(
          <View>
-             <TouchableOpacity
-                 onPress={()=>this.props.navigation.navigate('Notes')}
-                 style={buttons.notesButton}>
-                 <Text style={buttons.buttonText}>Notlar</Text>
-             </TouchableOpacity>
+             <LinearGradient
+                             colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={buttons.notesButton}>
+                 <TouchableOpacity
+                     style={buttons.notesSubButton}
+                     onPress={()=>this.props.navigation.navigate('Notes')}
+                     >
+                     <Text style={buttons.buttonText}>Notlar</Text>
+                 </TouchableOpacity>
+             </LinearGradient>
 
+             <LinearGradient
+                 colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={buttons.notesButton}>
              <TouchableOpacity
+                 style={buttons.notesSubButton}
                  onPress={()=>this.props.navigation.navigate('Sticky_Notes')}
-                 style={buttons.notesButton}>
+             >
                  <Text style={buttons.buttonText}>Yapışkan notlar</Text>
              </TouchableOpacity>
+             </LinearGradient>
 
          </View>
 
@@ -88,5 +98,6 @@ class Home extends Component{
         )
     }
 }
+
 
 export default  Home;

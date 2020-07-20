@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {TouchableOpacity,Text} from 'react-native';
+import {TouchableOpacity, Text, StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SImage from 'react-native-scalable-image';
+import IconZ from 'react-native-vector-icons/Entypo'
 import Icon from 'react-native-vector-icons/Feather'
 
 
@@ -23,80 +23,90 @@ const Stack = createStackNavigator();
 
 function App( ) {
     return (
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={({navigation})=>({
-                                 headerStyle:{
-                                     backgroundColor:'#0EBEDA',
-                                 },
-                                 headerLeft: () => (
-                                     <TouchableOpacity onPress={()=>navigation.goBack()} style={buttons.headerBackButton}>
-                                         <Icon name='chevron-left' size={35} color='#fff'/>
-                                     </TouchableOpacity>
-                                 ),
-                                 headerTintColor:'#fff',
-                                 headerTitleAlign:'center'
-                             })}
-                             initialRouteName="Home">
-                <Stack.Screen
-                    name="Home"
-                    options={{
-                        title:'Ana sayfa',
-                        headerLeft:false
+       <>
+           <StatusBar backgroundColor={'#5373bd'}/>
+           <NavigationContainer>
+               <Stack.Navigator screenOptions={({navigation})=>({
+                   headerStyle:{
+                       backgroundColor:'#5373bd',
+                   },
+                   headerLeft: () => (
+                       <TouchableOpacity onPress={()=>navigation.goBack()} style={buttons.headerBackButton}>
+                           <Icon name='chevron-left' size={35} color='#fff'/>
+                       </TouchableOpacity>
+                   ),
+                   headerRight:()=>(
+                       <TouchableOpacity onPress={()=>navigation.popToTop()} style={[buttons.headerBackButton,{marginRight:5}]} >
+                           <IconZ name='home' size={30} color='#fff'/>
+                       </TouchableOpacity>
+                   ),
+                   headerTintColor:'#fff',
+                   headerTitleAlign:'center'
+               })}
+                                initialRouteName="Home">
+                   <Stack.Screen
+                       name="Home"
+                       options={{
+                           title:'Ana sayfa',
+                           headerLeft:false,
+                           headerRight:false
 
-                    }}
-                    component={Home} />
+                       }}
+                       component={Home} />
 
-                <Stack.Screen
-                    name="Notes"
-                    options={{
-                        title:'Notlarım',
+                   <Stack.Screen
+                       name="Notes"
+                       options={{
+                           title:'Notlarım',
 
-                    }}
-                    component={Notes} />
+                       }}
+                       component={Notes} />
 
-                <Stack.Screen
-                    name="Sticky_Notes"
-                    options={{
-                        title:'Yapışkan Notlarım'
-                    }}
-                    component={Sticky_Notes} />
+                   <Stack.Screen
+                       name="Sticky_Notes"
+                       options={{
+                           title:'Yapışkan Notlarım'
+                       }}
+                       component={Sticky_Notes} />
 
-                <Stack.Screen
-                    name="Edit_Note"
-                    options={{
-                        title:'Not Düzenleme'
-                    }}
-                    component={Edit_Note} />
+                   <Stack.Screen
+                       name="Edit_Note"
+                       options={{
+                           title:'Not Düzenleme'
+                       }}
+                       component={Edit_Note} />
 
-                <Stack.Screen
-                    name="Add_New_Note"
-                    options={{
-                        title:'Yeni Not'
-                    }}
-                    component={Add_New_Note} />
+                   <Stack.Screen
+                       name="Add_New_Note"
+                       options={{
+                           title:'Yeni Not'
+                       }}
+                       component={Add_New_Note} />
 
-                <Stack.Screen
-                    name="Show_Note"
-                    options={{
-                        headerShown:false
-                    }}
-                    component={Show_Note} />
+                   <Stack.Screen
+                       name="Show_Note"
+                       options={{
+                           headerShown:false
+                       }}
+                       component={Show_Note} />
 
-                <Stack.Screen
-                    name="Add_New_Sticky_Note"
-                    options={{
-                        title:'Yeni Yapışkan Not'
-                    }}
-                    component={Add_New_Sticky_Note} />
+                   <Stack.Screen
+                       name="Add_New_Sticky_Note"
+                       options={{
+                           title:'Yeni Yapışkan Not'
+                       }}
+                       component={Add_New_Sticky_Note} />
 
-                <Stack.Screen
-                    name="Header"
-                    component={Header} />
+                   <Stack.Screen
+                       name="Header"
+                       component={Header} />
 
 
 
-            </Stack.Navigator>
-        </NavigationContainer>
+               </Stack.Navigator>
+           </NavigationContainer>
+
+       </>
     );
 }
 

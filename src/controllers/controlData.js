@@ -17,6 +17,12 @@ class ControlData {
     selectNotes=[]
     a=''
 
+    showNote = '';
+
+    setShowNote(value){
+        this.showNote = value;
+    }
+
     setSelectNote=(value)=>{
 
         this.selectNotes.push({
@@ -50,10 +56,12 @@ decorate(
         selectNote:observable,
         selectNotes:observable,
         a:observable,
+        showNote:observable,
 
         controlData:action,
         controlStickyData:action,
-        setSelectNote:action
+        setSelectNote:action,
+        setShowNote:action,
 
     }
 );
