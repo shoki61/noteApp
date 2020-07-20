@@ -7,12 +7,15 @@ import styles from '../../styles/editNoteStyle';
 import controlData from '../../controllers/controlData';
 import saveData from '../../controllers/saveData';
 import AsyncStorage from '@react-native-community/async-storage';
+import helper from '../../controllers/helper';
 
 class Edit_Note extends Component{
 
     editNote(){
         saveData.userNotes[controlData.editNoteIndex]={
-            ...controlData.showNote
+            ...controlData.showNote,
+            date:helper.Date,
+            time:helper.Time
         }
         AsyncStorage.setItem('notes', JSON.stringify(saveData.userNotes))
     }

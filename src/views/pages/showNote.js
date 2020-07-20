@@ -20,10 +20,10 @@ class Show_Note extends Component{
     }
 
 
-    deleteNote(){
+    deleteNote=async()=>{
         saveData.userNotes.splice(controlData.editNoteIndex,1)
         AsyncStorage.setItem('notes', JSON.stringify(saveData.userNotes))
-
+        this.props.navigation.navigate('Notes')
     }
 
     componentWillMount=async()=> {
@@ -52,11 +52,12 @@ class Show_Note extends Component{
                         <Icon name='edit' size={23} color='#0BABC4'/>
                         <Text style={styles.footerButtonText}>Düzenle</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>this.deleteNote()} activeOpacity={.8} style={styles.footerButton}>
+                    <TouchableOpacity onPress={()=>this.deleteNote().then(()=>(
+                        <Text>başarılı</Text>
+                    ))} activeOpacity={.8} style={styles.footerButton}>
                         <Icon name='trash' size={23} color='#0BABC4'/>
                         <Text style={styles.footerButtonText}>Sil</Text>
                     </TouchableOpacity>
-
                 </View>
 
             </View>

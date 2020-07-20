@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, FlatList, TextInput, Dimensions, ScrollView, Animated} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, TextInput, Dimensions, ScrollView,} from 'react-native';
 import { observer } from 'mobx-react';
 import LinearGradient from 'react-native-linear-gradient';
+import { SearchableFlatList } from "react-native-searchable-list";
 
 import styles from '../../styles/notesStyle';
 import buttons from '../../styles/buttons';
@@ -9,6 +10,8 @@ import saveData from '../../controllers/saveData';
 import controlData from '../../controllers/controlData';
 
 import Icon from 'react-native-vector-icons/Feather';
+import helper from '../../controllers/helper';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const w = Dimensions.get('window').width;
 
@@ -30,23 +33,32 @@ class Notes extends Component{
         }
     }
 
-    removeSelectNote(){
+    removeSelectNote=async()=>{
 
-        let a = controlData.selectNotes.map(v=>v)
+        let i = 0;
+        while(i<saveData.userNotes.length){
+            saveData.userNotes.splice(controlData.selectNotes[i].index,1)
+            i++
+        }
 
 
-
-
+       // for(let i=0; i < controlData.selectNotes.length; i++){
+       //     //alert(JSON.stringify(tmp[i].index))
+       //     await saveData.userNotes.splice(controlData.selectNotes[i].index,1)
+       //
+       // }
+       // controlData.selectNotes=[]
+       //
+       //  this.setState({selectNote:false})
+        // setTimeout(()=>{
+        //     this.setState({selectNote:false})
+        //     AsyncStorage.setItem('notes', JSON.stringify(saveData.userNotes))
+        //     controlData.selectNotes=[]
+        // },1500)
     }
 
     pushNote(value,index){
-
-        controlData.a = controlData.selectNotes.map(v => v.desc)
-
-        this.setState({select:!this.state.select})
-        if(!controlData.a.includes(value.desc))controlData.setSelectNote(value)
-        else controlData.selectNotes.splice(index,1)
-
+        controlData.setSelectNote(index)
     }
 
     renderNotes(value,index){
@@ -87,6 +99,7 @@ class Notes extends Component{
 
                 <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#fff',flex:1}}>
                     <View style={styles.notesContainer}>
+                        <Text>{JSON.stringify(saveData.userNotes)}</Text>
                         <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
                             {
                                 controlData.selectNotes.length > 0 &&
@@ -100,10 +113,12 @@ class Notes extends Component{
                                 }
                             </TouchableOpacity>
                         </View>
+                        <Text>{JSON.stringify(controlData.selectNotes)}</Text>
                         <View style={styles.searchView}>
                             <Icon name='search' color='#adadad' size={18}/>
                             <TextInput style={styles.searchInput}  placeholder={'ara...'}/>
                         </View>
+
                         <FlatList
                             contentContainerStyle={{alignItems:'center',paddingBottom:110}}
                             style={{width:'100%'}}

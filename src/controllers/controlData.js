@@ -26,18 +26,17 @@ class ControlData {
         this.editNoteIndex = index
     }
 
-    setSelectNote=(value)=>{
+    setSelectNote=(index)=>{
 
         this.selectNotes.push({
-            ...value
+            index:index
         })
-
         //alert(JSON.stringify(this.selectNotes))
     }
 
     controlData() {
         if (this.title === '' || this.desc === '') alert('Lütfen boş olan yerleri dolfurunuz!')
-        else saveMethod.saveData(this.title, this.desc).then(r => alert('true')).catch(e=>alert(e))
+        else saveMethod.saveData(this.title, this.desc).then(r => {}).catch(e=>alert(e))
     }
 
     controlStickyData(){
