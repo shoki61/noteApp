@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
     editNoteContainer:{
         backgroundColor:'#fff',
         flex:1,
+        justifyContent:'space-between'
     },
     inputTitle:{
         fontSize:23,

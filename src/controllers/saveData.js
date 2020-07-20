@@ -35,6 +35,7 @@ class SaveData {
         })
 
          AsyncStorage.setItem('notes', JSON.stringify(this.userNotes))
+         alert(JSON.stringify(this.userNotes[0].date))
     }
 
 }

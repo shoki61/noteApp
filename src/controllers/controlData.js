@@ -19,8 +19,11 @@ class ControlData {
 
     showNote = '';
 
-    setShowNote(value){
-        this.showNote = value;
+    editNoteIndex='';
+
+    setShowNote(index){
+        this.showNote = saveMethod.userNotes[index]
+        this.editNoteIndex = index
     }
 
     setSelectNote=(value)=>{
@@ -57,6 +60,7 @@ decorate(
         selectNotes:observable,
         a:observable,
         showNote:observable,
+        editNoteIndex:observable,
 
         controlData:action,
         controlStickyData:action,

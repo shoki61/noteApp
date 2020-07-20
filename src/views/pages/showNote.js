@@ -6,6 +6,8 @@ import {observer} from 'mobx-react';
 import styles from '../../styles/showNoteStyle';
 import Icon from 'react-native-vector-icons/Feather';
 import controlData from '../../controllers/controlData';
+import saveData from '../../controllers/saveData';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 class Show_Note extends Component{
@@ -15,6 +17,13 @@ class Show_Note extends Component{
         this.state={
             note:''
         }
+    }
+
+
+    deleteNote(){
+        saveData.userNotes.splice(controlData.editNoteIndex,1)
+        AsyncStorage.setItem('notes', JSON.stringify(saveData.userNotes))
+
     }
 
     componentWillMount=async()=> {
@@ -43,7 +52,7 @@ class Show_Note extends Component{
                         <Icon name='edit' size={23} color='#0BABC4'/>
                         <Text style={styles.footerButtonText}>Düzenle</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={.8} style={styles.footerButton}>
+                    <TouchableOpacity onPress={()=>this.deleteNote()} activeOpacity={.8} style={styles.footerButton}>
                         <Icon name='trash' size={23} color='#0BABC4'/>
                         <Text style={styles.footerButtonText}>Sil</Text>
                     </TouchableOpacity>

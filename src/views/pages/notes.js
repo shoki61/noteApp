@@ -64,7 +64,7 @@ class Notes extends Component{
                         </View>
                     }
                     <TouchableOpacity
-                        onPress={()=> { controlData.setShowNote(value); this.props.navigation.navigate('Show_Note') }}
+                        onPress={()=> { controlData.setShowNote(index); this.props.navigation.navigate('Show_Note') }}
                         activeOpacity={.9}
                         style={[styles.noteContainer,this.state.selectNote &&{width:'85%'}]}
                     >
@@ -85,7 +85,7 @@ class Notes extends Component{
         return(
             <>
 
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#fff',flex:1}}>
                     <View style={styles.notesContainer}>
                         <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
                             {
