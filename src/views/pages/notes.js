@@ -36,7 +36,7 @@ class Notes extends Component{
     removeSelectNote=async()=>{
 
         let i = 0;
-        while(i<saveData.userNotes.length){
+        while(i<controlData.selectNotes.length){
             saveData.userNotes.splice(controlData.selectNotes[i].index,1)
             i++
         }
@@ -99,7 +99,6 @@ class Notes extends Component{
 
                 <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#fff',flex:1}}>
                     <View style={styles.notesContainer}>
-                        <Text>{JSON.stringify(saveData.userNotes)}</Text>
                         <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
                             {
                                 controlData.selectNotes.length > 0 &&
@@ -113,7 +112,6 @@ class Notes extends Component{
                                 }
                             </TouchableOpacity>
                         </View>
-                        <Text>{JSON.stringify(controlData.selectNotes)}</Text>
                         <View style={styles.searchView}>
                             <Icon name='search' color='#adadad' size={18}/>
                             <TextInput style={styles.searchInput}  placeholder={'ara...'}/>

@@ -42,7 +42,7 @@ const buttons = StyleSheet.create({
         justifyContent: 'center',
         margin: 20,
         borderRadius: 100,
-        elevation: 3
+        elevation: 3,
     },
     addButtonAbsolute:{
         position:'absolute',

@@ -23,7 +23,6 @@ class Edit_Note extends Component{
     render(){
         return(
             <View style={styles.editNoteContainer}>
-                <Text>{controlData.editNoteIndex}</Text>
                <View>
                    <TextInput
                        value={controlData.showNote.title}
