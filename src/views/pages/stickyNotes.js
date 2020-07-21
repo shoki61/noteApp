@@ -8,6 +8,7 @@ import saveData from '../../controllers/saveData';
 import Icon from 'react-native-vector-icons/Feather';
 import helper from '../../controllers/helper';
 import controlData from '../../controllers/controlData';
+import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
 
 class Sticky_Note extends Component{
@@ -22,6 +23,13 @@ class Sticky_Note extends Component{
     deleteStickyNote(index){
         saveData.userStickyNotes.splice(index,1)
         this.setState({})
+        saveDataAsyncStorage.saveStickyNotes()
+    }
+
+    deleteAllStickyNote(){
+        saveData.userStickyNotes=[]
+        this.setState({})
+        saveDataAsyncStorage.saveStickyNotes()
     }
 
     renderStickyNote(value,index){
@@ -29,9 +37,9 @@ class Sticky_Note extends Component{
             <>
 
                 <View style={styles.stickyNoteView}>
-                    <Text style={styles.desc}>
-                        {value.desc}
-                    </Text>
+                        <Text style={styles.desc}>
+                            {value.desc}
+                        </Text>
                     <Text style={styles.date}>{value.date}-{value.time}</Text>
                     {
                         this.state.selectStickyNote&&
@@ -57,19 +65,22 @@ class Sticky_Note extends Component{
         return(
             <>
                 <View style={styles.stickyNoteContainer}>
-                    <View style={[{width:'100%',alignItems:'flex-end',paddingRight:20,paddingLeft:15,marginBottom:7,height:35},this.state.selectStickyNote&&{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}]}>
-                        {
-                            this.state.selectStickyNote&&
-                            <TouchableOpacity activeOpacity={helper.buttonOpacity} style={buttons.deleteAllSticky}>
-                                <Text style={buttons.deleteAllStickyText}>Hepsini sil</Text>
-                            </TouchableOpacity>
-                        }
-                        <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({selectStickyNote:!this.state.selectStickyNote})}   style={buttons.settingButton}>
+                    {
+                        saveData.userStickyNotes.length > 0 &&
+                        <View style={[{width:'100%',alignItems:'flex-end',paddingRight:20,paddingLeft:15,marginBottom:7,height:35},this.state.selectStickyNote&&{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}]}>
                             {
-                                this.state.selectStickyNote?<Icon color='#748bce' size={20} name='x'/>:<Icon color='#748bce' size={20} name='more-horizontal'/>
+                                this.state.selectStickyNote&&
+                                <TouchableOpacity onPress={()=>this.deleteAllStickyNote()} activeOpacity={helper.buttonOpacity} style={buttons.deleteAllSticky}>
+                                    <Text style={buttons.deleteAllStickyText}>Hepsini sil</Text>
+                                </TouchableOpacity>
                             }
-                        </TouchableOpacity>
-                    </View>
+                            <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({selectStickyNote:!this.state.selectStickyNote})}   style={buttons.settingButton}>
+                                {
+                                    this.state.selectStickyNote?<Icon color='#748bce' size={20} name='x'/>:<Icon color='#748bce' size={20} name='more-horizontal'/>
+                                }
+                            </TouchableOpacity>
+                        </View>
+                    }
                     <FlatList
                         contentContainerStyle={{flexDirection:'row',flexWrap:'wrap',justifyContent:'flex-start'}}
                         style={{width:'95%'}}
