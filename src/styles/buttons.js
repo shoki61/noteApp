@@ -81,6 +81,31 @@ const buttons = StyleSheet.create({
         borderRadius:100,
         alignItems:'center',
         justifyContent:'center',
+    },
+
+    stickyNoteEdit:{
+        backgroundColor:'#fff',
+        elevation:3,
+        width:37,
+        height:37,
+        margin:10,
+        borderRadius:100,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    deleteAllSticky:{
+        height:'85%',
+        borderRadius:7,
+        backgroundColor:'#fff',
+        elevation:3,
+        alignItems:'center',
+        justifyContent:'center',
+        paddingLeft:10,
+        paddingRight:10,
+    },
+    deleteAllStickyText:{
+        color:'#ff4d4d'
     }
+
 })
 export default buttons;

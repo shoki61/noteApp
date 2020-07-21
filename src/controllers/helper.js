@@ -12,13 +12,16 @@ class helper{
     Date = this.date+'.'+this.month+'.'+this.year
     Time = this.hours+':'+this.min
 
+
+    buttonOpacity=.8
 }
 
 decorate(
     helper,
     {
         Date:observable,
-        Time:observable
+        Time:observable,
+        buttonOpacity:observable
     }
 )
 

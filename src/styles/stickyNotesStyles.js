@@ -6,22 +6,31 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff',
         paddingTop:10,
         alignItems:'center'
-
     },
     stickyNoteView:{
         width: 180,
         margin:5,
-        marginTop:15,
         height:225,
+        zIndex:-150,
         backgroundColor:'#fff299',
         elevation:3,
+    },
+    editView:{
+        width: 180,
+        position:'absolute',
+        height:225,
+        flexDirection:'row',
+        alignItems: 'center',
+        justifyContent:'center',
+        zIndex:100,
+        backgroundColor:'rgba(255,255,255,0.2)'
     },
     desc:{
         fontSize:16,
         paddingTop:15,
         paddingRight:10,
         paddingLeft:10,
-        color:'#7C7C7C',
+        color:'#6d6d6d',
         height: '83%'
     },
     date:{

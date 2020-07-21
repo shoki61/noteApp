@@ -69,6 +69,7 @@ class Notes extends Component{
                         this.state.selectNote &&
                         <View style={{width:'15%',alignItems:'center',justifyContent:'center'}}>
                             <TouchableOpacity
+                                activeOpacity={helper.buttonOpacity}
                                 onPress={()=> this.pushNote(value,index)}
                                 style={[buttons.selectButton,controlData.a.includes(value.desc)&&{backgroundColor:'#8a8a8a'}]}>
                                 <Icon name='check' color='#fff' size={20}/>
@@ -76,8 +77,8 @@ class Notes extends Component{
                         </View>
                     }
                     <TouchableOpacity
+                        activeOpacity={helper.buttonOpacity}
                         onPress={()=> { controlData.setShowNote(index); this.props.navigation.navigate('Show_Note') }}
-                        activeOpacity={.9}
                         style={[styles.noteContainer,this.state.selectNote &&{width:'85%'}]}
                     >
                         <View style={styles.Title_Desc_View}>
@@ -102,11 +103,11 @@ class Notes extends Component{
                         <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
                             {
                                 controlData.selectNotes.length > 0 &&
-                                <TouchableOpacity onPress={()=> this.removeSelectNote()}>
+                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=> this.removeSelectNote()}>
                                     <Text style={buttons.deleteButtonText}>Sil</Text>
                                 </TouchableOpacity>
                             }
-                            <TouchableOpacity onPress={()=> this.controlSelectNote()} style={buttons.settingButton}>
+                            <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=> this.controlSelectNote()} style={buttons.settingButton}>
                                 {
                                     this.state.selectNote?<Icon color='#748bce' size={20} name='x'/>:<Text style={{color:'#748bce'}}>seç</Text>
                                 }
@@ -126,7 +127,7 @@ class Notes extends Component{
                     </View>
                 </ScrollView>
                 <LinearGradient style={[buttons.addButton,buttons.addButtonAbsolute]} colors={['#a2b9ff', '#5373bd', '#2f4ca3']}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Add_New_Note')} >
+                    <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Note')} >
                         <Icon name='plus' size={30} color='#fff'/>
                     </TouchableOpacity>
                 </LinearGradient>
