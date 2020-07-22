@@ -10,7 +10,7 @@ const buttons = StyleSheet.create({
         width:65,
         height:65,
         borderRadius:300,
-        backgroundColor:'#c547ff',
+        backgroundColor:'#5373bd',
         alignItems:'center',
         justifyContent:'center',
         margin:5,
@@ -48,6 +48,14 @@ const buttons = StyleSheet.create({
         position:'absolute',
         bottom:30,
         right:30,
+        width:65,
+        height:65,
+        borderRadius:300,
+        backgroundColor:'#c547ff',
+        alignItems:'center',
+        justifyContent:'center',
+        margin:5,
+        elevation:3
     },
     buttonText:{
         fontSize:17,

@@ -12,6 +12,7 @@ import helper from '../../controllers/helper';
 import controlData from '../../controllers/controlData';
 import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
+let i = ''
 
 class Sticky_Note extends Component{
 
@@ -67,7 +68,10 @@ class Sticky_Note extends Component{
                             <TouchableOpacity onPress={()=>this.pushEditStickyNote(index)} activeOpacity={helper.buttonOpacity} style={buttons.stickyNoteEdit}>
                                 <Icon size={17} color='#4dc1ff' name='edit-3'/>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>this.deleteStickyNote(index)} activeOpacity={helper.buttonOpacity} style={buttons.stickyNoteEdit}>
+                            <TouchableOpacity onPress={()=> {
+                                i = index
+                                this.deleteStickyNote(index);
+                            }} activeOpacity={helper.buttonOpacity} style={buttons.stickyNoteEdit}>
                                 <Icon size={17} color='#ff4d4d' name='trash-2'/>
                             </TouchableOpacity>
                         </View>
@@ -81,7 +85,7 @@ class Sticky_Note extends Component{
     render(){
         return(
             <>
-                <View style={styles.stickyNoteContainer}>
+                <View style={[styles.stickyNoteContainer,saveData.userStickyNotes.length<=0&&{justifyContent:'center'}]}>
                     {
                         saveData.userStickyNotes.length > 0 &&
                         <View style={[{width:'100%',alignItems:'flex-end',paddingRight:20,paddingLeft:15,marginBottom:7,height:35},this.state.selectStickyNote&&{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}]}>
@@ -98,16 +102,25 @@ class Sticky_Note extends Component{
                             </TouchableOpacity>
                         </View>
                     }
-                    <FlatList
-                        contentContainerStyle={{flexDirection:'row',flexWrap:'wrap',justifyContent:'flex-start'}}
-                        style={{width:'95%'}}
-                        data={saveData.userStickyNotes}
-                        renderItem={value=>this.renderStickyNote(value.item,value.index)}
-                    />
+                    {
+                        saveData.userStickyNotes.length>0&&
+                        <FlatList
+                            contentContainerStyle={{flexDirection:'row',flexWrap:'wrap',justifyContent:'flex-start'}}
+                            style={{width:'95%'}}
+                            data={saveData.userStickyNotes}
+                            renderItem={value=>this.renderStickyNote(value.item,value.index)}
+                        />
+                    }
+                    <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Sticky_Note')} style={saveData.userStickyNotes.length <= 0 ? buttons.addButton:buttons.addButtonAbsolute}>
+                        <Icon name='plus' size={30} color='#ededed'/>
+                    </TouchableOpacity>
+                    {
+                        saveData.userStickyNotes<=0&&
+                            <Text style={styles.addNewStickyNoteText}>Yeni yapışkan not oluştur</Text>
+                    }
                 </View>
-                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Sticky_Note')} style={[buttons.addButton,buttons.addButtonAbsolute]}>
-                    <Icon name='plus' size={30} color='#fff'/>
-                </TouchableOpacity>
+
+
                 <AwesomeAlert
                     show={this.state.showAlert}
                     title="Uyarı"
@@ -123,12 +136,14 @@ class Sticky_Note extends Component{
                     confirmButtonColor="#ff5c5c"
                     cancelButtonStyle={{paddingLeft:15,paddingRight:15,paddingTop:4,paddingBottom:4,borderRadius:3,elevation:2}}
                     confirmButtonStyle={{paddingLeft:15,paddingRight:15,paddingTop:4,paddingBottom:4,borderRadius:3,elevation:5}}
-                    onCancelPressed={() => {
-                        AsyncStorage.setItem('warning','false')
+                    onCancelPressed={async() => {
+                        await AsyncStorage.setItem('warning','false')
+                        this.setState({showAlert:false})
                     }}
-                    onConfirmPressed={() => {
-                        saveData.userStickyNotes.splice(index,1)
-                        saveDataAsyncStorage.saveStickyNotes()
+                    onConfirmPressed={async ()=> {
+                        saveData.userStickyNotes.splice(i,1)
+                        await saveDataAsyncStorage.saveStickyNotes()
+                        this.setState({showAlert:false})
                     }}
                 />
 

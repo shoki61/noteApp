@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
         textAlignVertical:'center',
         color:'#898989',
         fontSize: 15
+    },
+    addNewStickyNoteText:{
+        fontSize:16,
+        color:'#797979'
     }
 
 })
