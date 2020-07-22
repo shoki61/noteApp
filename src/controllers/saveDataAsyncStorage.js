@@ -12,6 +12,15 @@ class saveDataAsyncStorage {
         AsyncStorage.setItem('stickyNotes', JSON.stringify(saveData.userStickyNotes))
     }
 
+    saveWarning=async()=>{
+        let warning = ''
+        await AsyncStorage.getItem('warning')
+            .then(value=>{
+                warning = value
+            })
+        if(warning === null) AsyncStorage.setItem('warning','true')
+    }
+
 }
 
 decorate(

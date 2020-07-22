@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, ScrollView, FlatList, Alert} from 'react-native';
 import {observer} from 'mobx-react';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../../styles/stickyNotesStyles';
 import buttons from '../../styles/buttons';
@@ -14,6 +15,10 @@ import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
 class Sticky_Note extends Component{
 
+    componentWillMount() {
+        saveDataAsyncStorage.saveWarning()
+    }
+
     constructor(props) {
         super(props);
         this.state={
@@ -22,46 +27,23 @@ class Sticky_Note extends Component{
         }
     }
 
-    deleteStickyNote(index){
-        // saveData.userStickyNotes.splice(index,1)
-        // this.setState({})
-        // saveDataAsyncStorage.saveStickyNotes()
-        // Alert.alert(
-        //     'Uyarı',
-        //           'Silmek istediğinizden eminmisiniz',
-        //     [
-        //         {
-        //             text:'Evet',
-        //
-        //         },
-        //         {
-        //             text:'Birdaha sorma',
-        //         },
-        //         {
-        //             text:'İptal',
-        //             style:'cancel'
-        //         },
-        //
-        //     ],
-        //     { cancelable: false }
-        //
-        // )
-        this.showAlert();
+    deleteStickyNote=async(index)=>{
+
+        let warning = '';
+        await AsyncStorage.getItem('warning')
+            .then(value=>{
+                warning = value
+            })
+        if(warning === 'true')this.setState({showAlert:true})
+        else{
+             saveData.userStickyNotes.splice(index,1)
+             saveDataAsyncStorage.saveStickyNotes()
+        }
     }
-    hideAlert = () => {
-        this.setState({
-            showAlert: false
-        });
-    };
-    showAlert = () => {
-        this.setState({
-            showAlert: true
-        });
-    };
+
 
     deleteAllStickyNote(){
         saveData.userStickyNotes=[]
-        this.setState({})
         saveDataAsyncStorage.saveStickyNotes()
     }
 
@@ -92,15 +74,11 @@ class Sticky_Note extends Component{
                     }
                 </View>
 
-
-
-
             </>
         )
     }
 
     render(){
-        const {showAlert} = this.state;
         return(
             <>
                 <View style={styles.stickyNoteContainer}>
@@ -130,26 +108,30 @@ class Sticky_Note extends Component{
                 <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Sticky_Note')} style={[buttons.addButton,buttons.addButtonAbsolute]}>
                     <Icon name='plus' size={30} color='#fff'/>
                 </TouchableOpacity>
-
                 <AwesomeAlert
-                    show={showAlert}
-                    showProgress={false}
-                    title="AwesomeAlert"
-                    message="I have a message for you!"
+                    show={this.state.showAlert}
+                    title="Uyarı"
+                    message="Bu notu silmek istediğinizden eminmisiniz"
                     closeOnTouchOutside={true}
                     closeOnHardwareBackPress={false}
                     showCancelButton={true}
                     showConfirmButton={true}
-                    cancelText="No, cancel"
-                    confirmText="Yes, delete it"
-                    confirmButtonColor="#DD6B55"
+                    cancelText="Birdaha sorma"
+                    cancelButtonColor='#fff'
+                    cancelButtonTextStyle={{color:'#7b7b7b'}}
+                    confirmText="Evet"
+                    confirmButtonColor="#ff5c5c"
+                    cancelButtonStyle={{paddingLeft:15,paddingRight:15,paddingTop:4,paddingBottom:4,borderRadius:3,elevation:2}}
+                    confirmButtonStyle={{paddingLeft:15,paddingRight:15,paddingTop:4,paddingBottom:4,borderRadius:3,elevation:5}}
                     onCancelPressed={() => {
-                        this.hideAlert();
+                        AsyncStorage.setItem('warning','false')
                     }}
                     onConfirmPressed={() => {
-                        this.hideAlert();
+                        saveData.userStickyNotes.splice(index,1)
+                        saveDataAsyncStorage.saveStickyNotes()
                     }}
                 />
+
             </>
         )
     }
