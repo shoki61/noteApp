@@ -15,8 +15,8 @@ import Sticky_Notes from './src/views/pages/stickyNotes';
 import Edit_Note from './src/views/pages/editNote';
 import Add_New_Note from './src/views/pages/addNewNote';
 import Show_Note from './src/views/pages/showNote';
-import Header from './src/views/header';
 import Add_New_Sticky_Note from './src/views/pages/addNewStickyNote';
+import Edit_Sticky_Note from './src/views/pages/editStickyNote';
 
 
 const Stack = createStackNavigator();
@@ -98,8 +98,11 @@ function App( ) {
                        component={Add_New_Sticky_Note} />
 
                    <Stack.Screen
-                       name="Header"
-                       component={Header} />
+                       name="Edit_Sticky_Note"
+                       options={{
+                           title:'Not düzenlemesi'
+                       }}
+                       component={Edit_Sticky_Note} />
 
 
 

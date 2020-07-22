@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, FlatList, Alert} from 'react-native';
 import {observer} from 'mobx-react';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 import styles from '../../styles/stickyNotesStyles';
 import buttons from '../../styles/buttons';
@@ -16,20 +17,57 @@ class Sticky_Note extends Component{
     constructor(props) {
         super(props);
         this.state={
-            selectStickyNote:false
+            selectStickyNote:false,
+            showAlert: false
         }
     }
 
     deleteStickyNote(index){
-        saveData.userStickyNotes.splice(index,1)
-        this.setState({})
-        saveDataAsyncStorage.saveStickyNotes()
+        // saveData.userStickyNotes.splice(index,1)
+        // this.setState({})
+        // saveDataAsyncStorage.saveStickyNotes()
+        // Alert.alert(
+        //     'Uyarı',
+        //           'Silmek istediğinizden eminmisiniz',
+        //     [
+        //         {
+        //             text:'Evet',
+        //
+        //         },
+        //         {
+        //             text:'Birdaha sorma',
+        //         },
+        //         {
+        //             text:'İptal',
+        //             style:'cancel'
+        //         },
+        //
+        //     ],
+        //     { cancelable: false }
+        //
+        // )
+        this.showAlert();
     }
+    hideAlert = () => {
+        this.setState({
+            showAlert: false
+        });
+    };
+    showAlert = () => {
+        this.setState({
+            showAlert: true
+        });
+    };
 
     deleteAllStickyNote(){
         saveData.userStickyNotes=[]
         this.setState({})
         saveDataAsyncStorage.saveStickyNotes()
+    }
+
+    pushEditStickyNote(index){
+        controlData.editStickyNoteIndex=index
+        this.props.navigation.navigate('Edit_Sticky_Note')
     }
 
     renderStickyNote(value,index){
@@ -44,7 +82,7 @@ class Sticky_Note extends Component{
                     {
                         this.state.selectStickyNote&&
                         <View style={styles.editView}>
-                            <TouchableOpacity activeOpacity={helper.buttonOpacity} style={buttons.stickyNoteEdit}>
+                            <TouchableOpacity onPress={()=>this.pushEditStickyNote(index)} activeOpacity={helper.buttonOpacity} style={buttons.stickyNoteEdit}>
                                 <Icon size={17} color='#4dc1ff' name='edit-3'/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={()=>this.deleteStickyNote(index)} activeOpacity={helper.buttonOpacity} style={buttons.stickyNoteEdit}>
@@ -62,6 +100,7 @@ class Sticky_Note extends Component{
     }
 
     render(){
+        const {showAlert} = this.state;
         return(
             <>
                 <View style={styles.stickyNoteContainer}>
@@ -91,6 +130,26 @@ class Sticky_Note extends Component{
                 <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Sticky_Note')} style={[buttons.addButton,buttons.addButtonAbsolute]}>
                     <Icon name='plus' size={30} color='#fff'/>
                 </TouchableOpacity>
+
+                <AwesomeAlert
+                    show={showAlert}
+                    showProgress={false}
+                    title="AwesomeAlert"
+                    message="I have a message for you!"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showCancelButton={true}
+                    showConfirmButton={true}
+                    cancelText="No, cancel"
+                    confirmText="Yes, delete it"
+                    confirmButtonColor="#DD6B55"
+                    onCancelPressed={() => {
+                        this.hideAlert();
+                    }}
+                    onConfirmPressed={() => {
+                        this.hideAlert();
+                    }}
+                />
             </>
         )
     }
