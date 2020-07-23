@@ -21,7 +21,7 @@ class Add_New_Sticky_Note extends Component{
                        <TextInput
                            style={styles.addStickyNoteInput}
                            multiline={true}
-                           maxLength={170}
+                           maxLength={150}
                            placeholder={'içerik...'}
                            value={this.state.desc}
                            onChangeText={text=> {
@@ -29,7 +29,7 @@ class Add_New_Sticky_Note extends Component{
                                controlData.stickyDesc=text
                            }}
                        />
-                       <Text style={styles.maxLengthText}>({this.state.desc.length}/170)</Text>
+                       <Text style={styles.maxLengthText}>({this.state.desc.length}/150)</Text>
 
                    </View>
                    <TouchableOpacity onPress={()=>controlData.controlStickyData()} style={buttons.saveButton}>

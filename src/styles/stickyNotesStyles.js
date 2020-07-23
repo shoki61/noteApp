@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         paddingRight:10,
         paddingLeft:10,
         color:'#6d6d6d',
-        height: '83%'
+        height: '83%',
     },
     date:{
         flex:1,

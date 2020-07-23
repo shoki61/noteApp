@@ -58,7 +58,7 @@ const buttons = StyleSheet.create({
         elevation:3
     },
     buttonText:{
-        fontSize:17,
+        fontSize:20,
         color:'#fff'
     },
     saveButton:{
