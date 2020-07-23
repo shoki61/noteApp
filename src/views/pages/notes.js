@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, FlatList, TextInput, Dimensions, ScrollView,} from 'react-native';
+import {View, Text, TouchableOpacity,  TextInput, Dimensions, ScrollView,} from 'react-native';
 import { observer } from 'mobx-react';
 import LinearGradient from 'react-native-linear-gradient';
 import { SearchableFlatList } from "react-native-searchable-list";
@@ -21,7 +21,10 @@ class Notes extends Component{
         super(props);
         this.state={
             selectNote:false,
-            select:false
+            select:false,
+            searchTerm: '',
+            searchAttribute: 'title',
+            ignoreCase: true,
         }
     }
 
@@ -116,10 +119,14 @@ class Notes extends Component{
                         </View>
                         <View style={styles.searchView}>
                             <Icon name='search' color='#adadad' size={18}/>
-                            <TextInput style={styles.searchInput}  placeholder={'ara...'}/>
+                            <TextInput style={styles.searchInput} onChangeText={searchTerm => this.setState({ searchTerm })}  placeholder={'not başlığı ile ara...'}/>
                         </View>
 
-                        <FlatList
+                        <SearchableFlatList
+                            showsVerticalScrollIndicator={false}
+                            searchTerm={this.state.searchTerm}
+                            searchAttribute={this.state.searchAttribute}
+                            ignoreCase={this.state.ignoreCase}
                             contentContainerStyle={{alignItems:'center',paddingBottom:110}}
                             style={{width:'100%'}}
                             data={saveData.userNotes}
