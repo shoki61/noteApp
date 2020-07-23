@@ -17,10 +17,9 @@ class Add_New_Note extends Component{
     }
     render(){
         return(
-            <View style={styles.addNewNoteContainer}>
+            <ScrollView style={{backgroundColor:'#fff'}}>
+                <View style={styles.addNewNoteContainer}>
                 <View style={{width:'100%'}}>
-
-
                     <TextInput
                         value={this.state.title}
                         multiline={true}
@@ -31,9 +30,6 @@ class Add_New_Note extends Component{
                         style={styles.inputTitle}
                         placeholder={'başlık...'}
                     />
-
-                </View>
-                <ScrollView style={{width:'100%'}}>
                     <TextInput
                         value={this.state.desc}
                         multiline={true}
@@ -44,11 +40,14 @@ class Add_New_Note extends Component{
                         style={styles.inputDesc}
                         placeholder={'içerik...'}
                     />
-                </ScrollView>
+
+                </View>
+
                 <TouchableOpacity onPress={()=>controlData.controlData()} activeOpacity={.8} style={buttons.saveButton}>
                     <Text style={buttons.saveButtonText}>Kaydet</Text>
                 </TouchableOpacity>
             </View>
+            </ScrollView>
         )
     }
 }

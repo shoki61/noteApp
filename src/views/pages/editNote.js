@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import SImage from 'react-native-scalable-image';
 import {observer} from 'mobx-react';
 
@@ -23,6 +23,7 @@ class Edit_Note extends Component{
     render(){
         return(
             <View style={styles.editNoteContainer}>
+                <ScrollView>
                <View>
                    <TextInput
                        value={controlData.showNote.title}
@@ -41,6 +42,7 @@ class Edit_Note extends Component{
                 <TouchableOpacity onPress={()=>this.editNote()}>
                     <Text>Değişikliği kaydet</Text>
                 </TouchableOpacity>
+                </ScrollView>
 
             </View>
 

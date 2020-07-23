@@ -16,8 +16,10 @@ const styles = StyleSheet.create({
         borderBottomWidth:2,
         borderBottomColor:'#0BABC4',
         color:'#0BABC4',
+        padding:0
     },
     inputDesc:{
+        padding:0,
         fontSize: 18,
         color:'#6c6c6c',
         paddingLeft:30,

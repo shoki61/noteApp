@@ -105,7 +105,7 @@ class Sticky_Note extends Component{
                     {
                         saveData.userStickyNotes.length>0&&
                         <FlatList
-                            contentContainerStyle={{flexDirection:'row',flexWrap:'wrap',justifyContent:'flex-start'}}
+                            contentContainerStyle={{flexDirection:'row',flexWrap:'wrap',justifyContent:'flex-start',paddingBottom:100}}
                             style={{width:'95%'}}
                             data={saveData.userStickyNotes}
                             renderItem={value=>this.renderStickyNote(value.item,value.index)}

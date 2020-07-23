@@ -1,8 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+
+const h = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     addNewNoteContainer:{
-        flex:1,
+        minHeight:h/2,
         backgroundColor:'#fff',
         justifyContent:'space-between',
         alignItems:'center'

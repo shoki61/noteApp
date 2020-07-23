@@ -5,9 +5,17 @@ const h = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
 
+    backButton:{
+        backgroundColor:'#fff',
+        borderRadius: 100,
+        elevation: 3,
+        padding:5
+    },
+
     showNoteCont:{
         flex:1,
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        justifyContent:'space-between'
     },
     closeButtonView:{
         alignItems:'flex-end',
@@ -16,54 +24,53 @@ const styles = StyleSheet.create({
     },
     noteContainer:{
         width:w,
-        height:h-175,
-        marginTop: 10,
+        flex:1,
+        marginTop: 20,
         justifyContent:'space-between',
-        marginBottom: 5
     },
     noteTitle:{
+        marginBottom:10,
+        borderBottomColor:'#0BABC4',
+        borderBottomWidth:2,
+        marginLeft:20,
+        marginRight:20,
         fontSize:23,
         fontWeight:'bold',
         textAlign:'center',
-        marginRight: 20,
-        marginLeft: 20,
-        borderBottomWidth:2,
-        borderBottomColor:'#0BABC4',
-        color:'#0BABC4',
-        paddingBottom:10
+        color:'#0BABC4'
     },
     noteDesc:{
         fontSize: 18,
         color:'#6c6c6c',
+        flex:1,
         paddingLeft:30,
         paddingRight: 30,
-        marginTop:15,
-        flex:1,
-
     },
     noteDate:{
         fontSize:18,
-        color:'#7f7f7f',
+        color:'#868686',
         textAlign: 'right',
         paddingRight:50,
-        marginBottom:20,
+        marginTop:5
     },
     footerButtonCont:{
-        flex:1,
         flexDirection:'row',
         justifyContent: 'space-evenly',
+        marginTop:15,
+        marginBottom: 15
     },
     footerButton:{
         alignItems: 'center',
-        width: 70,
+        width: 55,
         justifyContent:'center',
         borderRadius:100,
-        height: 70,
+        height: 55,
         backgroundColor: '#fff',
         elevation:3
     },
     footerButtonText:{
-        color:'#0BABC4'
+        color:'#0BABC4',
+        fontSize:10
     }
 })
 

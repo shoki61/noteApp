@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Dimensions, SafeAreaView} from 'react-native';
 import {observer} from 'mobx-react';
 
 
@@ -8,7 +8,9 @@ import Icon from 'react-native-vector-icons/Feather';
 import controlData from '../../controllers/controlData';
 import saveData from '../../controllers/saveData';
 import AsyncStorage from '@react-native-community/async-storage';
+import helper from '../../controllers/helper';
 
+const h = Dimensions.get('window').height;
 
 class Show_Note extends Component{
 
@@ -32,33 +34,36 @@ class Show_Note extends Component{
 
     render(){
         return(
-            <View style={styles.showNoteCont}>
-                <View style={styles.closeButtonView}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Notes')}>
-                        <Icon name='x' size={35} color='#0BABC4'/>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.showNoteCont} >
+
 
                 <View style={styles.noteContainer}>
+
                     <Text style={styles.noteTitle}>{this.state.note.title}</Text>
+
+
                     <Text style={styles.noteDesc}>
                         {this.state.note.desc}
                     </Text>
+
                     <Text style={styles.noteDate}>{this.state.note.date} - {this.state.note.time}</Text>
                 </View>
 
                 <View style={styles.footerButtonCont}>
+                    <TouchableOpacity activeOpacity={helper.buttonOpacity} style={styles.footerButton} onPress={()=>this.props.navigation.navigate('Notes')}>
+                        <Icon name='arrow-left' size={20} color='#787878'/>
+                        <Text style={styles.footerButtonText}>Geri</Text>
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('Edit_Note')} activeOpacity={.8} style={styles.footerButton}>
-                        <Icon name='edit' size={23} color='#0BABC4'/>
+                        <Icon name='edit' size={20} color='#0BABC4'/>
                         <Text style={styles.footerButtonText}>Düzenle</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>this.deleteNote().then(()=>(
-                        <Text>başarılı</Text>
-                    ))} activeOpacity={.8} style={styles.footerButton}>
-                        <Icon name='trash' size={23} color='#0BABC4'/>
+                    <TouchableOpacity onPress={()=>this.deleteNote()} activeOpacity={.8} style={styles.footerButton}>
+                        <Icon name='trash-2' size={20} color='#ff8080'/>
                         <Text style={styles.footerButtonText}>Sil</Text>
                     </TouchableOpacity>
                 </View>
+
 
             </View>
         )
