@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import { observer } from 'mobx-react';
+import LinearGradient from 'react-native-linear-gradient';
 
 import styles from '../../styles/addNewNoteStyle';
 import buttons from '../../styles/buttons';
 import controlData from '../../controllers/controlData';
+import helper from '../../controllers/helper';
 
 class Add_New_Note extends Component{
 
@@ -17,7 +19,7 @@ class Add_New_Note extends Component{
     }
     render(){
         return(
-            <ScrollView style={{backgroundColor:'#fff'}}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#fff'}}>
                 <View style={styles.addNewNoteContainer}>
                 <View style={{width:'100%'}}>
                     <TextInput
@@ -43,9 +45,11 @@ class Add_New_Note extends Component{
 
                 </View>
 
-                <TouchableOpacity onPress={()=>controlData.controlData()} activeOpacity={.8} style={buttons.saveButton}>
-                    <Text style={buttons.saveButtonText}>Kaydet</Text>
-                </TouchableOpacity>
+                    <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={[buttons.saveButton,{marginTop:15}]}>
+                        <TouchableOpacity onPress={()=>controlData.controlData()} activeOpacity={helper.buttonOpacity} >
+                            <Text style={buttons.saveButtonText}>Kaydet</Text>
+                        </TouchableOpacity>
+                    </LinearGradient>
             </View>
             </ScrollView>
         )

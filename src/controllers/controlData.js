@@ -1,6 +1,7 @@
 import { observable, action, decorate } from 'mobx';
 
 import saveMethod from './saveData';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 
 

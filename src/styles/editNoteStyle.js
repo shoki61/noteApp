@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginLeft: 20,
         marginTop: 25,
+        marginBottom:5,
         borderBottomWidth:2,
         borderBottomColor:'#0BABC4',
         color:'#0BABC4',
@@ -21,9 +22,11 @@ const styles = StyleSheet.create({
     inputDesc:{
         padding:0,
         fontSize: 18,
+        minHeight:200,
+        textAlignVertical:'top',
         color:'#6c6c6c',
-        paddingLeft:30,
-        paddingRight: 30,
+        marginLeft: 20,
+        marginRight: 20
     }
 
 })

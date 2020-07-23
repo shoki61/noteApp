@@ -36,7 +36,7 @@ class Show_Note extends Component{
         return(
             <View style={styles.showNoteCont} >
 
-
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{justifyContent:'center',minHeight:'100%'}}>
                 <View style={styles.noteContainer}>
 
                     <Text style={styles.noteTitle}>{this.state.note.title}</Text>
@@ -63,7 +63,7 @@ class Show_Note extends Component{
                         <Text style={styles.footerButtonText}>Sil</Text>
                     </TouchableOpacity>
                 </View>
-
+                </ScrollView>
 
             </View>
         )

@@ -4,7 +4,7 @@ const h = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     addNewNoteContainer:{
-        minHeight:h/2,
+        minHeight:h/2+100,
         backgroundColor:'#fff',
         justifyContent:'space-between',
         alignItems:'center'
@@ -16,15 +16,22 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginLeft: 20,
         marginTop: 25,
+        marginBottom:10,
         borderBottomWidth:2,
         borderBottomColor:'#0BABC4',
         color:'#0BABC4',
+        padding:0,
+        paddingBottom:5
     },
     inputDesc:{
         fontSize: 18,
         color:'#6c6c6c',
-        paddingLeft:30,
-        paddingRight: 30
+        padding:0,
+        textAlignVertical:'top',
+        minHeight: 250,
+        marginRight: 20,
+        marginLeft: 20,
+
 
     }
 })

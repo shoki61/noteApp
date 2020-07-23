@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, TextInput, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
-import SImage from 'react-native-scalable-image';
 import {observer} from 'mobx-react';
+import LinearGradient from "react-native-linear-gradient";
 
 import styles from '../../styles/editNoteStyle';
 import buttons from '../../styles/buttons';
@@ -40,7 +40,7 @@ class Edit_Note extends Component{
         return(
             <View style={styles.editNoteContainer}>
                 <ScrollView>
-               <View style={{minHeight:Dimensions.get('window').height/2}}>
+               <View style={{minHeight:Dimensions.get('window').height/2+100}}>
                    <TextInput
                        value={this.state.title}
                        multiline={true}
@@ -55,11 +55,13 @@ class Edit_Note extends Component{
                    />
                </View>
 
-                <View style={{alignItems:'center',marginTop:15}}>
-                    <TouchableOpacity onPress={()=>this.editNote()} style={buttons.saveButton}>
-                        <Text style={buttons.buttonText}>Değişikliği kaydet</Text>
-                    </TouchableOpacity>
-                </View>
+                   <View style={{alignItems:'center',marginTop:10}}>
+                       <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={buttons.saveButton}>
+                           <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.editNote()}>
+                               <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
+                           </TouchableOpacity>
+                       </LinearGradient>
+                   </View>
 
                 </ScrollView>
 

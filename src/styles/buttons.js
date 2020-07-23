@@ -64,12 +64,10 @@ const buttons = StyleSheet.create({
     saveButton:{
         width:w-200,
         height:40,
-        backgroundColor:'#c547ff',
         alignItems:'center',
         justifyContent:'center',
         borderRadius:100,
         marginBottom:25,
-        elevation:3
     },
     saveButtonText:{
         fontSize:18,
