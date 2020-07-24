@@ -1,4 +1,4 @@
-import { observable, decorate } from 'mobx';
+import { observable, action, decorate } from 'mobx';
 
 class helper{
 
@@ -12,6 +12,11 @@ class helper{
     Date = this.date+'.'+this.month+'.'+this.year
     Time = this.hours+':'+this.min
 
+    selectNote=false;
+
+    controlSelectNote(){
+        this.selectNote = !this.selectNote
+    }
 
     buttonOpacity=.8
 }
@@ -21,7 +26,11 @@ decorate(
     {
         Date:observable,
         Time:observable,
-        buttonOpacity:observable
+        buttonOpacity:observable,
+        selectNote:observable,
+
+        controlSelectNote:action
+
     }
 )
 

@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
         height:35,
         justifyContent:'flex-end',
         alignItems:'center',
-        marginBottom:15,
+        marginBottom:7,
         flexDirection:'row'
     },
 
     searchView:{
         width:w-75,
-        height:50,
+        height:45,
         borderRadius:100,
         backgroundColor:'#f7f7f7',
         marginBottom: 15,

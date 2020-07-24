@@ -17,100 +17,135 @@ import Add_New_Note from './src/views/pages/addNewNote';
 import Show_Note from './src/views/pages/showNote';
 import Add_New_Sticky_Note from './src/views/pages/addNewStickyNote';
 import Edit_Sticky_Note from './src/views/pages/editStickyNote';
+import helper from './src/controllers/helper';
+import saveData from './src/controllers/saveData';
+import {observer} from 'mobx-react';
 
 
 const Stack = createStackNavigator();
 
-function App( ) {
-    return (
-       <>
-           <StatusBar backgroundColor={'#5373bd'}/>
-           <NavigationContainer>
-               <Stack.Navigator screenOptions={({navigation})=>({
-                   headerStyle:{
-                       backgroundColor:'#5373bd',
-                   },
-                   headerLeft: () => (
-                       <TouchableOpacity onPress={()=>navigation.goBack()} style={buttons.headerBackButton}>
-                           <Icon name='chevron-left' size={35} color='#fff'/>
-                       </TouchableOpacity>
-                   ),
-                   headerRight:()=>(
-                       <TouchableOpacity onPress={()=>navigation.popToTop()} style={[buttons.headerBackButton,{marginRight:5}]} >
-                           <IconZ name='home' size={25} color='#fff'/>
-                       </TouchableOpacity>
-                   ),
-                   headerTintColor:'#fff',
-                   headerTitleAlign:'center'
-               })}
-                                initialRouteName="Home">
-                   <Stack.Screen
-                       name="Home"
-                       options={{
-                           title:'Ana sayfa',
-                           headerLeft:false,
-                           headerRight:false
+class App extends React.Component{
 
-                       }}
-                       component={Home} />
+    state={
+        selectText:'Seç'
+    }
 
-                   <Stack.Screen
-                       name="Notes"
-                       options={{
-                           title:'Notlarım',
+    renderNavigation(){
+        return(
+            <NavigationContainer>
+                <Stack.Navigator screenOptions={({navigation}) => ({
+                    headerStyle: {
+                        backgroundColor: '#5373bd',
+                    },
+                    headerLeft: () => (
+                        <TouchableOpacity onPress={() => navigation.goBack()} style={buttons.headerBackButton}>
+                            <Icon name='chevron-left' size={35} color='#fff'/>
+                        </TouchableOpacity>
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity onPress={() => navigation.popToTop()}
+                                          style={[buttons.headerBackButton, {marginRight: 5}]}>
+                            <IconZ name='home' size={25} color='#fff'/>
+                        </TouchableOpacity>
+                    ),
+                    headerTintColor: '#fff',
+                    headerTitleAlign: 'center'
+                })}
+                                 initialRouteName="Home">
+                    <Stack.Screen
+                        name="Home"
+                        options={{
+                            title: 'Ana sayfa',
+                            headerLeft: false,
+                            headerRight: false
 
-                       }}
-                       component={Notes} />
+                        }}
+                        component={Home}/>
 
-                   <Stack.Screen
-                       name="Sticky_Notes"
-                       options={{
-                           title:'Yapışkan Notlarım'
-                       }}
-                       component={Sticky_Notes} />
-
-                   <Stack.Screen
-                       name="Edit_Note"
-                       options={{
-                           title:'Not Düzenleme'
-                       }}
-                       component={Edit_Note} />
-
-                   <Stack.Screen
-                       name="Add_New_Note"
-                       options={{
-                           title:'Yeni Not'
-                       }}
-                       component={Add_New_Note} />
-
-                   <Stack.Screen
-                       name="Show_Note"
-                       options={{
-                           headerShown:false
-                       }}
-                       component={Show_Note} />
-
-                   <Stack.Screen
-                       name="Add_New_Sticky_Note"
-                       options={{
-                           title:'Yeni Yapışkan Not'
-                       }}
-                       component={Add_New_Sticky_Note} />
-
-                   <Stack.Screen
-                       name="Edit_Sticky_Note"
-                       options={{
-                           title:'Not düzenlemesi'
-                       }}
-                       component={Edit_Sticky_Note} />
+                    <Stack.Screen
+                        name="Notes"
+                        options={{
+                            title: 'Notlarım',
+                            headerRight: saveData.userNotes.length>0?() => (
+                                <TouchableOpacity activeOpacity={helper.buttonOpacity}
+                                                  onPress={() => {
+                                                      helper.controlSelectNote();
+                                                      this.setState({selectText:helper.selectNote?'Vazgeç':'Seç'})
+                                                  }}
+                                                  style={[buttons.settingButton,{display:saveData.userNotes.length>0?'flex':'none'}]}>
 
 
+                                    <Text style={buttons.deleteButtonText}>
+                                        {
+                                            this.state.selectText
+                                        }
+                                    </Text>
 
-               </Stack.Navigator>
-           </NavigationContainer>
+                                </TouchableOpacity>
 
-       </>
-    );
+                            ):
+                                false
+
+                        }}
+                        component={Notes}/>
+
+                    <Stack.Screen
+                        name="Sticky_Notes"
+                        options={{
+                            title: 'Yapışkan Notlarım'
+                        }}
+                        component={Sticky_Notes}/>
+
+                    <Stack.Screen
+                        name="Edit_Note"
+                        options={{
+                            title: 'Not Düzenleme'
+                        }}
+                        component={Edit_Note}/>
+
+                    <Stack.Screen
+                        name="Add_New_Note"
+                        options={{
+                            title: 'Yeni Not'
+                        }}
+                        component={Add_New_Note}/>
+
+                    <Stack.Screen
+                        name="Show_Note"
+                        options={{
+                            headerShown: false
+                        }}
+                        component={Show_Note}/>
+
+                    <Stack.Screen
+                        name="Add_New_Sticky_Note"
+                        options={{
+                            title: 'Yeni Yapışkan Not'
+                        }}
+                        component={Add_New_Sticky_Note}/>
+
+                    <Stack.Screen
+                        name="Edit_Sticky_Note"
+                        options={{
+                            title: 'Not düzenlemesi'
+                        }}
+                        component={Edit_Sticky_Note}/>
+
+
+                </Stack.Navigator>
+            </NavigationContainer>
+        )
+    }
+
+    render() {
+        return (
+            <>
+                <StatusBar backgroundColor={'#5373bd'}/>
+                {this.renderNavigation()}
+
+            </>
+        )
+    }
 }
 
-export default App;
+export default observer(App);

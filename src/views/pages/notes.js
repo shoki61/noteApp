@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity,  TextInput, Dimensions, ScrollView,} from 'react-native';
+import {View, Text, TouchableOpacity,  TextInput, Dimensions,Platform, ScrollView,LayoutAnimation,UIManager,Image} from 'react-native';
 import { observer } from 'mobx-react';
 import LinearGradient from 'react-native-linear-gradient';
 import { SearchableFlatList } from "react-native-searchable-list";
@@ -14,6 +14,11 @@ import helper from '../../controllers/helper';
 import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
 const w = Dimensions.get('window').width;
+if (Platform.OS === 'android') {
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+}
 
 class Notes extends Component{
 
@@ -28,6 +33,10 @@ class Notes extends Component{
             ignoreCase: true,
         }
     }
+    componentDidUpdate() {
+        LayoutAnimation.easeInEaseOut();
+    }
+
 
     controlSelectNote(){
         if(!this.state.selectNote)this.setState({selectNote:true})
@@ -74,7 +83,7 @@ class Notes extends Component{
 
                 <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',width:w-75}}>
                     {
-                        this.state.selectNote &&
+                        helper.selectNote &&
                         <View style={{width:'15%',alignItems:'center',justifyContent:'center'}}>
                             <TouchableOpacity
                                 activeOpacity={helper.buttonOpacity}
@@ -87,7 +96,7 @@ class Notes extends Component{
                     <TouchableOpacity
                         activeOpacity={helper.buttonOpacity}
                         onPress={()=> { controlData.setShowNote(index); this.props.navigation.navigate('Show_Note') }}
-                        style={[styles.noteContainer,this.state.selectNote &&{width:'85%'}]}
+                        style={[styles.noteContainer,helper.selectNote &&{width:'85%'}]}
                     >
                         <View style={styles.Title_Desc_View}>
                             <Text numberOfLines={1} style={styles.noteTitle}>{controlData.selectNotes.length}{value.title}</Text>
@@ -108,12 +117,12 @@ class Notes extends Component{
 
                     <View style={[styles.notesContainer,saveData.userNotes.length <=0 &&{justifyContent:'center'}]}>
                         {
-                            saveData.userNotes.length > 0 &&
+                            helper.selectNote && saveData.userNotes.length>0&&
                             <View
-                                style={[styles.settingCont, this.state.selectNote && {justifyContent: 'space-between'}]}>
+                                style={[styles.settingCont, helper.selectNote && {justifyContent: 'space-between'}]}>
 
                                 {
-                                    this.state.selectNote &&
+                                    helper.selectNote &&
                                     <TouchableOpacity activeOpacity={helper.buttonOpacity}
                                                       style={buttons.deleteAllSticky}
                                                       onPress={() => this.deleteAllNote()}>
@@ -121,23 +130,13 @@ class Notes extends Component{
                                     </TouchableOpacity>
                                 }
 
-
-                                <TouchableOpacity activeOpacity={helper.buttonOpacity}
-                                                  onPress={() => this.controlSelectNote()}
-                                                  style={buttons.settingButton}>
-                                    {
-                                        this.state.selectNote ? <Icon color='#748bce' size={20} name='x'/> :
-                                            <Text style={{color: '#748bce'}}>seç</Text>
-                                    }
-                                </TouchableOpacity>
-
                             </View>
                         }
 
                         {
                             saveData.userNotes.length > 0 &&
                             <View style={[{width:w-75,height:50,marginBottom:10},!this.state.showSearch&&{alignItems:'space-between'}]}>
-                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showSearch:true})} style={[styles.searchView,!this.state.showSearch&&{width:50,height:50,justifyContent:'center',backgroundColor:'rgba(255,54,141,0.5)'}]}>
+                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showSearch:true})} style={[styles.searchView,!this.state.showSearch&&{width:45,height:45,justifyContent:'center',backgroundColor:'rgba(255,54,141,0.5)'}]}>
                                     <Icon name='search' color={this.state.showSearch?'#adadad':'#fff'} size={20}/>
                                     {
                                         this.state.showSearch&&
