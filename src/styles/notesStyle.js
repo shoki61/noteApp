@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 
     searchView:{
         width:w-75,
-        height:40,
+        height:50,
         borderRadius:100,
         backgroundColor:'#f7f7f7',
         marginBottom: 15,

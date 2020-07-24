@@ -52,7 +52,7 @@ class Edit_Sticky_Note extends Component{
                             style={buttons.notesSubButton}
                             onPress={()=>this.editStickyNote()}
                             activeOpacity={helper.buttonOpacity}>
-                        <Text style={buttons.buttonText}>Değişikliği kaydet</Text>
+                        <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
                         </TouchableOpacity>
                     </LinearGradient>
                 }

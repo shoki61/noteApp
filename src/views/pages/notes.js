@@ -22,6 +22,7 @@ class Notes extends Component{
         this.state={
             selectNote:false,
             select:false,
+            showSearch:false,
             searchTerm: '',
             searchAttribute: 'title',
             ignoreCase: true,
@@ -135,11 +136,26 @@ class Notes extends Component{
 
                         {
                             saveData.userNotes.length > 0 &&
-                            <View style={styles.searchView}>
-                                <Icon name='search' color='#adadad' size={18}/>
-                                <TextInput style={styles.searchInput}
-                                           onChangeText={searchTerm => this.setState({searchTerm})}
-                                           placeholder={'not başlığı ile ara...'}/>
+                            <View style={[{width:w-75,height:50,marginBottom:10},!this.state.showSearch&&{alignItems:'space-between'}]}>
+                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showSearch:true})} style={[styles.searchView,!this.state.showSearch&&{width:50,height:50,justifyContent:'center',backgroundColor:'rgba(255,54,141,0.5)'}]}>
+                                    <Icon name='search' color={this.state.showSearch?'#adadad':'#fff'} size={20}/>
+                                    {
+                                        this.state.showSearch&&
+                                        <TextInput style={styles.searchInput}
+                                                   onChangeText={searchTerm => this.setState({searchTerm})}
+                                                   autoFocus
+                                                   placeholder={'not başlığı ile ara...'}/>
+                                    }
+                                    {
+                                        this.state.showSearch&&
+                                        <TouchableOpacity style={buttons.closeInputButton} onPress={()=> {
+                                            this.setState({showSearch: false,searchTerm:''});
+                                        }}
+                                        >
+                                            <Icon name='x'  size={20} color='#adadad'/>
+                                        </TouchableOpacity>
+                                    }
+                                </TouchableOpacity>
                             </View>
                         }
 
@@ -157,7 +173,7 @@ class Notes extends Component{
                             />
                         }
                         <LinearGradient style={saveData.userNotes.length <= 0 ? buttons.addButton:buttons.addButtonAbsolute} colors={['#a2b9ff', '#5373bd', '#2f4ca3']}>
-                            <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Note')} >
+                            <TouchableOpacity style={buttons.notesSubButton} activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Note')} >
                                 <Icon name='plus' size={30} color='#fff'/>
                             </TouchableOpacity>
                         </LinearGradient>

@@ -5,7 +5,6 @@ import LinearGradient from "react-native-linear-gradient";
 import styles from '../../styles/addStickyNoteStyle';
 import buttons from '../../styles/buttons';
 import controlData from '../../controllers/controlData';
-import saveData from '../../controllers/saveData';
 
 class Add_New_Sticky_Note extends Component{
 
@@ -44,7 +43,7 @@ class Add_New_Sticky_Note extends Component{
                                    this.props.navigation.navigate('Sticky_Notes');
                                }}
                            >
-                               <Text style={buttons.buttonText}>Kaydet</Text>
+                               <Text style={buttons.saveButtonText}>Kaydet</Text>
                            </TouchableOpacity>
                        </LinearGradient>
                    }

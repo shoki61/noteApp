@@ -42,7 +42,8 @@ class Home extends Component{
     renderCreateNote(){
       return(
           <View style={styles.createNoteCont}>
-              <TouchableOpacity onPress={()=>this.props.navigation.navigate('Notes')} style={buttons.addButton}>
+              <TouchableOpacity
+                  onPress={()=>this.props.navigation.navigate('Notes')} style={buttons.addButton}>
                   <SImage height={23} source={require('../../icons/plus.png')}/>
               </TouchableOpacity>
               <Text style={styles.createNoteText}>Not oluştur</Text>

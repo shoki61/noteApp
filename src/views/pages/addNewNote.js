@@ -45,14 +45,17 @@ class Add_New_Note extends Component{
 
                 </View>
 
-                    <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={[buttons.saveButton,{marginTop:15}]}>
-                        <TouchableOpacity onPress={()=> {
-                            controlData.controlData();
-                            this.props.navigation.navigate('Notes')
-                        }} activeOpacity={helper.buttonOpacity} >
-                            <Text style={buttons.saveButtonText}>Kaydet</Text>
-                        </TouchableOpacity>
-                    </LinearGradient>
+                    {
+                        this.state.title !== '' && this.state.desc !== ''&&
+                        <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={[buttons.saveButton,{marginTop:15}]}>
+                            <TouchableOpacity onPress={()=> {
+                                controlData.controlData();
+                                this.props.navigation.navigate('Notes')
+                            }} activeOpacity={helper.buttonOpacity} >
+                                <Text style={buttons.saveButtonText}>Kaydet</Text>
+                            </TouchableOpacity>
+                        </LinearGradient>
+                    }
             </View>
             </ScrollView>
         )
