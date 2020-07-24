@@ -39,13 +39,14 @@ class ControlData {
 
     controlData() {
         if (this.title === '' || this.desc === '') alert('Lütfen boş olan yerleri dolfurunuz!')
-        else saveMethod.saveData(this.title, this.desc).then(r => {}).catch(e=>alert(e))
+        else {
+            saveMethod.saveData(this.title, this.desc)
+        }
     }
 
     controlStickyData(){
         if(this.stickyDesc==='') alert('Daha hiç bir şey yazmadınız')
-        else saveMethod.saveStickyData(this.stickyDesc).then(r=>alert(r)).catch(e=>alert(e))
-
+        else saveMethod.saveStickyData(this.stickyDesc)
     }
 
 

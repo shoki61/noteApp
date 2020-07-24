@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import LinearGradient from "react-native-linear-gradient";
 
 import styles from '../../styles/addStickyNoteStyle';
 import buttons from '../../styles/buttons';
 import controlData from '../../controllers/controlData';
+import saveData from '../../controllers/saveData';
 
 class Add_New_Sticky_Note extends Component{
 
@@ -32,9 +34,20 @@ class Add_New_Sticky_Note extends Component{
                        <Text style={styles.maxLengthText}>({this.state.desc.length}/150)</Text>
 
                    </View>
-                   <TouchableOpacity onPress={()=>controlData.controlStickyData()} style={buttons.saveButton}>
-                       <Text style={buttons.buttonText}>Kaydet</Text>
-                   </TouchableOpacity>
+                   {
+                       this.state.desc !== ''&&
+                       <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={[buttons.saveButton,{marginTop:15}]}>
+                           <TouchableOpacity
+                               style={buttons.notesSubButton}
+                               onPress={()=> {
+                                   controlData.controlStickyData();
+                                   this.props.navigation.navigate('Sticky_Notes');
+                               }}
+                           >
+                               <Text style={buttons.buttonText}>Kaydet</Text>
+                           </TouchableOpacity>
+                       </LinearGradient>
+                   }
                </ScrollView>
 
         )

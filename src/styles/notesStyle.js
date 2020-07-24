@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
 
     settingCont:{
         width:w-75,
-        justifyContent:'space-between',
+        height:35,
+        justifyContent:'flex-end',
         alignItems:'center',
         marginBottom:15,
         flexDirection:'row'

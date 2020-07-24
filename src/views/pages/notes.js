@@ -3,15 +3,15 @@ import {View, Text, TouchableOpacity,  TextInput, Dimensions, ScrollView,} from 
 import { observer } from 'mobx-react';
 import LinearGradient from 'react-native-linear-gradient';
 import { SearchableFlatList } from "react-native-searchable-list";
+import Icon from 'react-native-vector-icons/Feather';
 
 import styles from '../../styles/notesStyle';
 import buttons from '../../styles/buttons';
 import saveData from '../../controllers/saveData';
 import controlData from '../../controllers/controlData';
 
-import Icon from 'react-native-vector-icons/Feather';
 import helper from '../../controllers/helper';
-import AsyncStorage from '@react-native-community/async-storage';
+import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
 const w = Dimensions.get('window').width;
 
@@ -36,13 +36,17 @@ class Notes extends Component{
         }
     }
 
-    removeSelectNote=async()=>{
+    deleteAllNote=async()=>{
 
-        let i = 0;
-        while(i<controlData.selectNotes.length){
-            saveData.userNotes.splice(controlData.selectNotes[i].index,1)
-            i++
-        }
+        saveData.userNotes = [];
+        saveDataAsyncStorage.saveNotes()
+        this.setState({selectNote:false})
+
+        // let i = 0;
+        // while(i<controlData.selectNotes.length){
+        //     saveData.userNotes.splice(controlData.selectNotes[i].index,1)
+        //     i++
+        // }
 
 
        // for(let i=0; i < controlData.selectNotes.length; i++){
@@ -101,44 +105,70 @@ class Notes extends Component{
         return(
             <>
 
-                <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#fff',flex:1}}>
-                    <View style={styles.notesContainer}>
-                        <View style={[styles.settingCont,controlData.selectNotes.length<=0&&{justifyContent:'flex-end'}]}>
+                    <View style={[styles.notesContainer,saveData.userNotes.length <=0 &&{justifyContent:'center'}]}>
+                        {
+                            saveData.userNotes.length > 0 &&
+                            <View
+                                style={[styles.settingCont, this.state.selectNote && {justifyContent: 'space-between'}]}>
 
-                            {
-                                controlData.selectNotes.length > 0 &&
-                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=> this.removeSelectNote()}>
-                                    <Text style={buttons.deleteButtonText}>Sil</Text>
-                                </TouchableOpacity>
-                            }
-                            <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=> this.controlSelectNote()} style={buttons.settingButton}>
                                 {
-                                    this.state.selectNote?<Icon color='#748bce' size={20} name='x'/>:<Text style={{color:'#748bce'}}>seç</Text>
+                                    this.state.selectNote &&
+                                    <TouchableOpacity activeOpacity={helper.buttonOpacity}
+                                                      style={buttons.deleteAllSticky}
+                                                      onPress={() => this.deleteAllNote()}>
+                                        <Text style={buttons.deleteAllNoteText}>Tüm notları sil</Text>
+                                    </TouchableOpacity>
                                 }
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.searchView}>
-                            <Icon name='search' color='#adadad' size={18}/>
-                            <TextInput style={styles.searchInput} onChangeText={searchTerm => this.setState({ searchTerm })}  placeholder={'not başlığı ile ara...'}/>
-                        </View>
 
-                        <SearchableFlatList
-                            showsVerticalScrollIndicator={false}
-                            searchTerm={this.state.searchTerm}
-                            searchAttribute={this.state.searchAttribute}
-                            ignoreCase={this.state.ignoreCase}
-                            contentContainerStyle={{alignItems:'center',paddingBottom:110}}
-                            style={{width:'100%'}}
-                            data={saveData.userNotes}
-                            renderItem={value=>this.renderNotes(value.item,value.index)}
-                        />
+
+                                <TouchableOpacity activeOpacity={helper.buttonOpacity}
+                                                  onPress={() => this.controlSelectNote()}
+                                                  style={buttons.settingButton}>
+                                    {
+                                        this.state.selectNote ? <Icon color='#748bce' size={20} name='x'/> :
+                                            <Text style={{color: '#748bce'}}>seç</Text>
+                                    }
+                                </TouchableOpacity>
+
+                            </View>
+                        }
+
+                        {
+                            saveData.userNotes.length > 0 &&
+                            <View style={styles.searchView}>
+                                <Icon name='search' color='#adadad' size={18}/>
+                                <TextInput style={styles.searchInput}
+                                           onChangeText={searchTerm => this.setState({searchTerm})}
+                                           placeholder={'not başlığı ile ara...'}/>
+                            </View>
+                        }
+
+                        {
+                            saveData.userNotes.length > 0 &&
+                            <SearchableFlatList
+                                showsVerticalScrollIndicator={false}
+                                searchTerm={this.state.searchTerm}
+                                searchAttribute={this.state.searchAttribute}
+                                ignoreCase={this.state.ignoreCase}
+                                contentContainerStyle={{alignItems: 'center', paddingBottom: 110}}
+                                style={{width: '100%'}}
+                                data={saveData.userNotes}
+                                renderItem={value => this.renderNotes(value.item, value.index)}
+                            />
+                        }
+                        <LinearGradient style={saveData.userNotes.length <= 0 ? buttons.addButton:buttons.addButtonAbsolute} colors={['#a2b9ff', '#5373bd', '#2f4ca3']}>
+                            <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Note')} >
+                                <Icon name='plus' size={30} color='#fff'/>
+                            </TouchableOpacity>
+                        </LinearGradient>
+                        {
+                            saveData.userNotes.length<=0 &&
+                            <Text style={buttons.addNewNoteText}>Yeni not oluştur</Text>
+                        }
+
                     </View>
-                </ScrollView>
-                <LinearGradient style={[buttons.addButton,buttons.addButtonAbsolute]} colors={['#a2b9ff', '#5373bd', '#2f4ca3']}>
-                    <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Note')} >
-                        <Icon name='plus' size={30} color='#fff'/>
-                    </TouchableOpacity>
-                </LinearGradient>
+
+
 
 
             </>

@@ -37,7 +37,7 @@ function App( ) {
                    ),
                    headerRight:()=>(
                        <TouchableOpacity onPress={()=>navigation.popToTop()} style={[buttons.headerBackButton,{marginRight:5}]} >
-                           <IconZ name='home' size={30} color='#fff'/>
+                           <IconZ name='home' size={25} color='#fff'/>
                        </TouchableOpacity>
                    ),
                    headerTintColor:'#fff',

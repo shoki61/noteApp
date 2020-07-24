@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, ScrollView, FlatList, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList,} from 'react-native';
 import {observer} from 'mobx-react';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import AsyncStorage from '@react-native-community/async-storage';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Feather';
 
 import styles from '../../styles/stickyNotesStyles';
 import buttons from '../../styles/buttons';
 import saveData from '../../controllers/saveData';
-import Icon from 'react-native-vector-icons/Feather';
 import helper from '../../controllers/helper';
 import controlData from '../../controllers/controlData';
 import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
@@ -27,6 +28,7 @@ class Sticky_Note extends Component{
             showAlert: false
         }
     }
+
 
     deleteStickyNote=async(index)=>{
 
@@ -51,6 +53,7 @@ class Sticky_Note extends Component{
     pushEditStickyNote(index){
         controlData.editStickyNoteIndex=index
         this.props.navigation.navigate('Edit_Sticky_Note')
+        this.setState({selectStickyNote:false})
     }
 
     renderStickyNote(value,index){
@@ -92,7 +95,7 @@ class Sticky_Note extends Component{
                             {
                                 this.state.selectStickyNote&&
                                 <TouchableOpacity onPress={()=>this.deleteAllStickyNote()} activeOpacity={helper.buttonOpacity} style={buttons.deleteAllSticky}>
-                                    <Text style={buttons.deleteAllStickyText}>Hepsini sil</Text>
+                                    <Text style={buttons.deleteAllNoteText}>Hepsini sil</Text>
                                 </TouchableOpacity>
                             }
                             <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({selectStickyNote:!this.state.selectStickyNote})}   style={buttons.settingButton}>
@@ -111,12 +114,14 @@ class Sticky_Note extends Component{
                             renderItem={value=>this.renderStickyNote(value.item,value.index)}
                         />
                     }
-                    <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.props.navigation.navigate('Add_New_Sticky_Note')} style={saveData.userStickyNotes.length <= 0 ? buttons.addButton:buttons.addButtonAbsolute}>
-                        <Icon name='plus' size={30} color='#ededed'/>
-                    </TouchableOpacity>
+                    <LinearGradient style={saveData.userStickyNotes.length <= 0 ? buttons.addButton:buttons.addButtonAbsolute} colors={['#a2b9ff', '#5373bd', '#2f4ca3']}>
+                        <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=> this.props.navigation.navigate('Add_New_Sticky_Note')} >
+                            <Icon name='plus' size={30} color='#ededed'/>
+                        </TouchableOpacity>
+                    </LinearGradient>
                     {
                         saveData.userStickyNotes<=0&&
-                            <Text style={styles.addNewStickyNoteText}>Yeni yapışkan not oluştur</Text>
+                            <Text style={buttons.addNewNoteText}>Yeni yapışkan not oluştur</Text>
                     }
                 </View>
 

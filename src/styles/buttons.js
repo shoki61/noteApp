@@ -6,6 +6,10 @@ const h = Dimensions.get('window').height;
 
 
 const buttons = StyleSheet.create({
+    addNewNoteText:{
+        fontSize:16,
+        color:'#797979'
+    },
     addButton:{
         width:65,
         height:65,
@@ -63,7 +67,7 @@ const buttons = StyleSheet.create({
     },
     saveButton:{
         width:w-200,
-        height:40,
+        height:45,
         alignItems:'center',
         justifyContent:'center',
         borderRadius:100,
@@ -109,8 +113,9 @@ const buttons = StyleSheet.create({
         paddingLeft:10,
         paddingRight:10,
     },
-    deleteAllStickyText:{
-        color:'#ff4d4d'
+    deleteAllNoteText:{
+        color:'#ff4d4d',
+        fontWeight:'700'
     }
 
 })
