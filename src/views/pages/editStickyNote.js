@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ScrollView, LayoutAnimation} from 'react-native';
 import {observer} from 'mobx-react';
-import LinearGradient from "react-native-linear-gradient";
 
 import styles from '../../styles/addStickyNoteStyle';
 import buttons from '../../styles/buttons';
@@ -17,6 +16,10 @@ class Edit_Sticky_Note extends Component{
         this.state={
             desc:saveData.userStickyNotes[controlData.editStickyNoteIndex].desc
         }
+    }
+
+    componentDidUpdate() {
+        LayoutAnimation.easeInEaseOut()
     }
 
     editStickyNote(){
@@ -45,17 +48,16 @@ class Edit_Sticky_Note extends Component{
                     />
                     <Text style={styles.maxLengthText}>({this.state.desc.length}/170)</Text>
                 </View>
-                {
-                    this.state.desc !== saveData.userStickyNotes[controlData.editStickyNoteIndex].desc&&
-                    <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={[buttons.saveButton,{marginTop:15}]}>
+
+                    <View style={{width:'100%',marginBottom:25,marginTop:10,alignItems:'flex-end'}}>
                         <TouchableOpacity
-                            style={buttons.notesSubButton}
+                            style={[buttons.saveButton,{backgroundColor:'#ff9d5b'},this.state.desc !== saveData.userStickyNotes[controlData.editStickyNoteIndex].desc &&{width:'45%'}]}
                             onPress={()=>this.editStickyNote()}
                             activeOpacity={helper.buttonOpacity}>
-                        <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
+                            <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
                         </TouchableOpacity>
-                    </LinearGradient>
-                }
+                    </View>
+
             </ScrollView>
 
         )

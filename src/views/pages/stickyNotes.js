@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, FlatList,} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, LayoutAnimation} from 'react-native';
 import {observer} from 'mobx-react';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import AsyncStorage from '@react-native-community/async-storage';
-import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 
 import styles from '../../styles/stickyNotesStyles';
@@ -27,6 +26,10 @@ class Sticky_Note extends Component{
             selectStickyNote:false,
             showAlert: false
         }
+    }
+
+    componentDidUpdate() {
+        LayoutAnimation.easeInEaseOut()
     }
 
 
@@ -66,7 +69,7 @@ class Sticky_Note extends Component{
                         </Text>
                     <Text style={styles.date}>{value.date}-{value.time}</Text>
                     {
-                        this.state.selectStickyNote&&
+                        helper.selectStickyNote&&
                         <View style={styles.editView}>
                             <TouchableOpacity onPress={()=>this.pushEditStickyNote(index)} activeOpacity={helper.buttonOpacity} style={buttons.stickyNoteEdit}>
                                 <Icon size={17} color='#4dc1ff' name='edit-3'/>
@@ -90,32 +93,26 @@ class Sticky_Note extends Component{
             <>
                 <View style={[styles.stickyNoteContainer,saveData.userStickyNotes.length<=0&&{justifyContent:'center'}]}>
                     {
-                        saveData.userStickyNotes.length > 0 &&
-                        <View style={[{width:'100%',alignItems:'flex-end',paddingRight:20,paddingLeft:15,marginBottom:7,height:35},this.state.selectStickyNote&&{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}]}>
-                            {
-                                this.state.selectStickyNote&&
+                        helper.selectStickyNote && saveData.userStickyNotes.length>1&&
+                        <View style={[{width:'100%',alignItems:'flex-end',paddingRight:20,paddingLeft:15,height:35},this.state.selectStickyNote&&{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}]}>
+
                                 <TouchableOpacity onPress={()=>this.deleteAllStickyNote()} activeOpacity={helper.buttonOpacity} style={buttons.deleteAllSticky}>
                                     <Text style={buttons.deleteAllNoteText}>Hepsini sil</Text>
                                 </TouchableOpacity>
-                            }
-                            <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({selectStickyNote:!this.state.selectStickyNote})}   style={buttons.settingButton}>
-                                {
-                                    this.state.selectStickyNote?<Icon color='#748bce' size={20} name='x'/>:<Icon color='#748bce' size={20} name='more-horizontal'/>
-                                }
-                            </TouchableOpacity>
+
                         </View>
                     }
                     {
                         saveData.userStickyNotes.length>0&&
                         <FlatList
-                            contentContainerStyle={{flexDirection:'row',flexWrap:'wrap',justifyContent:'flex-start',paddingBottom:100}}
+                            contentContainerStyle={{flexDirection:'row',marginTop:10,flexWrap:'wrap',justifyContent:'flex-start',paddingBottom:100}}
                             style={{width:'95%'}}
                             data={saveData.userStickyNotes}
                             renderItem={value=>this.renderStickyNote(value.item,value.index)}
                         />
                     }
                         <TouchableOpacity
-                            style={[buttons.addButton,{backgroundColor:'#ff9d5b'}]}
+                            style={[saveData.userStickyNotes.length>0?buttons.addButtonAbsolute:buttons.addButton,{backgroundColor:'#ff9d5b'}]}
                             activeOpacity={helper.buttonOpacity}
                             onPress={()=> this.props.navigation.navigate('Add_New_Sticky_Note')}
                         >

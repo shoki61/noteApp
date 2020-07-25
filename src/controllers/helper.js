@@ -14,8 +14,14 @@ class helper{
 
     selectNote=false;
 
+    selectStickyNote = false;
+
     controlSelectNote(){
         this.selectNote = !this.selectNote
+    }
+
+    controlSelectStickyNote(){
+        this.selectStickyNote = !this.selectStickyNote
     }
 
     buttonOpacity=.8
@@ -28,8 +34,10 @@ decorate(
         Time:observable,
         buttonOpacity:observable,
         selectNote:observable,
+        selectStickyNote:observable,
 
-        controlSelectNote:action
+        controlSelectNote:action,
+        controlSelectStickyNote:action
 
     }
 )

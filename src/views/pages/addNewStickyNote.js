@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
-import LinearGradient from "react-native-linear-gradient";
+import {View, Text, TextInput, TouchableOpacity, ScrollView, LayoutAnimation} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import styles from '../../styles/addStickyNoteStyle';
 import buttons from '../../styles/buttons';
@@ -13,8 +13,13 @@ class Add_New_Sticky_Note extends Component{
         this.state={
             desc:''
         }
-
     }
+
+    componentDidUpdate() {
+        LayoutAnimation.easeInEaseOut()
+    }
+
+
     render(){
         return(
                <ScrollView style={styles.addStickyNoteCont}  keyboardDismissMode='on-drag' contentContainerStyle={{alignItems:'center'}}>
@@ -33,20 +38,20 @@ class Add_New_Sticky_Note extends Component{
                        <Text style={styles.maxLengthText}>({this.state.desc.length}/150)</Text>
 
                    </View>
-                   {
-                       this.state.desc !== ''&&
-                       <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={[buttons.saveButton,{marginTop:15}]}>
+
+                       <View style={{width:'100%',marginBottom:25,marginTop:10,alignItems:'flex-end'}}>
                            <TouchableOpacity
-                               style={buttons.notesSubButton}
+                               style={[buttons.saveButton,{backgroundColor:'#ff9d5b'},this.state.desc !== '' &&{width:'35%'}]}
                                onPress={()=> {
                                    controlData.controlStickyData();
                                    this.props.navigation.navigate('Sticky_Notes');
                                }}
                            >
+                               <Icon size={23} name='check' style={{fontWeight:'100'}} color='#fff'/>
                                <Text style={buttons.saveButtonText}>Kaydet</Text>
                            </TouchableOpacity>
-                       </LinearGradient>
-                   }
+                       </View>
+
                </ScrollView>
 
         )

@@ -27,7 +27,8 @@ const Stack = createStackNavigator();
 class App extends React.Component{
 
     state={
-        selectText:'Seç'
+        selectText:'Seç',
+        selectStickyText:'Seç'
     }
 
     renderNavigation(){
@@ -92,7 +93,26 @@ class App extends React.Component{
                     <Stack.Screen
                         name="Sticky_Notes"
                         options={{
-                            title: 'Yapışkan Notlarım'
+                            title: 'Yapışkan Notlarım',
+                            headerRight: saveData.userStickyNotes.length>0?() => (
+                                    <TouchableOpacity activeOpacity={helper.buttonOpacity}
+                                                      onPress={() => {
+                                                          helper.controlSelectStickyNote();
+                                                          this.setState({selectStickyText:helper.selectStickyNote?'Vazgeç':'Seç'})
+                                                      }}
+                                                      style={[buttons.settingButton,{display:saveData.userStickyNotes.length>0?'flex':'none'}]}>
+
+
+                                        <Text style={buttons.deleteButtonText}>
+                                            {
+                                                this.state.selectStickyText
+                                            }
+                                        </Text>
+
+                                    </TouchableOpacity>
+
+                                ):
+                                false
                         }}
                         component={Sticky_Notes}/>
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, TextInput, TouchableOpacity, ScrollView, LayoutAnimation} from 'react-native';
 import { observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 
 import styles from '../../styles/addNewNoteStyle';
 import buttons from '../../styles/buttons';
@@ -58,7 +58,7 @@ class Add_New_Note extends Component{
                                         this.props.navigation.navigate('Notes')
                                     }}
                                     activeOpacity={helper.buttonOpacity} >
-                                    <Icon size={23} name='check' style={{fontWeight:'100'}} color='#fff'/>
+                                    <Icon size={23} name='check'  color='#fff'/>
                                     <Text style={buttons.saveButtonText}>Kaydet</Text>
                                 </TouchableOpacity>
                             </View>
