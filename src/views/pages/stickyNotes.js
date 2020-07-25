@@ -114,18 +114,16 @@ class Sticky_Note extends Component{
                             renderItem={value=>this.renderStickyNote(value.item,value.index)}
                         />
                     }
-                    <LinearGradient style={saveData.userStickyNotes.length <= 0 ? buttons.addButton:buttons.addButtonAbsolute} colors={['#a2b9ff', '#5373bd', '#2f4ca3']}>
                         <TouchableOpacity
-                            style={buttons.notesSubButton}
+                            style={[buttons.addButton,{backgroundColor:'#ff9d5b'}]}
                             activeOpacity={helper.buttonOpacity}
                             onPress={()=> this.props.navigation.navigate('Add_New_Sticky_Note')}
                         >
                             <Icon name='plus' size={30} color='#ededed'/>
                         </TouchableOpacity>
-                    </LinearGradient>
                     {
                         saveData.userStickyNotes<=0&&
-                            <Text style={buttons.addNewNoteText}>Yeni yapışkan not oluştur</Text>
+                            <Text style={[buttons.addNewNoteText,{color:'#ff9d5b'}]}>Yeni yapışkan not oluştur</Text>
                     }
                 </View>
 

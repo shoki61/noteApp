@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import SImage from 'react-native-scalable-image';
 import AsyncStorage from '@react-native-community/async-storage';
-import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon1 from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../../styles/homeStyle';
 import buttons from '../../styles/buttons';
@@ -12,12 +13,6 @@ import saveData from '../../controllers/saveData';
 
 class Home extends Component{
 
-    constructor(props) {
-        super(props);
-        this.state={
-            showNoteNav:false
-        }
-    }
 
 
     componentWillMount() {
@@ -39,41 +34,41 @@ class Home extends Component{
             })
     }
 
-    renderCreateNote(){
-      return(
-          <View style={styles.createNoteCont}>
-              <TouchableOpacity
-                  onPress={()=>this.props.navigation.navigate('Notes')} style={buttons.addButton}>
-                  <SImage height={23} source={require('../../icons/plus.png')}/>
-              </TouchableOpacity>
-              <Text style={styles.createNoteText}>Not oluştur</Text>
-          </View>
-      )
-    }
 
 
     renderHome(){
      return(
-         <View>
-             <LinearGradient
-                             colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={buttons.notesButton}>
+         <View style={{width:'100%',alignItems:'center'}}>
+
                  <TouchableOpacity
-                     style={buttons.notesSubButton}
+                     style={[buttons.navButton,{borderColor:'#1bb7e2'}]}
                      onPress={()=>this.props.navigation.navigate('Notes')}
                      >
-                     <Text style={buttons.buttonText}>Notlar</Text>
+                     <View style={[styles.navigationIconView,{backgroundColor:'#1bb7e2'}]}>
+                         <Icon size={27} name='notebook' color='#fff'/>
+                     </View>
+                     <Text style={[buttons.buttonText,{color:'#1bb7e2'}]}>Notlar</Text>
                  </TouchableOpacity>
-             </LinearGradient>
 
-             <LinearGradient
-                 colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={buttons.notesButton}>
+
              <TouchableOpacity
-                 style={buttons.notesSubButton}
+                 style={[buttons.navButton,{borderColor:'#ff9d5b'}]}
                  onPress={()=>this.props.navigation.navigate('Sticky_Notes')}
              >
-                 <Text style={buttons.buttonText}>Yapışkan notlar</Text>
+                 <View style={[styles.navigationIconView,{backgroundColor:'#ff9d5b'}]}>
+                     <Icon size={27} name='sticker' color='#fff'/>
+                 </View>
+                 <Text style={[buttons.buttonText,{color:'#ff9d5b'}]}>Yapışkan notlar</Text>
              </TouchableOpacity>
-             </LinearGradient>
+
+             <TouchableOpacity
+                 style={[buttons.navButton,{borderColor:'#fc5db0'}]}
+             >
+                 <View style={[styles.navigationIconView,{backgroundColor:'#fc5db0'}]}>
+                    <Icon1 size={27} name='lock' color='#fff'/>
+                 </View>
+                 <Text style={[buttons.buttonText,{color:'#fc5db0'}]}>Gizli notlar</Text>
+             </TouchableOpacity>
 
          </View>
 
@@ -85,15 +80,8 @@ class Home extends Component{
         return (
             <View style={styles.Container}>
 
-                {
-                    !this.state.showNoteNav &&
-                    this.renderCreateNote()
-                }
+                {this.renderHome()}
 
-                {
-                    this.state.showNoteNav &&
-                    this.renderHome()
-                }
 
             </View>
         )

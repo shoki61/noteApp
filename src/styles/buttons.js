@@ -8,7 +8,6 @@ const h = Dimensions.get('window').height;
 const buttons = StyleSheet.create({
     addNewNoteText:{
         fontSize:16,
-        color:'#797979'
     },
     closeInputButton:{
         width:35,height:'100%',
@@ -16,21 +15,22 @@ const buttons = StyleSheet.create({
         justifyContent:'center'
     },
     addButton:{
-        width:65,
-        height:65,
-        borderRadius:300,
-        backgroundColor:'#5373bd',
+        width:50,
+        height:50,
+        borderRadius:10,
         alignItems:'center',
         justifyContent:'center',
         margin:5,
         elevation:3
     },
-    notesSubButton:{
-        width:'100%',
-        height:'100%',
+    navButton:{
+        width:'70%',
+        flexDirection:'row',
+        height:45,
+        margin:7,
+        borderWidth:1.5,
         alignItems:'center',
-        justifyContent:'center',
-        borderRadius:100
+        borderRadius:10
     },
     deleteButtonText:{
         fontSize:16,
@@ -57,9 +57,9 @@ const buttons = StyleSheet.create({
         position:'absolute',
         bottom:30,
         right:30,
-        width:65,
-        height:65,
-        borderRadius:300,
+        width:55,
+        height:55,
+        borderRadius:15,
         backgroundColor:'#5373bd',
         alignItems:'center',
         justifyContent:'center',
@@ -68,19 +68,24 @@ const buttons = StyleSheet.create({
     },
     buttonText:{
         fontSize:20,
-        color:'#fff'
+        color:'#2980b9',
+        marginLeft:15
     },
     saveButton:{
-        width:w-200,
+        width:0,
         height:45,
         alignItems:'center',
         justifyContent:'center',
-        borderRadius:100,
-        marginBottom:25,
+        borderRadius:10,
+        borderTopRightRadius:0,
+        borderBottomRightRadius:0,
+        elevation:3,
+        flexDirection: 'row',
     },
     saveButtonText:{
         fontSize:18,
-        color:'#fff'
+        color:'#fff',
+        marginLeft: 5
     },
     headerBackButton:{
         width:50,
