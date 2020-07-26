@@ -124,6 +124,15 @@ const buttons = StyleSheet.create({
     deleteAllNoteText:{
         color:'#ff4d4d',
         fontWeight:'700'
+    },
+    loginButton:{
+        width:'50%',
+        height:40,
+        borderRadius:10,
+        backgroundColor:'#fc5db0',
+        flexDirection:'row',
+        alignItems:'center',
+        marginTop:50
     }
 
 })

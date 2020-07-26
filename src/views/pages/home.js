@@ -60,6 +60,7 @@ class Home extends Component{
              </TouchableOpacity>
 
              <TouchableOpacity
+                 onPress={()=>this.props.navigation.navigate('Login_Secret_Notes')}
                  style={[buttons.navButton,{borderColor:'#fc5db0'}]}
              >
                  <View style={[styles.navigationIconView,{backgroundColor:'#fc5db0'}]}>

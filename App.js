@@ -2,8 +2,9 @@ import * as React from 'react';
 import {TouchableOpacity, Text, StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import IconZ from 'react-native-vector-icons/Entypo'
+import IconE from 'react-native-vector-icons/Entypo'
 import Icon from 'react-native-vector-icons/Feather'
+import {observer} from 'mobx-react';
 
 
 import buttons from './src/styles/buttons';
@@ -19,7 +20,7 @@ import Add_New_Sticky_Note from './src/views/pages/addNewStickyNote';
 import Edit_Sticky_Note from './src/views/pages/editStickyNote';
 import helper from './src/controllers/helper';
 import saveData from './src/controllers/saveData';
-import {observer} from 'mobx-react';
+import Login_Secret_Notes from './src/views/pages/loginSecretNotes';
 
 
 const Stack = createStackNavigator();
@@ -48,7 +49,7 @@ class App extends React.Component{
                     headerRight: () => (
                         <TouchableOpacity onPress={() => navigation.popToTop()}
                                           style={[buttons.headerBackButton, {marginRight: 5}]}>
-                            <IconZ name='home' size={25} color='#fff'/>
+                            <IconE name='home' size={25} color='#fff'/>
                         </TouchableOpacity>
                     ),
                     headerTintColor: '#fff',
@@ -152,6 +153,13 @@ class App extends React.Component{
                             title: 'Not düzenlemesi'
                         }}
                         component={Edit_Sticky_Note}/>
+
+                    <Stack.Screen
+                        name="Login_Secret_Notes"
+                        options={{
+                            title: 'Gizli Notlar'
+                        }}
+                        component={Login_Secret_Notes}/>
 
 
                 </Stack.Navigator>
