@@ -38,12 +38,9 @@ class Notes extends Component{
     }
 
 
-    controlSelectNote(){
-        if(!this.state.selectNote)this.setState({selectNote:true})
-        else {
-            controlData.selectNotes=[]
-            this.setState({selectNote: false});
-        }
+    deleteNote(index){
+        saveData.userNotes.splice(index,1)
+        saveDataAsyncStorage.saveNotes()
     }
 
     deleteAllNote=async()=>{
@@ -52,51 +49,29 @@ class Notes extends Component{
         saveDataAsyncStorage.saveNotes()
         this.setState({selectNote:false})
 
-        // let i = 0;
-        // while(i<controlData.selectNotes.length){
-        //     saveData.userNotes.splice(controlData.selectNotes[i].index,1)
-        //     i++
-        // }
-
-
-       // for(let i=0; i < controlData.selectNotes.length; i++){
-       //     //alert(JSON.stringify(tmp[i].index))
-       //     await saveData.userNotes.splice(controlData.selectNotes[i].index,1)
-       //
-       // }
-       // controlData.selectNotes=[]
-       //
-       //  this.setState({selectNote:false})
-        // setTimeout(()=>{
-        //     this.setState({selectNote:false})
-        //     AsyncStorage.setItem('notes', JSON.stringify(saveData.userNotes))
-        //     controlData.selectNotes=[]
-        // },1500)
     }
 
-    pushNote(value,index){
-        controlData.setSelectNote(index)
-    }
+
 
     renderNotes(value,index){
         return(
 
-                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',width:w-75}}>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',width:w-75}}>
                     {
                         helper.selectNote &&
                         <View style={{width:'15%',alignItems:'center',justifyContent:'center'}}>
                             <TouchableOpacity
                                 activeOpacity={helper.buttonOpacity}
-                                onPress={()=> this.pushNote(value,index)}
-                                style={[buttons.selectButton,controlData.a.includes(value.desc)&&{backgroundColor:'#8a8a8a'}]}>
-                                <Icon name='check' color='#fff' size={20}/>
+                                onPress={()=> this.deleteNote(index)}
+                                style={[buttons.selectButton]}>
+                                <Icon name='trash-2' color='#ff6666' size={20}/>
                             </TouchableOpacity>
                         </View>
                     }
                     <TouchableOpacity
                         activeOpacity={helper.buttonOpacity}
                         onPress={()=> { controlData.setShowNote(index); this.props.navigation.navigate('Show_Note') }}
-                        style={[styles.noteContainer,helper.selectNote &&{width:'85%'}]}
+                        style={[styles.noteContainer,helper.selectNote &&{width:'83%'}]}
                     >
                         <View style={styles.Title_Desc_View}>
                             <Text numberOfLines={1} style={styles.noteTitle}>{controlData.selectNotes.length}{value.title}</Text>
@@ -116,19 +91,17 @@ class Notes extends Component{
             <>
 
                     <View style={[styles.notesContainer,saveData.userNotes.length <=0 &&{justifyContent:'center'}]}>
-                        {
-                            helper.selectNote && saveData.userNotes.length>0&&
+                            {
+                            helper.selectNote && saveData.userNotes.length>1 &&
                             <View
                                 style={[styles.settingCont, helper.selectNote && {justifyContent: 'space-between'}]}>
 
-                                {
-                                    helper.selectNote &&
+
                                     <TouchableOpacity activeOpacity={helper.buttonOpacity}
                                                       style={buttons.deleteAllSticky}
                                                       onPress={() => this.deleteAllNote()}>
                                         <Text style={buttons.deleteAllNoteText}>Tüm notları sil</Text>
                                     </TouchableOpacity>
-                                }
 
                             </View>
                         }
@@ -136,8 +109,8 @@ class Notes extends Component{
                         {
                             saveData.userNotes.length > 0 &&
                             <View style={[{width:w-75,height:50,marginBottom:10},!this.state.showSearch&&{alignItems:'space-between'}]}>
-                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showSearch:true})} style={[styles.searchView,!this.state.showSearch&&{width:45,height:45,justifyContent:'center',backgroundColor:'rgba(255,54,141,0.5)'}]}>
-                                    <Icon name='search' color={this.state.showSearch?'#adadad':'#fff'} size={20}/>
+                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showSearch:true})} style={[styles.searchView,!this.state.showSearch&&{width:45,height:45,justifyContent:'center',backgroundColor:'#fff',elevation:3}]}>
+                                    <Icon name='search' color={this.state.showSearch?'#adadad':'#1bb7e2'} size={20}/>
                                     {
                                         this.state.showSearch&&
                                         <TextInput style={styles.searchInput}

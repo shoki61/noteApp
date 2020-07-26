@@ -37,12 +37,13 @@ const buttons = StyleSheet.create({
         color:'#f1f1f1'
     },
     selectButton:{
-        width:40,
-        backgroundColor:'#eaeaea',
-        height:40,
+        width:45,
+        backgroundColor:'#fff',
+        height:45,
         borderRadius:100,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        elevation:3
     },
     notesButton:{
         width: w/1-150,

@@ -27,6 +27,8 @@ const Stack = createStackNavigator();
 class App extends React.Component{
 
     state={
+        a:helper.selectNote,
+
         selectText:'Seç',
         selectStickyText:'Seç'
     }

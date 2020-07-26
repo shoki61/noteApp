@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import SImage from 'react-native-scalable-image';
+import {View, Text, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon1 from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../../styles/homeStyle';
 import buttons from '../../styles/buttons';
@@ -65,7 +63,7 @@ class Home extends Component{
                  style={[buttons.navButton,{borderColor:'#fc5db0'}]}
              >
                  <View style={[styles.navigationIconView,{backgroundColor:'#fc5db0'}]}>
-                    <Icon1 size={27} name='lock' color='#fff'/>
+                    <Icon size={27} name='book-lock' color='#fff'/>
                  </View>
                  <Text style={[buttons.buttonText,{color:'#fc5db0'}]}>Gizli notlar</Text>
              </TouchableOpacity>
