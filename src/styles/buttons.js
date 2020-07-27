@@ -10,9 +10,10 @@ const buttons = StyleSheet.create({
         fontSize:16,
     },
     closeInputButton:{
-        width:35,height:'100%',
+        width:35,
+        height:'100%',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
     },
     addButton:{
         width:50,
