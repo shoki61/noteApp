@@ -16,6 +16,10 @@ class helper{
 
     selectStickyNote = false;
 
+    secretNotePassword = '';
+
+    secretNoteHint='';
+
     controlSelectNote(){
         this.selectNote = !this.selectNote
     }

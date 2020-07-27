@@ -126,13 +126,19 @@ const buttons = StyleSheet.create({
         fontWeight:'700'
     },
     loginButton:{
-        width:'50%',
+        width:'60%',
         height:40,
         borderRadius:10,
-        backgroundColor:'#fc5db0',
+        backgroundColor:'#75b1d0',
         flexDirection:'row',
         alignItems:'center',
-        marginTop:50
+        justifyContent:'center',
+        marginTop:60,
+    },
+    loginButtonText:{
+        color:'#ffffff',
+        fontSize:18,
+        marginLeft:3
     }
 
 })
