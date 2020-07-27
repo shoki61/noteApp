@@ -134,6 +134,7 @@ const buttons = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         marginTop:60,
+        marginBottom:15
     },
     loginButtonText:{
         color:'#ffffff',

@@ -12,6 +12,11 @@ class saveDataAsyncStorage {
         AsyncStorage.setItem('stickyNotes', JSON.stringify(saveData.userStickyNotes))
     }
 
+    saveSecretNotePassword(password, hint){
+        if(hint!=='') { AsyncStorage.setItem('secretNotePassword', password); AsyncStorage.setItem('secretNotePasswordHint', hint)}
+        else AsyncStorage.setItem('secretNotePassword', password)
+    }
+
     saveWarning=async()=>{
         let warning = ''
         await AsyncStorage.getItem('warning')
@@ -27,7 +32,8 @@ decorate(
     saveDataAsyncStorage,
     {
         saveNotes:action,
-        saveStickyNotes:action
+        saveStickyNotes:action,
+        saveSecretNotePassword:action
 
 
     }

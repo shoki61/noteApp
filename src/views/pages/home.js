@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../../styles/homeStyle';
 import buttons from '../../styles/buttons';
 import saveData from '../../controllers/saveData';
+import helper from '../../controllers/helper';
 
 
 
@@ -19,7 +20,6 @@ class Home extends Component{
                 if(v!==null) {
                     let tmp = JSON.parse(v);
                     saveData.userNotes = tmp;
-                    this.setState({showNoteNav:true})
                 }
             })
         AsyncStorage.getItem('stickyNotes')
@@ -27,8 +27,16 @@ class Home extends Component{
                 if(v!==null) {
                     let tmp = JSON.parse(v);
                     saveData.userStickyNotes = tmp;
-                    this.setState({showNoteNav:true})
                 }
+            })
+
+        AsyncStorage.getItem('secretNotePassword')
+            .then(v=>{
+                helper.asyncNotePassword=v
+            })
+        AsyncStorage.getItem('secretNotePasswordHint')
+            .then(v=>{
+                helper.asyncNotePasswordHint=v
             })
     }
 

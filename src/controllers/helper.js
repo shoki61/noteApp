@@ -16,7 +16,11 @@ class helper{
 
     selectStickyNote = false;
 
+    asyncNotePassword = '';
+    asyncNotePasswordHint = '';
+
     secretNotePassword = '';
+    passwordWarning = false;
 
     secretNoteHint='';
 
@@ -39,6 +43,11 @@ decorate(
         buttonOpacity:observable,
         selectNote:observable,
         selectStickyNote:observable,
+        secretNotePassword:observable,
+        secretNoteHint:observable,
+        passwordWarning:observable,
+        asyncNotePassword:observable,
+        asyncNotePasswordHint:observable,
 
         controlSelectNote:action,
         controlSelectStickyNote:action

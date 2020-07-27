@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
    loginContainer:{
      flex:1,
      backgroundColor:'#fff',
-     alignItems:'center'
    },
    informationMessage:{
        width:'90%',
@@ -45,6 +44,18 @@ const styles = StyleSheet.create({
         fontSize: 17,
         paddingLeft:10,
         color:'#797979'
+    },
+    warningText:{
+        width:'65%',
+        padding:3,
+        fontSize:16,
+        textAlign:'center',
+        backgroundColor: '#ffcaca',
+        color:'#ba4545',
+        borderWidth: 1,
+        borderColor:'#ffc3c3',
+        marginTop:5,
+        borderRadius:7
     }
 });
 

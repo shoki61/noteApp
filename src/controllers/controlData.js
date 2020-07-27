@@ -1,7 +1,8 @@
 import { observable, action, decorate } from 'mobx';
 
 import saveMethod from './saveData';
-import AwesomeAlert from 'react-native-awesome-alerts';
+import saveDataAsyncStorage from './saveDataAsyncStorage';
+import helper from './helper';
 
 
 
@@ -16,7 +17,6 @@ class ControlData {
     selectNote=false;
 
     selectNotes=[]
-    a=''
 
     showNote = '';
 
@@ -29,12 +29,10 @@ class ControlData {
         this.editNoteIndex = index
     }
 
-    setSelectNote=(index)=>{
+    controlPassword(password,hint){
+        if(password === '') helper.passwordWarning = true
+        else saveDataAsyncStorage.saveSecretNotePassword(password,hint)
 
-        this.selectNotes.push({
-            index:index
-        })
-        //alert(JSON.stringify(this.selectNotes))
     }
 
     controlData() {
@@ -61,7 +59,6 @@ decorate(
         stickyDesc:observable,
         selectNote:observable,
         selectNotes:observable,
-        a:observable,
         showNote:observable,
         editNoteIndex:observable,
         editStickyNoteIndex:observable,
@@ -70,6 +67,7 @@ decorate(
         controlStickyData:action,
         setSelectNote:action,
         setShowNote:action,
+        controlPassword:action,
 
     }
 );
