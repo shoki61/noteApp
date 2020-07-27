@@ -17,8 +17,11 @@ class Login_Secret_Notes extends Component{
 
     renderLogin(){
         return(
-            <ScrollView style={[styles.loginContainer, {paddingTop: 150}]} contentContainerStyle={{alignItems:'center'}}>
-                <View style={styles.inputView}>
+            <ScrollView style={[styles.loginContainer]} contentContainerStyle={{alignItems:'center'}}>
+                <Text style={[styles.informationMessage,{marginBottom:15,marginTop:100}]}>
+                    <Text style={{fontWeight:'bold',}}>İpucu :</Text> Ordu
+                </Text>
+                <View style={[styles.inputView,]}>
                     <View style={styles.iconView}>
                         <Icon name='lock' size={18} color='#fff'/>
                     </View>
@@ -28,15 +31,18 @@ class Login_Secret_Notes extends Component{
                             helper.secretNotePassword = password;
                             if(helper.asyncNotePassword!=='') helper.passwordWarning=false
                         }}
-                        placeholder='şifrenizi giriniz...'/>
+                        placeholder='şifre...'/>
                 </View>
                 <TouchableOpacity
                     activeOpacity={helper.buttonOpacity}
                     style={buttons.loginButton}
                     onPress={()=>controlData.controlPassword(helper.secretNotePassword,helper.secretNoteHint)}
                 >
-                    <IconM color='#fff' size={25} name='check' />
-                    <Text style={buttons.loginButtonText}>Onayla</Text>
+                    <IconM color='#fff' size={23} name='login' />
+                    <Text style={buttons.loginButtonText}>Giriş yap</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={buttons.hintButton}>
+                    <IconM name='lightbulb-on' size={40} color='#ffce5b'/>
                 </TouchableOpacity>
             </ScrollView>
         )

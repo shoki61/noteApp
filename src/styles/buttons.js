@@ -140,6 +140,13 @@ const buttons = StyleSheet.create({
         color:'#ffffff',
         fontSize:18,
         marginLeft:3
+    },
+    hintButton:{
+        position: 'absolute',
+        top:20,
+        right:20,
+        flexDirection:'row',
+        alignItems:'center'
     }
 
 })
