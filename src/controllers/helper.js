@@ -21,8 +21,11 @@ class helper{
 
     secretNotePassword = '';
     passwordWarning = false;
+    loginWarning = false;
 
     secretNoteHint='';
+
+    loginPassword = '';
 
     controlSelectNote(){
         this.selectNote = !this.selectNote
@@ -48,6 +51,8 @@ decorate(
         passwordWarning:observable,
         asyncNotePassword:observable,
         asyncNotePasswordHint:observable,
+        loginPassword:observable,
+        loginWarning:observable,
 
         controlSelectNote:action,
         controlSelectStickyNote:action

@@ -30,11 +30,11 @@ class Home extends Component{
                 }
             })
 
-        AsyncStorage.getItem('secretNotePassword')
+        AsyncStorage.removeItem('secretNotePassword')
             .then(v=>{
                 helper.asyncNotePassword=v
             })
-        AsyncStorage.getItem('secretNotePasswordHint')
+        AsyncStorage.removeItem('secretNotePasswordHint')
             .then(v=>{
                 helper.asyncNotePasswordHint=v
             })

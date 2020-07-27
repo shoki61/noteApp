@@ -3,6 +3,7 @@ import { observable, action, decorate } from 'mobx';
 import saveMethod from './saveData';
 import saveDataAsyncStorage from './saveDataAsyncStorage';
 import helper from './helper';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
@@ -29,9 +30,19 @@ class ControlData {
         this.editNoteIndex = index
     }
 
-    controlPassword(password,hint){
+    controlPassword=async (password,hint)=>{
         if(password === '') helper.passwordWarning = true
-        else saveDataAsyncStorage.saveSecretNotePassword(password,hint)
+        else {
+            await saveDataAsyncStorage.saveSecretNotePassword(password, hint);
+            AsyncStorage.getItem('secretNotePassword')
+                .then(v=>{
+                    helper.asyncNotePassword=v
+                })
+            AsyncStorage.getItem('secretNotePasswordHint')
+                .then(v=>{
+                    helper.asyncNotePasswordHint=v
+                })
+        }
 
     }
 

@@ -13,7 +13,10 @@ class saveDataAsyncStorage {
     }
 
     saveSecretNotePassword(password, hint){
-        if(hint!=='') { AsyncStorage.setItem('secretNotePassword', password); AsyncStorage.setItem('secretNotePasswordHint', hint)}
+        if(hint!=='') {
+            AsyncStorage.setItem('secretNotePassword', password);
+            AsyncStorage.setItem('secretNotePasswordHint', hint)
+        }
         else AsyncStorage.setItem('secretNotePassword', password)
     }
 

@@ -11,39 +11,70 @@ import controlData from '../../controllers/controlData';
 
 class Login_Secret_Notes extends Component{
 
+    // componentWillMount() {
+    //     alert(helper.asyncNotePasswordHint)
+    // }
+
+    constructor(props) {
+        super(props);
+        this.state={
+            showHint : false,
+            showError: false
+        }
+    }
+
     componentDidUpdate() {
         LayoutAnimation.easeInEaseOut();
+    }
+
+    loginFunc(){
+        if(helper.loginPassword === helper.asyncNotePassword) this.props.navigation.navigate('Secret_Notes')
+        else this.setState({showError:true})
     }
 
     renderLogin(){
         return(
             <ScrollView style={[styles.loginContainer]} contentContainerStyle={{alignItems:'center'}}>
-                <Text style={[styles.informationMessage,{marginBottom:15,marginTop:100}]}>
-                    <Text style={{fontWeight:'bold',}}>İpucu :</Text> Ordu
-                </Text>
-                <View style={[styles.inputView,]}>
+                {
+                    this.state.showHint &&
+                    <Text style={[styles.informationMessage,{marginBottom:15,marginTop:100}]}>
+                        <Text style={{fontWeight:'bold',}}>İpucu :</Text> {helper.asyncNotePasswordHint}
+                    </Text>
+                }
+                <View style={[styles.inputView,!this.state.showHint&&{marginTop:150}]}>
                     <View style={styles.iconView}>
                         <Icon name='lock' size={18} color='#fff'/>
                     </View>
                     <TextInput
                         style={styles.input}
                         onChangeText={ password => {
-                            helper.secretNotePassword = password;
-                            if(helper.asyncNotePassword!=='') helper.passwordWarning=false
+                            helper.loginPassword = password;
+                            this.setState({showError:false})
                         }}
                         placeholder='şifre...'/>
                 </View>
+                {
+                    this.state.showError &&
+                    <Text style={styles.warningText}>
+                        hatalı giriş
+                    </Text>
+                }
                 <TouchableOpacity
                     activeOpacity={helper.buttonOpacity}
                     style={buttons.loginButton}
-                    onPress={()=>controlData.controlPassword(helper.secretNotePassword,helper.secretNoteHint)}
+                    onPress={()=> this.loginFunc()}
                 >
                     <IconM color='#fff' size={23} name='login' />
                     <Text style={buttons.loginButtonText}>Giriş yap</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={buttons.hintButton}>
-                    <IconM name='lightbulb-on' size={40} color='#ffce5b'/>
-                </TouchableOpacity>
+                {
+                    helper.asyncNotePasswordHint !==null&&
+                    <TouchableOpacity
+                        onPress={()=>this.setState({showHint:true})}
+                        style={buttons.hintButton}>
+                        <IconM name='lightbulb-on' size={40} color='#ffce5b'/>
+                    </TouchableOpacity>
+                }
             </ScrollView>
         )
     }
@@ -62,7 +93,7 @@ class Login_Secret_Notes extends Component{
                         style={styles.input}
                         onChangeText={ password => {
                             helper.secretNotePassword = password;
-                            if(helper.asyncNotePassword!=='') helper.passwordWarning=false
+                            if(helper.secretNotePassword!=='') helper.passwordWarning=false
                         }}
                         placeholder='şifre oluştur...'/>
                 </View>
@@ -89,7 +120,10 @@ class Login_Secret_Notes extends Component{
                 <TouchableOpacity
                     activeOpacity={helper.buttonOpacity}
                     style={buttons.loginButton}
-                    onPress={()=>controlData.controlPassword(helper.secretNotePassword,helper.secretNoteHint)}
+                    onPress={()=> {
+                        controlData.controlPassword(helper.secretNotePassword, helper.secretNoteHint);
+                        if(!helper.passwordWarning) this.props.navigation.navigate('Secret_Notes')
+                    }}
                 >
                     <IconM color='#fff' size={25} name='check' />
                     <Text style={buttons.loginButtonText}>Onayla</Text>
@@ -101,7 +135,14 @@ class Login_Secret_Notes extends Component{
     render(){
         return(
             <>
-                {this.renderLogin()}
+                {
+                    helper.asyncNotePassword !== null &&
+                    this.renderLogin()
+                }
+                {
+                    helper.asyncNotePassword === null &&
+                    this.renderSignUp()
+                }
             </>
         )
     }

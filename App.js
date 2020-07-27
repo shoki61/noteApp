@@ -21,6 +21,7 @@ import Edit_Sticky_Note from './src/views/pages/editStickyNote';
 import helper from './src/controllers/helper';
 import saveData from './src/controllers/saveData';
 import Login_Secret_Notes from './src/views/pages/loginSecretNotes';
+import Secret_Notes from './src/views/pages/secretNotes';
 
 
 const Stack = createStackNavigator();
@@ -157,9 +158,16 @@ class App extends React.Component{
                     <Stack.Screen
                         name="Login_Secret_Notes"
                         options={{
-                            title: 'Gizli Notlar'
+                            title: 'Gizli Notlara Giriş'
                         }}
                         component={Login_Secret_Notes}/>
+
+                    <Stack.Screen
+                        name="Secret_Notes"
+                        options={{
+                            title: 'Gizli Notlar'
+                        }}
+                        component={Secret_Notes}/>
 
 
                 </Stack.Navigator>
