@@ -67,10 +67,6 @@ const styles = StyleSheet.create({
         height: 55,
         backgroundColor: '#fff',
         elevation:3
-    },
-    footerButtonText:{
-        color:'#0BABC4',
-        fontSize:10
     }
 })
 

@@ -52,15 +52,12 @@ class Show_Note extends Component{
                 <View style={styles.footerButtonCont}>
                     <TouchableOpacity activeOpacity={helper.buttonOpacity} style={styles.footerButton} onPress={()=>this.props.navigation.navigate('Notes')}>
                         <Icon name='arrow-left' size={20} color='#787878'/>
-                        <Text style={styles.footerButtonText}>Geri</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('Edit_Note')} activeOpacity={.8} style={styles.footerButton}>
                         <Icon name='edit' size={20} color='#0BABC4'/>
-                        <Text style={styles.footerButtonText}>Düzenle</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>this.deleteNote()} activeOpacity={.8} style={styles.footerButton}>
                         <Icon name='trash-2' size={20} color='#ff8080'/>
-                        <Text style={styles.footerButtonText}>Sil</Text>
                     </TouchableOpacity>
                 </View>
                 </ScrollView>
