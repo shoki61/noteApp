@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import styles from '../../styles/secretNotesStyle';
 import buttons from '../../styles/buttons';
 import helper from '../../controllers/helper';
+import saveData from '../../controllers/saveData';
 
 class Secret_Notes extends Component{
 
@@ -20,9 +21,41 @@ class Secret_Notes extends Component{
         };
     }
 
+    renderSecretNotes(){
+        return(
+            <View style={styles.secretNotesCont}>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Show_Secret_Note')} style={styles.secretNoteCont}>
+                    <Text numberOfLines={1} style={styles.secretNoteTitle}>
+                        Banka hesaplarımın şifreleri
+                    </Text>
+                    <Text style={styles.content} numberOfLines={8}>
+                        tel şifrem: 555
+                    </Text>
+                    <Text style={styles.dateText}>
+                        27.07.2020-17:20
+                    </Text>
+
+                </TouchableOpacity>
+                <View style={styles.secretNoteCont}>
+                    <Text style={styles.secretNoteTitle}>
+                        Sosyal hesaplarım
+                    </Text>
+                    <Text style={styles.content}>
+                        facebook şifrem : 2559
+                    </Text>
+                    <Text style={styles.dateText}>
+                        27.07.2020-17:20
+                    </Text>
+                </View>
+
+            </View>
+
+        )
+    }
+
     render(){
         return(
-            <ScrollView style={{backgroundColor:'#fff'}} contentContainerStyle={{alignItems:'center'}}>
+            <View style={{backgroundColor:'#fff',alignItems:'center',flex:1}}>
                 <View style={[{width:'85%',height:50,marginBottom:10,marginTop:15},!this.state.showInput&&{alignItems:'space-between'}]}>
                     <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showInput:true})} style={[styles.searchView,!this.state.showInput&&{width:45,height:45,justifyContent:'center',backgroundColor:'#fff',elevation:3}]}>
                         <Icon name='search' color={this.state.showInput?'#adadad':'#fc5db0'} size={20}/>
@@ -42,6 +75,7 @@ class Secret_Notes extends Component{
                         }
                     </TouchableOpacity>
                 </View>
+
 
                 <View style={styles.secretNotesCont}>
                     <TouchableOpacity onPress={()=>this.props.navigation.navigate('Show_Secret_Note')} style={styles.secretNoteCont}>
@@ -70,7 +104,23 @@ class Secret_Notes extends Component{
 
                 </View>
 
-            </ScrollView>
+
+                <TouchableOpacity
+                    style={[saveData.userNotes.length>0?buttons.addButtonAbsolute:buttons.addButton,{backgroundColor:'#fc5db0'}]}
+                    activeOpacity={helper.buttonOpacity}
+                    onPress={()=> {
+                        helper.selectNote=false
+                        this.props.navigation.navigate('Add_Secret_Note');
+                    }}
+                >
+                    <Icon name='plus' size={30} color='#fff'/>
+                </TouchableOpacity>
+                {
+                    saveData.userNotes.length<=0 &&
+                    <Text style={[buttons.addNewNoteText,{color:'#1bb7e2'}]}>Yeni not oluştur</Text>
+                }
+
+            </View>
         )
     }
 }

@@ -23,6 +23,8 @@ import saveData from './src/controllers/saveData';
 import Login_Secret_Notes from './src/views/pages/loginSecretNotes';
 import Secret_Notes from './src/views/pages/secretNotes';
 import Show_Secret_Note from './src/views/pages/showSecretNote';
+import Edit_Secret_Note from './src/views/pages/editSecretNote';
+import Add_Secret_Note from './src/views/pages/addSecretNote';
 
 
 const Stack = createStackNavigator();
@@ -59,7 +61,7 @@ class App extends React.Component{
                 })}
                                  initialRouteName="Home">
                     <Stack.Screen
-                        name="Home"
+                        name='Home'
                         options={{
                             title: 'Ana sayfa',
                             headerLeft: false,
@@ -69,7 +71,7 @@ class App extends React.Component{
                         component={Home}/>
 
                     <Stack.Screen
-                        name="Notes"
+                        name='Notes'
                         options={{
                             title: 'Notlarım',
                             headerRight: saveData.userNotes.length>0?() => (
@@ -96,7 +98,7 @@ class App extends React.Component{
                         component={Notes}/>
 
                     <Stack.Screen
-                        name="Sticky_Notes"
+                        name='Sticky_Notes'
                         options={{
                             title: 'Yapışkan Notlarım',
                             headerRight: saveData.userStickyNotes.length>0?() => (
@@ -122,60 +124,75 @@ class App extends React.Component{
                         component={Sticky_Notes}/>
 
                     <Stack.Screen
-                        name="Edit_Note"
+                        name='Edit_Note'
                         options={{
                             title: 'Not Düzenleme'
                         }}
                         component={Edit_Note}/>
 
                     <Stack.Screen
-                        name="Add_New_Note"
+                        name='Add_New_Note'
                         options={{
                             title: 'Yeni Not'
                         }}
                         component={Add_New_Note}/>
 
                     <Stack.Screen
-                        name="Show_Note"
+                        name='Show_Note'
                         options={{
                             headerShown: false
                         }}
                         component={Show_Note}/>
 
                     <Stack.Screen
-                        name="Add_New_Sticky_Note"
+                        name='Add_New_Sticky_Note'
                         options={{
                             title: 'Yeni Yapışkan Not'
                         }}
                         component={Add_New_Sticky_Note}/>
 
                     <Stack.Screen
-                        name="Edit_Sticky_Note"
+                        name='Edit_Sticky_Note'
                         options={{
                             title: 'Not düzenlemesi'
                         }}
                         component={Edit_Sticky_Note}/>
 
                     <Stack.Screen
-                        name="Login_Secret_Notes"
+                        name='Login_Secret_Notes'
                         options={{
                             title: 'Gizli Notlara Giriş'
                         }}
                         component={Login_Secret_Notes}/>
 
                     <Stack.Screen
-                        name="Secret_Notes"
+                        name='Secret_Notes'
                         options={{
                             title: 'Gizli Notlar'
                         }}
                         component={Secret_Notes}/>
 
                     <Stack.Screen
-                        name="Show_Secret_Note"
+                        name='Show_Secret_Note'
                         options={{
                             title: 'Gizli Not'
                         }}
                         component={Show_Secret_Note}/>
+
+
+                    <Stack.Screen
+                        name='Edit_Secret_Note'
+                        options={{
+                            title: 'Gizli Not Düzenlemesi'
+                        }}
+                        component={Edit_Secret_Note}/>
+
+                    <Stack.Screen
+                        name='Add_Secret_Note'
+                        options={{
+                            title: 'Gizli Not Ekle'
+                        }}
+                        component={Add_Secret_Note}/>
 
                 </Stack.Navigator>
             </NavigationContainer>
