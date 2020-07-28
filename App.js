@@ -22,6 +22,7 @@ import helper from './src/controllers/helper';
 import saveData from './src/controllers/saveData';
 import Login_Secret_Notes from './src/views/pages/loginSecretNotes';
 import Secret_Notes from './src/views/pages/secretNotes';
+import Show_Secret_Note from './src/views/pages/showSecretNote';
 
 
 const Stack = createStackNavigator();
@@ -169,6 +170,12 @@ class App extends React.Component{
                         }}
                         component={Secret_Notes}/>
 
+                    <Stack.Screen
+                        name="Show_Secret_Note"
+                        options={{
+                            title: 'Gizli Not'
+                        }}
+                        component={Show_Secret_Note}/>
 
                 </Stack.Navigator>
             </NavigationContainer>

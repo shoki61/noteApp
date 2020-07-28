@@ -44,18 +44,18 @@ class Secret_Notes extends Component{
                 </View>
 
                 <View style={styles.secretNotesCont}>
-                    <View style={styles.secretNoteCont}>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Show_Secret_Note')} style={styles.secretNoteCont}>
                         <Text numberOfLines={1} style={styles.secretNoteTitle}>
                             Banka hesaplarımın şifreleri
                         </Text>
                         <Text style={styles.content} numberOfLines={8}>
-                            tel şifrem: 55555555
+                            tel şifrem: 555
                         </Text>
                         <Text style={styles.dateText}>
                             27.07.2020-17:20
                         </Text>
 
-                    </View>
+                    </TouchableOpacity>
                     <View style={styles.secretNoteCont}>
                         <Text style={styles.secretNoteTitle}>
                             Sosyal hesaplarım

@@ -28,7 +28,10 @@ class Login_Secret_Notes extends Component{
     }
 
     loginFunc(){
-        if(helper.loginPassword === helper.asyncNotePassword) this.props.navigation.navigate('Secret_Notes')
+        if(helper.loginPassword === helper.asyncNotePassword) {
+            this.props.navigation.navigate('Secret_Notes');
+            helper.loginPassword = '';
+        }
         else this.setState({showError:true})
     }
 
@@ -46,6 +49,7 @@ class Login_Secret_Notes extends Component{
                         <Icon name='lock' size={18} color='#fff'/>
                     </View>
                     <TextInput
+                        value={helper.loginPassword}
                         style={styles.input}
                         onChangeText={ password => {
                             helper.loginPassword = password;
