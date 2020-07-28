@@ -29,6 +29,13 @@ class Home extends Component{
                     saveData.userStickyNotes = tmp;
                 }
             })
+        AsyncStorage.getItem('secretNotes')
+            .then(v=>{
+                if(v!==null) {
+                    let tmp = JSON.parse(v);
+                    saveData.userSecretNotes = tmp;
+                }
+            })
 
         AsyncStorage.getItem('secretNotePassword')
             .then(v=>{

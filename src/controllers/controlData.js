@@ -15,9 +15,9 @@ class ControlData {
 
     stickyDesc = '';
 
-    selectNote=false;
+    secretTitle = '';
 
-    selectNotes=[]
+    secretDesc = '';
 
     showNote = '';
 
@@ -58,6 +58,12 @@ class ControlData {
         else saveMethod.saveStickyData(this.stickyDesc)
     }
 
+    controlSecretData(){
+        if(this.secretDesc === '') alert('Lütfen yorum ekleyiniz')
+        else saveMethod.saveSecretNote(this.secretTitle,this.secretDesc)
+
+    }
+
 
 
 }
@@ -73,6 +79,8 @@ decorate(
         showNote:observable,
         editNoteIndex:observable,
         editStickyNoteIndex:observable,
+        secretTitle:observable,
+        secretDesc:observable,
 
         controlData:action,
         controlStickyData:action,

@@ -16,7 +16,7 @@ import { StyleSheet, Dimensions } from 'react-native';
          color:'#5a5a5a',
          padding:10,
          paddingTop:0,
-         minHeight:'65%',
+         minHeight:300,
          textAlignVertical:'top'
      }
  });

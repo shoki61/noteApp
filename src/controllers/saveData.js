@@ -7,13 +7,15 @@ import helper from './helper';
 class SaveData {
 
 
-    userNotes = []
+    userNotes = [];
 
-    userStickyNotes = []
+    userStickyNotes = [];
+
+    userSecretNotes = [];
 
 
     saveStickyData=async(desc)=>{
-        this.userStickyNotes.push({
+        await this.userStickyNotes.push({
             desc:desc,
             date:helper.Date,
             time:helper.Time
@@ -21,9 +23,9 @@ class SaveData {
         AsyncStorage.setItem('stickyNotes', JSON.stringify(this.userStickyNotes))
     }
 
-     saveData=async(title,desc)=>{
+    saveData=async(title,desc)=>{
 
-        this.userNotes.push({
+        await this.userNotes.push({
             title:title,
             desc:desc,
             date:helper.Date,
@@ -32,6 +34,14 @@ class SaveData {
 
          AsyncStorage.setItem('notes', JSON.stringify(this.userNotes))
          //alert(JSON.stringify(this.userNotes[0].date))
+    }
+
+    saveSecretNote = async(title,desc)=> {
+        await this.userSecretNotes.push({
+            title:title,
+            desc:desc
+        });
+        AsyncStorage.setItem('secretNotes', JSON.stringify(this.userSecretNotes))
     }
 
 }
