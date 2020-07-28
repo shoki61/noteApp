@@ -4,7 +4,6 @@ import { StyleSheet, Dimensions } from 'react-native';
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        justifyContent:'space-between',
         backgroundColor:'#fff'
     },
     title:{
@@ -12,14 +11,15 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:18,
         padding:10,
-        paddingBottom:5
+        paddingBottom:5,
     },
     desc:{
         fontSize: 16,
         color:'#5a5a5a',
         padding:10,
         paddingTop:0,
-        flex:1
+        minHeight:'65%',
+        textAlignVertical:'top'
     },
     bottomButtonsCont:{
         flexDirection:'row',
