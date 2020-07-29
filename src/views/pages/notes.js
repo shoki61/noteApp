@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {View, Text, TouchableOpacity,  TextInput, Dimensions,Platform, ScrollView,LayoutAnimation,UIManager,Image} from 'react-native';
 import { observer } from 'mobx-react';
-import LinearGradient from 'react-native-linear-gradient';
 import { SearchableFlatList } from "react-native-searchable-list";
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -74,7 +73,7 @@ class Notes extends Component{
                         style={[styles.noteContainer,helper.selectNote &&{width:'83%'}]}
                     >
                         <View style={styles.Title_Desc_View}>
-                            <Text numberOfLines={1} style={styles.noteTitle}>{controlData.selectNotes.length}{value.title}</Text>
+                            <Text numberOfLines={1} style={styles.noteTitle}>{value.title}</Text>
                             <Text numberOfLines={1} style={styles.noteDesc}>{value.desc}</Text>
                         </View>
                         <View style={styles.Date_Time_View}>

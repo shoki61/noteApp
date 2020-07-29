@@ -39,7 +39,7 @@ class Add_Secret_Note extends Component{
                     <View style={{width:'100%',marginBottom:25,marginTop:10,alignItems:'flex-end'}}>
 
                         <TouchableOpacity
-                            style={[buttons.saveButton,{backgroundColor:'#1bb7e2'},controlData.secretDesc!==''&&{width:'35%'}]}
+                            style={[buttons.saveButton,{backgroundColor:'#fc5db0'},controlData.secretDesc!==''&&{width:'35%'}]}
                             onPress={()=>controlData.controlSecretData()}
                             activeOpacity={helper.buttonOpacity} >
                             <Icon size={23} name='check'  color='#fff'/>

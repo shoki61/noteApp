@@ -39,7 +39,9 @@ class SaveData {
     saveSecretNote = async(title,desc)=> {
         await this.userSecretNotes.push({
             title:title,
-            desc:desc
+            desc:desc,
+            date:helper.Date,
+            time:helper.Time
         });
         AsyncStorage.setItem('secretNotes', JSON.stringify(this.userSecretNotes))
     }

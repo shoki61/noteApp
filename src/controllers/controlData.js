@@ -59,8 +59,7 @@ class ControlData {
     }
 
     controlSecretData(){
-        if(this.secretDesc === '') alert('Lütfen yorum ekleyiniz')
-        else saveMethod.saveSecretNote(this.secretTitle,this.secretDesc)
+        saveMethod.saveSecretNote(this.secretTitle,this.secretDesc)
 
     }
 
@@ -75,7 +74,6 @@ decorate(
         desc:observable,
         stickyDesc:observable,
         selectNote:observable,
-        selectNotes:observable,
         showNote:observable,
         editNoteIndex:observable,
         editStickyNoteIndex:observable,

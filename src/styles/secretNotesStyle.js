@@ -26,12 +26,9 @@ const styles = StyleSheet.create({
     secretNotesCont:{
         width:w,
         minHeight:h/1.5,
-        flexWrap:'wrap',
-        flexDirection: 'row',
-        justifyContent:'center'
     },
     secretNoteCont:{
-        width:'43%',
+        width:w/2-20,
         height:205,
         borderRadius: 7,
         margin:7,
