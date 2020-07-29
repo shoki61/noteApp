@@ -146,6 +146,10 @@ const buttons = StyleSheet.create({
         right:20,
         flexDirection:'row',
         alignItems:'center'
+    },
+    selectButtonText:{
+        fontSize:13,
+        color:'#fc5db0'
     }
 
 })

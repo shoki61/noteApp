@@ -4,12 +4,19 @@ const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
+    headerBar:{
+        width:'85%',
+        marginBottom:10,
+        marginTop:15,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
+    },
     searchView:{
         width:'100%',
         height:45,
         borderRadius:100,
         backgroundColor:'#f7f7f7',
-        marginBottom: 15,
         alignItems:'center',
         paddingRight:10,
         paddingLeft:10,
@@ -68,6 +75,17 @@ const styles = StyleSheet.create({
         paddingBottom:5,
         paddingRight:10,
         textAlign: 'right'
+    },
+    selectView:{
+        width:w/2-20,
+        height:205,
+        borderRadius: 7,
+        zIndex:100,
+        backgroundColor: 'rgba(177,177,177,0.42)',
+        position:'absolute',
+        flexDirection:'row',
+        justifyContent:'space-evenly',
+        alignItems:'center'
     }
 });
 

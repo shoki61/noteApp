@@ -15,8 +15,8 @@ class Edit_Secret_Note extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title:saveData.userSecretNotes[controlData.secretNoteIndex].title,
-            desc:saveData.userSecretNotes[controlData.secretNoteIndex].desc,
+            title:saveData.userSecretNotes[controlData.editSecretNoteIndex].title,
+            desc:saveData.userSecretNotes[controlData.editSecretNoteIndex].desc,
         }
     }
     componentDidUpdate() {
@@ -24,7 +24,7 @@ class Edit_Secret_Note extends Component {
     }
 
     editSecretNote=async()=>{
-        saveData.userSecretNotes[controlData.secretNoteIndex]={
+        saveData.userSecretNotes[controlData.editSecretNoteIndex]={
             title:this.state.title,
             desc:this.state.desc,
             date:helper.Date,
@@ -47,7 +47,7 @@ class Edit_Secret_Note extends Component {
                         onChangeText={title=>this.setState({title:title})}
                     />
                     <TextInput
-                        style={[styles.desc,this.state.title !== saveData.userSecretNotes[controlData.secretNoteIndex].title&&{paddingBottom:50},this.state.desc !== saveData.userSecretNotes[controlData.secretNoteIndex].desc&&{paddingBottom:50}]}
+                        style={[styles.desc,this.state.title !== saveData.userSecretNotes[controlData.editSecretNoteIndex].title&&{paddingBottom:50},this.state.desc !== saveData.userSecretNotes[controlData.editSecretNoteIndex].desc&&{paddingBottom:50}]}
                         multiline
                         value={this.state.desc}
                         onChangeText={desc=>this.setState({desc:desc})}
@@ -55,7 +55,7 @@ class Edit_Secret_Note extends Component {
                 </View>
                 </ScrollView>
                     <TouchableOpacity
-                        style={[buttons.saveButton,{backgroundColor:'#fc5db0'},this.state.title !== saveData.userSecretNotes[controlData.secretNoteIndex].title&&{width:'100%'},this.state.desc !== saveData.userSecretNotes[controlData.secretNoteIndex].desc&&{width:'100%'}]}
+                        style={[buttons.saveButton,{backgroundColor:'#fc5db0'},this.state.title !== saveData.userSecretNotes[controlData.editSecretNoteIndex].title&&{width:'100%'},this.state.desc !== saveData.userSecretNotes[controlData.editSecretNoteIndex].desc&&{width:'100%'}]}
                         onPress={()=>this.editSecretNote()}
                         activeOpacity={helper.buttonOpacity}
                     >
