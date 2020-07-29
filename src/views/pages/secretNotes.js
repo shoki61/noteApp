@@ -26,7 +26,7 @@ class Secret_Notes extends Component{
         return(
                 <TouchableOpacity
                     onPress={()=> {
-                        controlData.secretNoteIndex=index;
+                        controlData.setShowSecretNote(index)
                         this.props.navigation.navigate('Show_Secret_Note');
                     }}
                     style={styles.secretNoteCont}
@@ -46,8 +46,8 @@ class Secret_Notes extends Component{
 
     render(){
         return(
-            <>
-            <ScrollView>
+            <View>
+            <ScrollView style={{backgroundColor:'#fff'}}>
                 <View style={{backgroundColor:'#fff',alignItems:'center',flex:1}}>
                     <View style={[{width:'85%',height:50,marginBottom:10,marginTop:15},!this.state.showInput&&{alignItems:'space-between'}]}>
                         <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showInput:true})} style={[styles.searchView,!this.state.showInput&&{width:45,height:45,justifyContent:'center',backgroundColor:'#fff',elevation:3}]}>
@@ -83,7 +83,7 @@ class Secret_Notes extends Component{
                 </View>
             </ScrollView>
                 <TouchableOpacity
-                    style={[saveData.userNotes.length>0?buttons.addButtonAbsolute:buttons.addButton,{backgroundColor:'#fc5db0'}]}
+                    style={[saveData.userSecretNotes.length>0?buttons.addButtonAbsolute:buttons.addButton,{backgroundColor:'#fc5db0'}]}
                     activeOpacity={helper.buttonOpacity}
                     onPress={()=> {
                         helper.selectNote=false
@@ -96,7 +96,7 @@ class Secret_Notes extends Component{
                     saveData.userSecretNotes.length<=0 &&
                     <Text style={[buttons.addNewNoteText,{color:'#1bb7e2'}]}>Gizli not oluştur</Text>
                 }
-            </>
+            </View>
         )
     }
 }

@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color:'#5a5a5a',
         padding:10,
+        paddingBottom:20,
         paddingTop:0,
         minHeight:250,
         textAlignVertical:'top',
-        marginBottom:0,
     },
     bottomButtonsCont:{
         flexDirection:'row',

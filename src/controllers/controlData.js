@@ -21,11 +21,18 @@ class ControlData {
 
     showNote = '';
 
+    showSecretNote = '';
+
     editNoteIndex='';
 
     editStickyNoteIndex='';
 
-    secretNoteIndex = '';
+    editSecretNoteIndex = '';
+
+    setShowSecretNote(index){
+        this.showSecretNote = saveMethod.userSecretNotes[index]
+        this.editSecretNoteIndex=index
+    }
 
     setShowNote(index){
         this.showNote = saveMethod.userNotes[index]
@@ -81,7 +88,8 @@ decorate(
         editStickyNoteIndex:observable,
         secretTitle:observable,
         secretDesc:observable,
-        secretNoteIndex:observable,
+        editSecretNoteIndex:observable,
+        showSecretNote:observable,
 
         controlData:action,
         controlStickyData:action,

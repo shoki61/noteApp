@@ -9,8 +9,8 @@ import controlData from '../../controllers/controlData';
 import saveData from '../../controllers/saveData';
 import AsyncStorage from '@react-native-community/async-storage';
 import helper from '../../controllers/helper';
+import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
-const h = Dimensions.get('window').height;
 
 class Show_Note extends Component{
 
@@ -24,7 +24,7 @@ class Show_Note extends Component{
 
     deleteNote=async()=>{
         saveData.userNotes.splice(controlData.editNoteIndex,1)
-        AsyncStorage.setItem('notes', JSON.stringify(saveData.userNotes))
+        saveDataAsyncStorage.saveNotes();
         this.props.navigation.navigate('Notes')
     }
 

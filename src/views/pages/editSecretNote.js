@@ -47,7 +47,7 @@ class Edit_Secret_Note extends Component {
                         onChangeText={title=>this.setState({title:title})}
                     />
                     <TextInput
-                        style={[styles.desc,this.state.title !== saveData.userSecretNotes[controlData.secretNoteIndex].title&&{marginBottom:50},this.state.desc !== saveData.userSecretNotes[controlData.secretNoteIndex].desc&&{width:'100%'}]}
+                        style={[styles.desc,this.state.title !== saveData.userSecretNotes[controlData.secretNoteIndex].title&&{paddingBottom:50},this.state.desc !== saveData.userSecretNotes[controlData.secretNoteIndex].desc&&{paddingBottom:50}]}
                         multiline
                         value={this.state.desc}
                         onChangeText={desc=>this.setState({desc:desc})}
@@ -57,7 +57,8 @@ class Edit_Secret_Note extends Component {
                     <TouchableOpacity
                         style={[buttons.saveButton,{backgroundColor:'#fc5db0'},this.state.title !== saveData.userSecretNotes[controlData.secretNoteIndex].title&&{width:'100%'},this.state.desc !== saveData.userSecretNotes[controlData.secretNoteIndex].desc&&{width:'100%'}]}
                         onPress={()=>this.editSecretNote()}
-                        activeOpacity={helper.buttonOpacity}>
+                        activeOpacity={helper.buttonOpacity}
+                    >
                         <Icon name='check' color='#fff' size={23}/>
                         <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
                     </TouchableOpacity>

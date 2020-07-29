@@ -53,9 +53,11 @@ decorate(
     {
         saveData:action,
         saveStickyData:action,
+        saveSecretNote:action,
 
         userNotes:observable,
-        userStickyNotes:observable
+        userStickyNotes:observable,
+        userSecretNotes:observable,
 
 
     }

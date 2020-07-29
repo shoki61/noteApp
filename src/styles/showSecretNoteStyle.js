@@ -5,7 +5,6 @@ const h = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        justifyContent:'space-between',
         backgroundColor:'#fff'
     },
     date:{
@@ -32,7 +31,8 @@ const styles = StyleSheet.create({
     bottomButtonsCont:{
         flexDirection:'row',
         justifyContent:'space-evenly',
-        marginBottom:20
+        marginBottom:20,
+        marginTop:20
     },
     bottomButton:{
         width: 55,
