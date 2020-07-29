@@ -78,14 +78,12 @@ const buttons = StyleSheet.create({
         height:45,
         alignItems:'center',
         justifyContent:'center',
-        borderRadius:10,
-        borderTopRightRadius:0,
-        borderBottomRightRadius:0,
-        elevation:3,
         flexDirection: 'row',
+        position:'absolute',
+        bottom:0
     },
     saveButtonText:{
-        fontSize:18,
+        fontSize:16,
         color:'#fff',
         marginLeft: 5
     },

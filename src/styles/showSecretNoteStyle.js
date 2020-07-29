@@ -8,12 +8,19 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         backgroundColor:'#fff'
     },
+    date:{
+        fontSize:13,
+        color:'grey',
+        textAlign:'center',
+        marginTop: 7
+    },
     title:{
         color:'#5e5e5e',
         fontWeight:'bold',
         fontSize:18,
         padding:10,
-        paddingBottom:5
+        paddingBottom:10,
+        marginTop:5,
     },
     desc:{
         fontSize: 16,

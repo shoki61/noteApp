@@ -11,15 +11,18 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:18,
         padding:10,
-        paddingBottom:5,
+        paddingBottom:10,
+        marginTop:15
+
     },
     desc:{
         fontSize: 16,
         color:'#5a5a5a',
         padding:10,
         paddingTop:0,
-        minHeight:'65%',
-        textAlignVertical:'top'
+        minHeight:250,
+        textAlignVertical:'top',
+        marginBottom:0,
     },
     bottomButtonsCont:{
         flexDirection:'row',

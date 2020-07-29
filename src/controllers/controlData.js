@@ -25,6 +25,8 @@ class ControlData {
 
     editStickyNoteIndex='';
 
+    secretNoteIndex = '';
+
     setShowNote(index){
         this.showNote = saveMethod.userNotes[index]
         this.editNoteIndex = index
@@ -79,6 +81,7 @@ decorate(
         editStickyNoteIndex:observable,
         secretTitle:observable,
         secretDesc:observable,
+        secretNoteIndex:observable,
 
         controlData:action,
         controlStickyData:action,

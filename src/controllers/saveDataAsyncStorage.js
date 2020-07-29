@@ -11,6 +11,9 @@ class saveDataAsyncStorage {
     saveStickyNotes(){
         AsyncStorage.setItem('stickyNotes', JSON.stringify(saveData.userStickyNotes))
     }
+    saveSecretNotes(){
+        AsyncStorage.setItem('secretNotes', JSON.stringify(saveData.userSecretNotes))
+    }
 
     saveSecretNotePassword(password, hint){
         if(hint!=='') {

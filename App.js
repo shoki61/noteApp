@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {TouchableOpacity, Text, StatusBar} from 'react-native';
+import {TouchableOpacity, Text, StatusBar,} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import IconE from 'react-native-vector-icons/Entypo'

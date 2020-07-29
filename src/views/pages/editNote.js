@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, TextInput, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import {observer} from 'mobx-react';
-import LinearGradient from "react-native-linear-gradient";
+import Icon from 'react-native-vector-icons/Feather';
 
 import styles from '../../styles/editNoteStyle';
 import buttons from '../../styles/buttons';
@@ -55,13 +55,15 @@ class Edit_Note extends Component{
                    />
                </View>
 
-                   <View style={{alignItems:'center',marginTop:10}}>
-                       <LinearGradient colors={['#b3c5f5', '#5373bd', '#2f4ca3']} style={buttons.saveButton}>
-                           <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.editNote()}>
-                               <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
-                           </TouchableOpacity>
-                       </LinearGradient>
-                   </View>
+                    <View style={{width:'100%',marginBottom:25,marginTop:10,alignItems:'flex-end'}}>
+                        <TouchableOpacity
+                            style={[buttons.saveButton,{backgroundColor:'#ff9d5b'},{width:'45%'}]}
+                            onPress={()=>this.editStickyNote()}
+                            activeOpacity={helper.buttonOpacity}>
+                            <Icon name='check' color='#fff' size={20}/>
+                            <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
+                        </TouchableOpacity>
+                    </View>
 
                 </ScrollView>
 

@@ -7,6 +7,7 @@ import styles from '../../styles/secretNotesStyle';
 import buttons from '../../styles/buttons';
 import helper from '../../controllers/helper';
 import saveData from '../../controllers/saveData';
+import controlData from '../../controllers/controlData';
 
 class Secret_Notes extends Component{
 
@@ -23,7 +24,13 @@ class Secret_Notes extends Component{
 
     renderSecretNotes(item, index){
         return(
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Show_Secret_Note')} style={styles.secretNoteCont}>
+                <TouchableOpacity
+                    onPress={()=> {
+                        controlData.secretNoteIndex=index;
+                        this.props.navigation.navigate('Show_Secret_Note');
+                    }}
+                    style={styles.secretNoteCont}
+                >
                     <Text numberOfLines={1} style={styles.secretNoteTitle}>
                         {item.title}
                     </Text>
