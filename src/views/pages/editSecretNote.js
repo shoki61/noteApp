@@ -32,7 +32,6 @@ class Edit_Secret_Note extends Component {
         };
         await saveDataAsyncStorage.saveSecretNotes()
         this.props.navigation.navigate('Secret_Notes')
-
     }
 
     render(){

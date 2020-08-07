@@ -81,6 +81,11 @@ class Secret_Notes extends Component{
         )
     }
 
+    allDeleteSecretNote(){
+        saveData.userSecretNotes = [];
+        saveDataAsyncStorage.saveSecretNotes();
+    }
+
     render(){
         return(
             <View style={[{flex:1,backgroundColor:'#fff'},saveData.userSecretNotes.length<=0&&{justifyContent:'center',alignItems:'center'}]}>
@@ -92,11 +97,21 @@ class Secret_Notes extends Component{
                     >
                         <View style={{backgroundColor:'#fff',alignItems:'center',flex:1}}>
                             <View style={[styles.headerBar,this.state.showInput&&{flexDirection:'column',alignItems:'flex-end'}]}>
-                                <TouchableOpacity
-                                    onPress={()=>this.setState({select:!this.state.select})}
-                                    style={[buttons.selectButton,this.state.showInput&&{marginBottom:15}]}>
-                                    <Text style={buttons.selectButtonText}>{this.state.select?'Vazgeç':'Seç'}</Text>
-                                </TouchableOpacity>
+                                <View style={[{flexDirection:'row',alignItems:'center'},this.state.showInput&&{width:'100%',flexDirection:'row-reverse',justifyContent:'space-between'}]}>
+                                    <TouchableOpacity
+                                        onPress={()=>this.setState({select:!this.state.select})}
+                                        style={[buttons.selectButton,this.state.showInput&&{marginBottom:15}]}>
+                                        <Text style={buttons.selectButtonText}>{this.state.select?'Vazgeç':'Seç'}</Text>
+                                    </TouchableOpacity>
+                                    {
+                                        this.state.select &&
+                                        <TouchableOpacity
+                                            onPress={()=>this.allDeleteSecretNote()}
+                                            style={[buttons.deleteAllNote,this.state.showInput&&{marginBottom:15},this.state.select&&!this.state.showInput&&{marginLeft:20} ]}>
+                                            <Text style={buttons.selectButtonText}>Hepsini sil</Text>
+                                        </TouchableOpacity>
+                                    }
+                                </View>
                                 <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showInput:true})} style={[styles.searchView,!this.state.showInput&&{width:45,height:45,justifyContent:'center',backgroundColor:'#fff',elevation:3}]}>
                                     <Icon name='search' color={this.state.showInput?'#adadad':'#fc5db0'} size={20}/>
                                     {

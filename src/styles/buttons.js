@@ -38,10 +38,10 @@ const buttons = StyleSheet.create({
         color:'#f1f1f1'
     },
     selectButton:{
-        width:45,
+        paddingHorizontal:7,
         backgroundColor:'#fff',
-        height:45,
-        borderRadius:100,
+        height:35,
+        borderRadius:7,
         justifyContent:'center',
         alignItems:'center',
         elevation:3
@@ -148,8 +148,17 @@ const buttons = StyleSheet.create({
         alignItems:'center'
     },
     selectButtonText:{
-        fontSize:13,
+        fontSize:15,
         color:'#fc5db0'
+    },
+    deleteAllNote:{
+        height:35,
+        padding:10,
+        borderRadius:7,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#fff',
+        elevation:3
     }
 
 })
