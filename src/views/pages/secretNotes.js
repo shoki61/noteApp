@@ -143,7 +143,7 @@ class Secret_Notes extends Component{
                 </TouchableOpacity>
                 {
                     saveData.userSecretNotes.length<=0 &&
-                    <Text style={[buttons.addNewNoteText,{color:'#1bb7e2'}]}>Gizli not oluştur</Text>
+                    <Text style={[buttons.addNewNoteText,{color:'#fc5db0'}]}>Gizli not oluştur</Text>
                 }
             </View>
         )

@@ -202,7 +202,7 @@ class App extends React.Component{
     render() {
         return (
             <>
-                <StatusBar backgroundColor={'#5373bd'}/>
+                <StatusBar  backgroundColor={'#5373bd'} />
                 {this.renderNavigation()}
 
             </>

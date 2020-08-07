@@ -7,6 +7,7 @@ import styles from '../../styles/addNewNoteStyle';
 import buttons from '../../styles/buttons';
 import controlData from '../../controllers/controlData';
 import helper from '../../controllers/helper';
+import saveData from '../../controllers/saveData';
 
 class Add_New_Note extends Component{
 
@@ -23,6 +24,7 @@ class Add_New_Note extends Component{
     }
     render(){
         return(
+            <>
             <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#fff'}}>
                 <View style={styles.addNewNoteContainer}>
                 <View style={{width:'100%'}}>
@@ -65,6 +67,15 @@ class Add_New_Note extends Component{
 
             </View>
             </ScrollView>
+        <TouchableOpacity
+            style={[buttons.saveButton,{backgroundColor:'#fc5db0'},this.state.desc!=='' &&{width:'100%'}]}
+            onPress={()=>this.editSecretNote()}
+            activeOpacity={helper.buttonOpacity}
+        >
+            <Icon name='check' color='#fff' size={23}/>
+            <Text style={buttons.saveButtonText}>Kaydet</Text>
+        </TouchableOpacity>
+        </>
         )
     }
 }
