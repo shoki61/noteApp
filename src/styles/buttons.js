@@ -75,7 +75,7 @@ const buttons = StyleSheet.create({
     },
     saveButton:{
         width:0,
-        height:45,
+        height:50,
         alignItems:'center',
         justifyContent:'center',
         flexDirection: 'row',
@@ -83,7 +83,7 @@ const buttons = StyleSheet.create({
         bottom:0
     },
     saveButtonText:{
-        fontSize:16,
+        fontSize:18,
         color:'#fff',
         marginLeft: 5
     },

@@ -47,7 +47,7 @@ class Edit_Secret_Note extends Component {
                         onChangeText={title=>this.setState({title:title})}
                     />
                     <TextInput
-                        style={[styles.desc,this.state.title !== saveData.userSecretNotes[controlData.editSecretNoteIndex].title&&{paddingBottom:50},this.state.desc !== saveData.userSecretNotes[controlData.editSecretNoteIndex].desc&&{paddingBottom:50}]}
+                        style={[styles.desc,this.state.title !== saveData.userSecretNotes[controlData.editSecretNoteIndex].title&&{paddingBottom:60},this.state.desc !== saveData.userSecretNotes[controlData.editSecretNoteIndex].desc&&{paddingBottom:60}]}
                         multiline
                         value={this.state.desc}
                         onChangeText={desc=>this.setState({desc:desc})}

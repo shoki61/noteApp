@@ -30,7 +30,7 @@ class Add_Secret_Note extends Component{
                 />
                 <TextInput
                     value={controlData.secretDesc}
-                    style={[styles.desc,controlData.secretDesc!==''&&{paddingBottom:50},controlData.secretTitle!==''&&{paddingBottom:50}]}
+                    style={[styles.desc,controlData.secretDesc!==''&&{paddingBottom:60},controlData.secretTitle!==''&&{paddingBottom:60}]}
                     multiline
                     placeholder='içerik...'
                     onChangeText={desc =>controlData.secretDesc = desc}
