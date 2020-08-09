@@ -125,15 +125,14 @@ const buttons = StyleSheet.create({
         fontWeight:'700'
     },
     loginButton:{
-        width:'60%',
-        height:40,
-        borderRadius:10,
-        backgroundColor:'#75b1d0',
+        width:'100%',
+        height:50,
+        backgroundColor:'#48aaff',
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
-        marginTop:60,
-        marginBottom:15
+        position:'absolute',
+        bottom:0
     },
     loginButtonText:{
         color:'#ffffff',

@@ -1,9 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
    loginContainer:{
-     flex:1,
-     backgroundColor:'#fff',
+       flex:1,
+       alignItems:'center',
+       backgroundColor:'#fff',
    },
    informationMessage:{
        width:'90%',

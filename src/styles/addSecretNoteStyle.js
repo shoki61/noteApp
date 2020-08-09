@@ -9,6 +9,8 @@ import { StyleSheet, Dimensions } from 'react-native';
          fontWeight:'bold',
          fontSize:18,
          padding:10,
+         marginTop:15,
+         paddingLeft:20,
          paddingBottom:5,
      },
      desc:{
@@ -17,6 +19,7 @@ import { StyleSheet, Dimensions } from 'react-native';
          padding:10,
          paddingTop:0,
          minHeight:150,
+         paddingLeft: 20,
          textAlignVertical:'top'
      }
  });

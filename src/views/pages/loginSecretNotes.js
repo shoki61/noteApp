@@ -37,10 +37,10 @@ class Login_Secret_Notes extends Component{
 
     renderLogin(){
         return(
-            <ScrollView style={[styles.loginContainer]} contentContainerStyle={{alignItems:'center'}}>
+            <View style={[styles.loginContainer]}>
                 {
                     this.state.showHint &&
-                    <Text style={[styles.informationMessage,{marginBottom:15,marginTop:100}]}>
+                    <Text style={[styles.informationMessage,{marginBottom:10,marginTop:100}]}>
                         <Text style={{fontWeight:'bold',}}>İpucu :</Text> {helper.asyncNotePasswordHint}
                     </Text>
                 }
@@ -63,14 +63,17 @@ class Login_Secret_Notes extends Component{
                         hatalı giriş
                     </Text>
                 }
-                <TouchableOpacity
-                    activeOpacity={helper.buttonOpacity}
-                    style={buttons.loginButton}
-                    onPress={()=> this.loginFunc()}
-                >
-                    <IconM color='#fff' size={23} name='login' />
-                    <Text style={buttons.loginButtonText}>Giriş yap</Text>
-                </TouchableOpacity>
+                {
+                    helper.loginPassword !== ''&&
+                    <TouchableOpacity
+                        activeOpacity={helper.buttonOpacity}
+                        style={buttons.loginButton}
+                        onPress={()=> this.loginFunc()}
+                    >
+                        <IconM color='#fff' size={23} name='login' />
+                        <Text style={buttons.loginButtonText}>Giriş yap</Text>
+                    </TouchableOpacity>
+                }
                 {
                     helper.asyncNotePasswordHint !==null&&
                     <TouchableOpacity
@@ -79,7 +82,7 @@ class Login_Secret_Notes extends Component{
                         <IconM name='lightbulb-on' size={40} color='#ffce5b'/>
                     </TouchableOpacity>
                 }
-            </ScrollView>
+            </View>
         )
     }
 
