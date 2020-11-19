@@ -16,11 +16,11 @@ import Add_New_Note from '../containers/AddNewNote/addNewNote';
 import Show_Note from '../containers/ShowNote/showNote';
 import Add_New_Sticky_Note from '../containers/AddNewStickyNote/addNewStickyNote';
 import Edit_Sticky_Note from '../containers/EditStickyNote/editStickyNote';
-import Login_Secret_Notes from '../containers/LoginSecretNotes/loginSecretNotes';
 import Secret_Notes from '../containers/SecretNotes/secretNotes';
 import Show_Secret_Note from '../containers/ShowSecretNote/showSecretNote';
 import Edit_Secret_Note from '../containers/EditSecretNote/editSecretNote';
 import Add_Secret_Note from '../containers/AddSecretNote/addSecretNote';
+import Auth_Secret_Notes from '../containers/AuthSecretNotes/AuthSecretNotes';
 
 import buttons from '../styles/buttons';
 
@@ -151,7 +151,7 @@ const navigation = () => {
                 options={{
                     title: 'Gizli Notlara Giriş'
                 }}
-                component={Login_Secret_Notes} />
+                component={Auth_Secret_Notes} />
 
             <Stack.Screen
                 name='Secret_Notes'

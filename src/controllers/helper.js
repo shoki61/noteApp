@@ -16,7 +16,7 @@ class helper{
 
     selectStickyNote = false;
 
-    asyncNotePassword = '';
+    asyncNotePassword = null;
     asyncNotePasswordHint = '';
 
     secretNotePassword = '';
