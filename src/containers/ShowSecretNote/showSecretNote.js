@@ -1,9 +1,12 @@
 import React,{ Component } from 'react';
-import {View, Text, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import { observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 
-import styles from '../../styles/showSecretNoteStyle';
+
+import Button from '../../components/Button/Button';
+
+import styles from './style';
 import saveData from '../../controllers/saveData';
 import controlData from '../../controllers/controlData';
 import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
@@ -19,12 +22,10 @@ class Show_Secret_Notes extends Component{
         this.setState({secretNote:controlData.showSecretNote})
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            secretNote:''
-        }
+    state = {
+        secretNote:''
     }
+    
 
     render(){
         return(
@@ -38,18 +39,18 @@ class Show_Secret_Notes extends Component{
                     }
                     <Text style={styles.desc}>{this.state.secretNote.desc}</Text>
                     <View style={styles.bottomButtonsCont}>
-                        <TouchableOpacity
-                            onPress={()=>this.props.navigation.navigate('Edit_Secret_Note')}
-                            style={styles.bottomButton}
+                        <Button
+                            clicked={()=>this.props.navigation.navigate('Edit_Secret_Note')}
+                            styles={styles.bottomButton}
                         >
                             <Icon name='edit' size={20} color='#fc5db0'/>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={()=>this.deleteSecretNote()}
-                            style={styles.bottomButton}
+                        </Button>
+                        <Button
+                            clicked={()=>this.deleteSecretNote()}
+                            styles={styles.bottomButton}
                         >
                             <Icon name='trash-2' size={20} color='#ff8080'/>
-                        </TouchableOpacity>
+                        </Button>
                     </View>
                 </ScrollView>
         )

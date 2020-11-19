@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView, LayoutAnimation} from 'react-native';
+import {View, Text, TextInput, ScrollView, LayoutAnimation} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-import styles from '../../styles/addStickyNoteStyle';
+
+import Button from '../../components/Button/Button';
+
+import styles from './style';
 import buttons from '../../styles/buttons';
 import controlData from '../../controllers/controlData';
 
 class Add_New_Sticky_Note extends Component{
 
-    constructor(props) {
-        super(props);
-        this.state={
-            desc:''
-        }
+    state={
+        desc:''
     }
 
     componentDidUpdate() {
         LayoutAnimation.easeInEaseOut()
     }
-
 
     render(){
         return(
@@ -36,24 +35,21 @@ class Add_New_Sticky_Note extends Component{
                            }}
                        />
                        <Text style={styles.maxLengthText}>({this.state.desc.length}/150)</Text>
-
                    </View>
 
-                       <View style={{width:'100%',marginBottom:25,marginTop:10,alignItems:'flex-end'}}>
-                           <TouchableOpacity
-                               style={[buttons.saveButton,{backgroundColor:'#ff9d5b'},this.state.desc !== '' &&{width:'35%'}]}
-                               onPress={()=> {
-                                   controlData.controlStickyData();
-                                   this.props.navigation.navigate('Sticky_Notes');
-                               }}
-                           >
-                               <Icon size={23} name='check' style={{fontWeight:'100'}} color='#fff'/>
-                               <Text style={buttons.saveButtonText}>Kaydet</Text>
-                           </TouchableOpacity>
-                       </View>
-
+                    <View style={{width:'100%',marginBottom:25,marginTop:10,alignItems:'flex-end'}}>
+                        <Button
+                            styles={[buttons.saveButton,{backgroundColor:'#ff9d5b'},this.state.desc !== '' &&{width:'35%'}]}
+                            clicked={()=> {
+                                controlData.controlStickyData();
+                                this.props.navigation.navigate('Sticky_Notes');
+                            }}
+                        >
+                            <Icon size={23} name='check' style={{fontWeight:'100'}} color='#fff'/>
+                            <Text style={buttons.saveButtonText}>Kaydet</Text>
+                        </Button>
+                    </View>
                </ScrollView>
-
         )
     }
 }

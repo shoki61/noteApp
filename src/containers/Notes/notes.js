@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity,  TextInput, Dimensions,Platform, ScrollView,LayoutAnimation,UIManager,Image} from 'react-native';
+import {View, Text,  TextInput, Dimensions,Platform,LayoutAnimation,UIManager} from 'react-native';
 import { observer } from 'mobx-react';
 import { SearchableFlatList } from "react-native-searchable-list";
 import Icon from 'react-native-vector-icons/Feather';
 
-import styles from '../../styles/notesStyle';
+import Button from '../../components/Button/Button';
+
+import styles from './style';
 import buttons from '../../styles/buttons';
 import saveData from '../../controllers/saveData';
 import controlData from '../../controllers/controlData';
-
 import helper from '../../controllers/helper';
 import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
@@ -21,29 +22,26 @@ if (Platform.OS === 'android') {
 
 class Notes extends Component{
 
-    constructor(props) {
-        super(props);
-        this.state={
-            selectNote:false,
-            select:false,
-            showSearch:false,
-            searchTerm: '',
-            searchAttribute: 'title',
-            ignoreCase: true,
-        }
+    state={
+        selectNote:false,
+        select:false,
+        showSearch:false,
+        searchTerm: '',
+        searchAttribute: 'title',
+        ignoreCase: true,
     }
+    
     componentDidUpdate() {
         LayoutAnimation.easeInEaseOut();
     }
 
 
-    deleteNote(index){
+    deleteNote = (index) => {
         saveData.userNotes.splice(index,1)
         saveDataAsyncStorage.saveNotes()
     }
 
-    deleteAllNote=async()=>{
-
+    deleteAllNote = async() => {
         saveData.userNotes = [];
         saveDataAsyncStorage.saveNotes()
         this.setState({selectNote:false})
@@ -59,18 +57,18 @@ class Notes extends Component{
                     {
                         helper.selectNote &&
                         <View style={{width:'15%',alignItems:'center',justifyContent:'center'}}>
-                            <TouchableOpacity
-                                activeOpacity={helper.buttonOpacity}
-                                onPress={()=> this.deleteNote(index)}
-                                style={[buttons.selectButton]}>
+                            <Button
+                                opacity={helper.buttonOpacity}
+                                clicked={()=> this.deleteNote(index)}
+                                styles={[buttons.selectButton]}>
                                 <Icon name='trash-2' color='#ff6666' size={20}/>
-                            </TouchableOpacity>
+                            </Button>
                         </View>
                     }
-                    <TouchableOpacity
-                        activeOpacity={helper.buttonOpacity}
-                        onPress={()=> { controlData.setShowNote(index); this.props.navigation.navigate('Show_Note') }}
-                        style={[styles.noteContainer,helper.selectNote &&{width:'83%'}]}
+                    <Button
+                        opacity={helper.buttonOpacity}
+                        clicked={()=> { controlData.setShowNote(index); this.props.navigation.navigate('Show_Note') }}
+                        styles={[styles.noteContainer,helper.selectNote &&{width:'83%'}]}
                     >
                         <View style={styles.Title_Desc_View}>
                             <Text numberOfLines={1} style={styles.noteTitle}>{value.title}</Text>
@@ -80,7 +78,7 @@ class Notes extends Component{
                             <Text style={styles.noteDate}>{value.date}</Text>
                             <Text style={styles.noteTime}>{value.time}</Text>
                         </View>
-                    </TouchableOpacity>
+                    </Button>
                 </View>
 
         )
@@ -94,13 +92,12 @@ class Notes extends Component{
                             helper.selectNote && saveData.userNotes.length>1 &&
                             <View
                                 style={[styles.settingCont, helper.selectNote && {justifyContent: 'space-between'}]}>
-
-
-                                    <TouchableOpacity activeOpacity={helper.buttonOpacity}
-                                                      style={buttons.deleteAllSticky}
-                                                      onPress={() => this.deleteAllNote()}>
+                            <Button
+                                opacity={helper.buttonOpacity}
+                                styles={buttons.deleteAllSticky}
+                                clicked={this.deleteAllNote}>
                                         <Text style={buttons.deleteAllNoteText}>Tüm notları sil</Text>
-                                    </TouchableOpacity>
+                                    </Button>
 
                             </View>
                         }
@@ -108,7 +105,10 @@ class Notes extends Component{
                         {
                             saveData.userNotes.length > 0 &&
                             <View style={[{width:w-75,height:50,marginBottom:10},!this.state.showSearch&&{alignItems:'space-between'}]}>
-                                <TouchableOpacity activeOpacity={helper.buttonOpacity} onPress={()=>this.setState({showSearch:true})} style={[styles.searchView,!this.state.showSearch&&{width:45,height:45,justifyContent:'center',backgroundColor:'#fff',elevation:3}]}>
+                            <Button
+                                opacity={helper.buttonOpacity}
+                                clicked={() => this.setState({ showSearch: true })}
+                                styles={[styles.searchView, !this.state.showSearch && { width: 45, height: 45, justifyContent: 'center', backgroundColor: '#fff', elevation: 3 }]}>
                                     <Icon name='search' color={this.state.showSearch?'#adadad':'#1bb7e2'} size={20}/>
                                     {
                                         this.state.showSearch&&
@@ -119,14 +119,14 @@ class Notes extends Component{
                                     }
                                     {
                                         this.state.showSearch&&
-                                        <TouchableOpacity style={buttons.closeInputButton} onPress={()=> {
+                                        <Button styles={buttons.closeInputButton} clicked={()=> {
                                             this.setState({showSearch: false,searchTerm:''});
                                         }}
                                         >
                                             <Icon name='x'  size={20} color='#adadad'/>
-                                        </TouchableOpacity>
+                                        </Button>
                                     }
-                                </TouchableOpacity>
+                                </Button>
                             </View>
                         }
 
@@ -143,26 +143,22 @@ class Notes extends Component{
                                 renderItem={value => this.renderNotes(value.item, value.index)}
                             />
                         }
-                            <TouchableOpacity
-                                style={[saveData.userNotes.length>0?buttons.addButtonAbsolute:buttons.addButton,{backgroundColor:'#1bb7e2'}]}
-                                activeOpacity={helper.buttonOpacity}
-                                onPress={()=> {
+                            <Button
+                                styles={[saveData.userNotes.length>0?buttons.addButtonAbsolute:buttons.addButton,{backgroundColor:'#1bb7e2'}]}
+                                opacity={helper.buttonOpacity}
+                                clicked={()=> {
                                     helper.selectNote=false
                                     this.props.navigation.navigate('Add_New_Note');
                                 }}
                             >
                                 <Icon name='plus' size={30} color='#fff'/>
-                            </TouchableOpacity>
+                            </Button>
                         {
                             saveData.userNotes.length<=0 &&
                             <Text style={[buttons.addNewNoteText,{color:'#1bb7e2'}]}>Yeni not oluştur</Text>
                         }
 
                     </View>
-
-
-
-
             </>
         )
     }

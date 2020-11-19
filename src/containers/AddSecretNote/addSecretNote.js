@@ -1,10 +1,12 @@
 import React,{ Component } from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView, LayoutAnimation} from 'react-native';
+import {View, Text, TextInput, ScrollView, LayoutAnimation} from 'react-native';
 import { observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 
 
-import styles from '../../styles/addSecretNoteStyle'
+import Button from '../../components/Button/Button';
+
+import styles from './style'
 import buttons from '../../styles/buttons';
 import helper from '../../controllers/helper';
 import controlData from '../../controllers/controlData';
@@ -38,19 +40,19 @@ class Add_Secret_Note extends Component{
             </View>
 
             </ScrollView>
-                <TouchableOpacity
-                    style={[buttons.saveButton,{backgroundColor:'#fc5db0'},controlData.secretDesc!=='' &&{width:'100%'}]}
-                    onPress={()=> {
+                <Button
+                    styles={[buttons.saveButton,{backgroundColor:'#fc5db0'},controlData.secretDesc!=='' &&{width:'100%'}]}
+                    clicked={()=> {
                         controlData.controlSecretData();
                         controlData.secretTitle = '';
                         controlData.secretDesc = '';
                         this.props.navigation.navigate('Secret_Notes')
                     }}
-                    activeOpacity={helper.buttonOpacity}
+                    opacity={helper.buttonOpacity}
                 >
                     <Icon name='check' color='#fff' size={23}/>
                     <Text style={buttons.saveButtonText}>Kaydet</Text>
-                </TouchableOpacity>
+                </Button>
             </>
         )
     }

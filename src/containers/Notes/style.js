@@ -1,5 +1,4 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import controlData from '../controllers/controlData';
 
 
 const w = Dimensions.get('window').width;

@@ -40,8 +40,6 @@ decorate(
         saveNotes:action,
         saveStickyNotes:action,
         saveSecretNotePassword:action
-
-
     }
 )
 

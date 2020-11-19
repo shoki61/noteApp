@@ -28,10 +28,10 @@ const buttons = StyleSheet.create({
         width:'70%',
         flexDirection:'row',
         height:45,
-        margin:7,
-        borderWidth:1.5,
+        margin:10,
         alignItems:'center',
-        borderRadius:10
+        borderRadius: 10,
+        elevation:5
     },
     deleteButtonText:{
         fontSize:16,
@@ -70,7 +70,7 @@ const buttons = StyleSheet.create({
     },
     buttonText:{
         fontSize:20,
-        color:'#2980b9',
+        color:'#fff',
         marginLeft:15
     },
     saveButton:{

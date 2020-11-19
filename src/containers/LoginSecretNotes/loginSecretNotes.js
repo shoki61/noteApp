@@ -1,33 +1,29 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, TextInput, ScrollView,LayoutAnimation} from 'react-native';
+import {View, Text, TextInput, ScrollView,LayoutAnimation} from 'react-native';
 import { observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import styles from '../../styles/loginSecretNotesStyle';
+
+import Button from '../../components/Button/Button';
+
+import styles from './style';
 import buttons from '../../styles/buttons';
 import helper from '../../controllers/helper';
 import controlData from '../../controllers/controlData';
 
 class Login_Secret_Notes extends Component{
 
-    // componentWillMount() {
-    //     alert(helper.asyncNotePasswordHint)
-    // }
-
-    constructor(props) {
-        super(props);
-        this.state={
-            showHint : false,
-            showError: false
-        }
+    state={
+        showHint : false,
+        showError: false
     }
 
     componentDidUpdate() {
         LayoutAnimation.easeInEaseOut();
     }
 
-    loginFunc(){
+    loginFunc = () => {
         if(helper.loginPassword === helper.asyncNotePassword) {
             this.props.navigation.navigate('Secret_Notes');
             helper.loginPassword = '';
@@ -37,7 +33,7 @@ class Login_Secret_Notes extends Component{
 
     renderLogin(){
         return(
-            <View style={[styles.loginContainer]}>
+            <View style={[styles.loginContainer,{alignItems:'center'}]}>
                 {
                     this.state.showHint &&
                     <Text style={[styles.informationMessage,{marginBottom:10,marginTop:100}]}>
@@ -65,22 +61,22 @@ class Login_Secret_Notes extends Component{
                 }
                 {
                     helper.loginPassword !== ''&&
-                    <TouchableOpacity
-                        activeOpacity={helper.buttonOpacity}
-                        style={buttons.loginButton}
-                        onPress={()=> this.loginFunc()}
+                    <Button
+                        opacity={helper.buttonOpacity}
+                        styles={buttons.loginButton}
+                        clicked={()=> this.loginFunc()}
                     >
                         <IconM color='#fff' size={23} name='login' />
                         <Text style={buttons.loginButtonText}>Giriş yap</Text>
-                    </TouchableOpacity>
+                    </Button>
                 }
                 {
                     helper.asyncNotePasswordHint !==null&&
-                    <TouchableOpacity
-                        onPress={()=>this.setState({showHint:true})}
-                        style={buttons.hintButton}>
+                    <Button
+                        clicked={()=>this.setState({showHint:true})}
+                        styles={buttons.hintButton}>
                         <IconM name='lightbulb-on' size={40} color='#ffce5b'/>
-                    </TouchableOpacity>
+                    </Button>
                 }
             </View>
         )
@@ -88,7 +84,7 @@ class Login_Secret_Notes extends Component{
 
     renderSignUp(){
         return(
-            <ScrollView style={styles.loginContainer} contentContainerStyle={{alignItems:'center'}}>
+            <ScrollView style={styles.loginContainer} contentContainerStyle={{alignItems:'center',flex:1}}>
                 <Text style={styles.informationMessage}>
                     <Text style={{fontWeight:'bold',}}>Gizli notlara</Text> şu anda oluşturacağınız şifre ile ulaşabileceksiniz bu yüzden akılda kalıcı ve güvenli bir şifre oluşturmanızı öneririz
                 </Text>
@@ -124,17 +120,17 @@ class Login_Secret_Notes extends Component{
                         placeholder='ipucu oluştur...'/>
                 </View>
 
-                <TouchableOpacity
-                    activeOpacity={helper.buttonOpacity}
-                    style={buttons.loginButton}
-                    onPress={()=> {
+                <Button
+                    opacity={helper.buttonOpacity}
+                    styles={buttons.loginButton}
+                    clicked={()=> {
                         controlData.controlPassword(helper.secretNotePassword, helper.secretNoteHint);
                         if(!helper.passwordWarning) this.props.navigation.navigate('Secret_Notes')
                     }}
                 >
                     <IconM color='#fff' size={25} name='check' />
                     <Text style={buttons.loginButtonText}>Onayla</Text>
-                </TouchableOpacity>
+                </Button>
             </ScrollView>
         )
     }

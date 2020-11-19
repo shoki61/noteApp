@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import {View, Text, TextInput, ScrollView, Dimensions} from 'react-native';
 import {observer} from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 
-import styles from '../../styles/editNoteStyle';
+
+import Button from '../../components/Button/Button';
+
+import styles from './style';
 import buttons from '../../styles/buttons';
 import controlData from '../../controllers/controlData';
 import saveData from '../../controllers/saveData';
 import helper from '../../controllers/helper';
 import saveDataAsyncStorage from '../../controllers/saveDataAsyncStorage';
 
-let originNote = []
-originNote.push({...controlData.showNote})
+let originNote = [];
+originNote.push({ ...controlData.showNote });
 
 class Edit_Note extends Component{
 
-    constructor(props) {
-        super(props);
-        this.state={
-            title:controlData.showNote.title,
-            desc:controlData.showNote.desc,
-            showButton:false
-        }
+    state={
+        title:controlData.showNote.title,
+        desc:controlData.showNote.desc,
+        showButton:false
     }
-
-
-
-    editNote(){
+    
+    editNote = () => {
         saveData.userNotes[controlData.editNoteIndex]={
             ...this.state,
             date:helper.Date,
@@ -56,17 +54,16 @@ class Edit_Note extends Component{
                </View>
 
                     <View style={{width:'100%',marginBottom:25,marginTop:10,alignItems:'flex-end'}}>
-                        <TouchableOpacity
-                            style={[buttons.saveButton,{backgroundColor:'#ff9d5b'},{width:'45%'}]}
-                            onPress={()=>this.editStickyNote()}
-                            activeOpacity={helper.buttonOpacity}>
+                        <Button
+                            styles={[buttons.saveButton,{backgroundColor:'#ff9d5b'},{width:'45%'}]}
+                            clicked={this.editNote}
+                            opacity={helper.buttonOpacity}
+                        >
                             <Icon name='check' color='#fff' size={20}/>
                             <Text style={buttons.saveButtonText}>Değişikliği kaydet</Text>
-                        </TouchableOpacity>
+                        </Button>
                     </View>
-
                 </ScrollView>
-
             </View>
 
         )
